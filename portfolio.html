@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adam Dobson — Electronics & CAD Designer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600;700&family=Barlow:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f6f3ee;
+      --bg-card: #ffffff;
+      --text: #1a1918;
+      --text-muted: #5a5750;
+      --text-faint: #9a9690;
+      --accent: #c94d1e;
+      --accent-light: #f0e8e3;
+      --border: #ddd9d1;
+      --border-strong: #c5c0b8;
+      --grid-color: rgba(0,0,0,0.04);
+      --font-display: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+      --font-body: 'Barlow', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+    }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 1.1rem;
+      letter-spacing: 0.05em;
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      text-decoration: none;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    /* HERO */
+    .hero {
+      min-height: calc(100vh - 56px);
+      display: flex;
+      align-items: center;
+      padding: 4rem 2rem;
+      position: relative;
+      overflow: hidden;
+      background-image:
+        linear-gradient(var(--grid-color) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    .hero-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .hero-label {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .hero-label::before {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    .hero-name {
+      font-family: var(--font-display);
+      font-size: clamp(4rem, 10vw, 8rem);
+      font-weight: 700;
+      line-height: 0.9;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 3vw, 2.5rem);
+      font-weight: 400;
+      color: var(--text-muted);
+      letter-spacing: 0.02em;
+      margin-bottom: 2rem;
+    }
+
+    .hero-desc {
+      max-width: 520px;
+      font-size: 1rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      background: var(--accent);
+      color: #fff;
+      text-decoration: none;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border: 1px solid var(--accent);
+      transition: all 0.2s;
+    }
+
+    .btn-primary:hover { background: #a83d15; border-color: #a83d15; }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      background: transparent;
+      color: var(--text);
+      text-decoration: none;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border: 1px solid var(--border-strong);
+      transition: all 0.2s;
+    }
+
+    .btn-outline:hover { border-color: var(--text); }
+
+    .hero-meta {
+      position: absolute;
+      right: 2rem;
+      bottom: 2rem;
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: var(--text-faint);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      writing-mode: vertical-rl;
+    }
+
+    /* SECTION BASE */
+    section { padding: 5rem 2rem; }
+
+    .section-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .section-label::before {
+      content: attr(data-num);
+      color: var(--text-faint);
+    }
+
+    .section-heading {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 600;
+      line-height: 1.1;
+      margin-bottom: 3rem;
+      letter-spacing: 0.01em;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+    }
+
+    /* SKILLS */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+    }
+
+    .skill-group h3 {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      margin-bottom: 0.75rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .skill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .skill-tag {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      padding: 0.3rem 0.6rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      letter-spacing: 0.03em;
+    }
+
+    .skill-tag.highlight {
+      background: var(--accent-light);
+      border-color: #e8b8a2;
+      color: var(--accent);
+    }
+
+    /* PROJECTS */
+    #projects { background: var(--bg-card); }
+
+    .projects-grid { display: grid; gap: 1.5rem; }
+
+    .project-card {
+      border: 1px solid var(--border);
+      padding: 2rem;
+      background: var(--bg);
+      transition: border-color 0.2s;
+    }
+
+    .project-card:hover { border-color: var(--accent); }
+
+    .project-num {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: var(--text-faint);
+      letter-spacing: 0.1em;
+      margin-bottom: 0.75rem;
+    }
+
+    .project-title {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+
+    .project-org {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .project-desc {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 1.25rem;
+      max-width: 600px;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .project-tag {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      padding: 0.25rem 0.5rem;
+      border: 1px solid var(--border);
+      color: var(--text-faint);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .projects-two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    /* ABOUT */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .about-text p {
+      font-size: 1rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+
+    .about-text p strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .about-facts {
+      border: 1px solid var(--border);
+      padding: 1.5rem;
+      background: var(--bg-card);
+    }
+
+    .fact-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--border);
+      gap: 1rem;
+    }
+
+    .fact-row:last-child { border-bottom: none; }
+
+    .fact-label {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-faint);
+      white-space: nowrap;
+    }
+
+    .fact-value {
+      font-size: 0.9rem;
+      color: var(--text);
+      text-align: right;
+    }
+
+    /* CONTACT */
+    #contact { background: var(--text); color: #f6f3ee; }
+    #contact .section-label { color: #c94d1e; }
+    #contact .section-label::before { color: rgba(246,243,238,0.3); }
+    #contact .section-heading { color: #f6f3ee; }
+
+    .contact-tagline {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 4rem);
+      font-weight: 300;
+      color: rgba(246,243,238,0.45);
+      line-height: 1.2;
+      margin-bottom: 2.5rem;
+      letter-spacing: 0.02em;
+    }
+
+    .contact-tagline em {
+      font-style: normal;
+      color: #f6f3ee;
+    }
+
+    .contact-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      border: 1px solid rgba(246,243,238,0.2);
+      color: rgba(246,243,238,0.65);
+      text-decoration: none;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: all 0.2s;
+    }
+
+    .contact-link:hover {
+      border-color: rgba(246,243,238,0.6);
+      color: #f6f3ee;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--text);
+      border-top: 1px solid rgba(246,243,238,0.1);
+      padding: 1.5rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer span {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: rgba(246,243,238,0.3);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 640px) {
+      nav { padding: 0 1rem; }
+      .nav-links { gap: 1rem; }
+      .hero, section { padding: 3rem 1rem; }
+      .hero-meta { display: none; }
+      .about-grid,
+      .projects-two-col { grid-template-columns: 1fr; gap: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="#" class="nav-logo">Adam Dobson</a>
+    <ul class="nav-links">
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero" id="home">
+    <div class="hero-inner">
+      <div class="hero-label">Victoria, BC &mdash; Open to Work</div>
+      <h1 class="hero-name">Adam<br>Dobson</h1>
+      <p class="hero-title">Electronics &amp; CAD Designer</p>
+      <p class="hero-desc">
+        Engineering technologist with hands-on experience in PCB design, embedded systems,
+        and technical drafting. Co-founder of Remindr &mdash; a smart hardware product taken
+        from schematic to shipping firmware.
+      </p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn-primary">View Projects &rarr;</a>
+        <a href="#contact" class="btn-outline">Get in Touch</a>
+      </div>
+    </div>
+    <div class="hero-meta">Victoria, BC &bull; Canada &bull; 2025</div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-inner">
+      <div class="section-label" data-num="01 &mdash;">Technical Skills</div>
+      <h2 class="section-heading">Tools &amp; Technologies</h2>
+      <div class="skills-grid">
+        <div class="skill-group">
+          <h3>CAD / Drafting</h3>
+          <div class="skill-list">
+            <span class="skill-tag highlight">AutoCAD</span>
+            <span class="skill-tag highlight">Rhino 3D</span>
+            <span class="skill-tag highlight">Onshape</span>
+            <span class="skill-tag">Technical Drawing</span>
+            <span class="skill-tag">3D Modeling</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3>Electronics / PCB</h3>
+          <div class="skill-list">
+            <span class="skill-tag highlight">EasyEDA</span>
+            <span class="skill-tag highlight">KiCad</span>
+            <span class="skill-tag">PCB Layout</span>
+            <span class="skill-tag">Schematic Design</span>
+            <span class="skill-tag">Low-Voltage Systems</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3>Embedded / Firmware</h3>
+          <div class="skill-list">
+            <span class="skill-tag highlight">ESP32</span>
+            <span class="skill-tag highlight">PlatformIO</span>
+            <span class="skill-tag">C++ / Arduino</span>
+            <span class="skill-tag">FastLED</span>
+            <span class="skill-tag">WiFi / OTA</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3>Programming</h3>
+          <div class="skill-list">
+            <span class="skill-tag">C++</span>
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">Java</span>
+            <span class="skill-tag">HTML / CSS</span>
+            <span class="skill-tag">REST APIs</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-inner">
+      <div class="section-label" data-num="02 &mdash;">Work &amp; Projects</div>
+      <h2 class="section-heading">Selected Projects</h2>
+      <div class="projects-grid">
+
+        <div class="project-card">
+          <div class="project-num">01 &mdash; Personal Project &amp; Startup</div>
+          <h3 class="project-title">Rain Remindr</h3>
+          <div class="project-org">Remindr &mdash; www.remind-r.ca</div>
+          <p class="project-desc">
+            Physical ambient weather display built around the ESP32-C3 microcontroller and an addressable COB LED strip.
+            Full firmware developed in PlatformIO: WiFi provisioning, live weather API integration, FastLED rendering engine,
+            captive portal setup wizard, and over-the-air (OTA) update system. Custom enclosure printed in PLA-CF.
+          </p>
+          <div class="project-tags">
+            <span class="project-tag">ESP32-C3</span>
+            <span class="project-tag">C++</span>
+            <span class="project-tag">PlatformIO</span>
+            <span class="project-tag">FastLED</span>
+            <span class="project-tag">REST API</span>
+            <span class="project-tag">OTA Updates</span>
+            <span class="project-tag">3D Printing</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-num">02 &mdash; Co-op Work Term</div>
+          <h3 class="project-title">Naval Architecture Drafting</h3>
+          <div class="project-org">Gregory C. Marshall Naval Architect Ltd.</div>
+          <p class="project-desc">
+            Technical drafting and 3D modeling for luxury yacht systems during a professional co-op placement.
+            Produced engineering drawings and spatial models for vessel components, working directly with
+            licensed naval architects on active client projects.
+          </p>
+          <div class="project-tags">
+            <span class="project-tag">AutoCAD</span>
+            <span class="project-tag">Rhino 3D</span>
+            <span class="project-tag">Technical Drafting</span>
+            <span class="project-tag">Marine Systems</span>
+          </div>
+        </div>
+
+        <div class="projects-two-col">
+          <div class="project-card">
+            <div class="project-num">03 &mdash; Electronics</div>
+            <h3 class="project-title">PCB Design</h3>
+            <div class="project-org">EasyEDA &amp; KiCad</div>
+            <p class="project-desc">
+              Designed and manufactured custom PCBs for embedded hardware projects &mdash; from schematic
+              capture and board layout through DRC and ordering fabricated prototypes.
+            </p>
+            <div class="project-tags">
+              <span class="project-tag">EasyEDA</span>
+              <span class="project-tag">KiCad</span>
+              <span class="project-tag">Schematic</span>
+              <span class="project-tag">PCB Layout</span>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-num">04 &mdash; CAD / Modeling</div>
+            <h3 class="project-title">3D Design &amp; Modeling</h3>
+            <div class="project-org">Onshape &mdash; Rhino &mdash; AutoCAD</div>
+            <p class="project-desc">
+              Parametric and freeform 3D modeling for product enclosures, mechanical components,
+              and architectural drafting across both engineering and design-focused workflows.
+            </p>
+            <div class="project-tags">
+              <span class="project-tag">Onshape</span>
+              <span class="project-tag">Rhino 3D</span>
+              <span class="project-tag">AutoCAD</span>
+              <span class="project-tag">Parametric</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-inner">
+      <div class="section-label" data-num="03 &mdash;">Background</div>
+      <h2 class="section-heading">About Me</h2>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>
+            I'm an electronics and CAD designer based in <strong>Victoria, BC</strong>, with hands-on experience
+            spanning embedded hardware, PCB design, technical drafting, and firmware development.
+          </p>
+          <p>
+            My work on <strong>Rain Remindr</strong> &mdash; a self-contained ambient weather display device &mdash;
+            took me through the full product development cycle: PCB schematic, enclosure design, and production-ready
+            firmware with WiFi provisioning and OTA updates.
+          </p>
+          <p>
+            A professional co-op at <strong>Gregory C. Marshall Naval Architect Ltd.</strong> gave me real-world
+            experience translating engineering requirements into precise technical drawings and 3D models.
+          </p>
+          <p>
+            I'm currently seeking roles in <strong>CAD drafting / design</strong> or
+            <strong>low-voltage electrical / electronics</strong> in Victoria or remote.
+          </p>
+        </div>
+        <div class="about-facts">
+          <div class="fact-row">
+            <span class="fact-label">Location</span>
+            <span class="fact-value">Victoria, BC, Canada</span>
+          </div>
+          <div class="fact-row">
+            <span class="fact-label">Status</span>
+            <span class="fact-value">Open to Opportunities</span>
+          </div>
+          <div class="fact-row">
+            <span class="fact-label">Focus Areas</span>
+            <span class="fact-value">CAD &bull; Electronics &bull; Embedded</span>
+          </div>
+          <div class="fact-row">
+            <span class="fact-label">Education</span>
+            <span class="fact-value">Electrical Eng. Studies, UVic</span>
+          </div>
+          <div class="fact-row">
+            <span class="fact-label">Work Auth.</span>
+            <span class="fact-value">Canadian Citizen</span>
+          </div>
+          <div class="fact-row">
+            <span class="fact-label">Remote</span>
+            <span class="fact-value">Open &mdash; hybrid &amp; remote welcome</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-inner">
+      <div class="section-label" data-num="04 &mdash;">Contact</div>
+      <p class="contact-tagline">
+        Looking for a <em>detail-oriented designer</em><br>who ships real hardware?
+      </p>
+      <div class="contact-links">
+        <a href="mailto:your@email.com" class="contact-link">&#9993;&nbsp; Email</a>
+        <a href="https://github.com/yourusername" class="contact-link" target="_blank">&#9670;&nbsp; GitHub</a>
+        <a href="https://linkedin.com/in/yourprofile" class="contact-link" target="_blank">in&nbsp; LinkedIn</a>
+        <a href="https://www.remind-r.ca" class="contact-link" target="_blank">&#9654;&nbsp; Remindr</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Adam Dobson &mdash; Portfolio</span>
+    <span>Victoria, BC &bull; 2025</span>
+  </footer>
+
+</body>
+</html>
