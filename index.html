@@ -172,11 +172,12 @@
       font-size: 11px;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      opacity: 0.5;
+      opacity: 0.4;
       writing-mode: vertical-rl;
       position: absolute;
-      bottom: 60px;
-      left: 44px;
+      top: 50%;
+      transform: translateY(-50%);
+      right: 20px;
     }
 
     /* ─── INTRO SECTION ─── */
@@ -425,68 +426,81 @@
 
     .project-cta:hover { background: var(--dark); color: var(--yellow); }
 
-    /* ─── PROJECT: MARINE STRUT ─── */
+    /* ─── PROJECT: MECHANICAL DESIGN ─── */
     .project-marine {
       background: var(--off-white);
       padding: 70px 44px;
       border-top: 3px solid var(--dark);
     }
 
-    .marine-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 48px;
-      align-items: start;
+    .mechanical-inner {
       max-width: 1100px;
       margin: 0 auto;
     }
 
-    .marine-left {}
-
     .marine-title {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(50px, 8vw, 96px);
+      font-size: clamp(60px, 10vw, 120px);
       line-height: 0.85;
       color: var(--dark);
-      margin-bottom: 24px;
+      margin-bottom: 40px;
     }
 
     .marine-title span.accent { color: var(--yellow-dark); }
+
+    .mechanical-cols {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 0.8fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .mechanical-col h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--mid);
+      border-bottom: 2px solid var(--dark);
+      padding-bottom: 8px;
+      margin-bottom: 16px;
+    }
 
     .marine-body {
       font-size: 15px;
       line-height: 1.75;
       color: var(--mid);
-      margin-bottom: 20px;
+      margin-bottom: 16px;
     }
 
-    .marine-right {
+    .mechanical-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .mechanical-col ul li {
+      font-size: 14px;
+      line-height: 1.5;
+      color: var(--mid);
+      padding-left: 14px;
       position: relative;
     }
 
-    .marine-photo-stack {
-      position: relative;
-    }
-
-    .marine-photo-main {
-      width: 100%;
-      height: 360px;
-      object-fit: cover;
-      border-radius: 16px;
-      border: 3px solid var(--dark);
-      display: block;
-    }
-
-    .marine-photo-float {
+    .mechanical-col ul li::before {
+      content: '—';
       position: absolute;
-      bottom: -30px;
-      left: -30px;
-      width: 180px;
-      height: 180px;
-      object-fit: cover;
-      border-radius: 50%;
-      border: 4px solid var(--dark);
-      background: var(--yellow);
+      left: 0;
+      opacity: 0.4;
+      font-size: 11px;
+    }
+
+    .mechanical-buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
     }
 
     .pdf-button {
@@ -769,6 +783,7 @@
       .project-grid-sub { grid-template-columns: 1fr 1fr; }
       .project-desc-card { grid-template-columns: 1fr; }
       .marine-grid { grid-template-columns: 1fr; }
+      .mechanical-cols { grid-template-columns: 1fr; }
       .workspace-grid { grid-template-columns: 1fr 1fr; }
       .skills-grid { grid-template-columns: 1fr 1fr; }
       .contact-grid { grid-template-columns: 1fr; }
@@ -831,7 +846,7 @@
   <section class="intro" id="intro">
     <div class="intro-grid">
       <div class="intro-photo">
-        <img src="images/Early_Design_Selfie.jpeg" alt="Early design work">
+        <img src="images/Early Design Selfie.jpeg" alt="Early design work">
         <span class="intro-photo-label">At the workstation</span>
       </div>
       <div class="intro-content">
@@ -877,12 +892,12 @@
 
     <div class="project-grid-main">
       <div class="photo-card photo-tall">
-        <img src="images/Remindr_Concept.png" alt="Rain Remindr concept render">
+        <img src="images/Remindr Concept.png" alt="Rain Remindr concept render">
         <span class="card-caption">Concept Render — Ambient LED Umbrella Stand</span>
       </div>
       <div style="display:flex; flex-direction:column; gap:24px;">
         <div class="photo-card" style="height:240px;">
-          <img src="images/Initial_Rain_Reminder_Mockup.jpeg" alt="Rain Remindr prototype">
+          <img src="images/Initial Rain Reminder Mockup.jpeg" alt="Rain Remindr prototype">
           <span class="card-caption">Working prototype — blue LED ring</span>
         </div>
         <div class="photo-card" style="height:200px;">
@@ -894,15 +909,15 @@
 
     <div class="project-grid-sub">
       <div class="photo-card photo-short">
-        <img src="images/Rain_Remindr_6_Example_Drawing.PNG" alt="PCB layout">
+        <img src="images/Rain Remindr 6 Example Drawing.PNG" alt="PCB layout">
         <span class="card-caption">PCB Layout — EasyEDA</span>
       </div>
       <div class="photo-card photo-short">
-        <img src="images/MICROCONTROLLER_MODEL_screenshot.PNG" alt="CAD model in enclosure">
+        <img src="images/MICROCONTROLLER MODEL screenshot.PNG" alt="CAD model in enclosure">
         <span class="card-caption">PCB in enclosure — Onshape CAD</span>
       </div>
       <div class="photo-card photo-short">
-        <img src="images/Remindr_Cad_Model_SS.PNG" alt="Remindr CAD model">
+        <img src="images/Remindr Cad Model SS.PNG" alt="Remindr CAD model">
         <span class="card-caption">Full device CAD model</span>
       </div>
     </div>
@@ -940,49 +955,70 @@
     </div>
   </section>
 
-  <!-- PROJECT: MARINE STRUT -->
+  <!-- PROJECT: MECHANICAL DESIGN -->
   <section class="project-marine">
-    <div class="marine-grid">
-      <div class="marine-left">
-        <div class="marine-title">
-          MARINE<br>
-          <span class="accent">PROPELLER</span><br>
-          STRUT
+    <div class="mechanical-inner">
+      <div class="marine-title">
+        MECHANICAL<br>
+        <span class="accent">DESIGN</span>
+      </div>
+
+      <div class="mechanical-cols">
+        <div class="mechanical-col">
+          <h3>Overview</h3>
+          <p class="marine-body">
+            During my co-op at <strong>Gregory C. Marshall Naval Architect LTD.</strong> in Victoria, BC,
+            I designed a custom V-strut propulsion support system for a 110&nbsp;ft luxury motor yacht —
+            from initial research and analysis through to final construction documents.
+          </p>
+          <p class="marine-body">
+            The project required balancing ABS regulatory standards, hydrodynamic efficiency,
+            vibration minimization, and structural integrity — all for a vessel operating in harsh
+            marine environments over a decades-long lifespan.
+          </p>
         </div>
-        <p class="marine-body">
-          During my co-op at <strong>Gregory C. Marshall Naval Architect LTD.</strong>, I designed a custom
-          V-strut propulsion support system for a 110&nbsp;ft luxury motor yacht — from initial research
-          through to construction documents.
-        </p>
-        <p class="marine-body">
-          The project involved 3D modelling in Rhinoceros, hydrodynamic analysis, ABS standards compliance,
-          and producing full technical drawings for shipyard use.
-        </p>
-        <div style="display:flex; gap:14px; flex-wrap:wrap; margin-top:8px;">
-          <span class="skill-tag" style="background:var(--yellow-dark); color:var(--dark);">Rhino 3D</span>
-          <span class="skill-tag" style="background:var(--yellow-dark); color:var(--dark);">AutoCAD</span>
-          <span class="skill-tag" style="background:var(--yellow-dark); color:var(--dark);">ABS Standards</span>
-          <span class="skill-tag" style="background:var(--yellow-dark); color:var(--dark);">CFD Analysis</span>
-          <span class="skill-tag" style="background:var(--yellow-dark); color:var(--dark);">Technical Drawing</span>
+        <div class="mechanical-col">
+          <h3>What I Did</h3>
+          <ul>
+            <li>Researched P-strut vs V-strut design tradeoffs</li>
+            <li>Applied ABS standards to determine dimensions</li>
+            <li>Designed NACA airfoil cross-section for drag reduction</li>
+            <li>Ran 2D fluid simulations to validate shape</li>
+            <li>Determined optimal strut angle (42°) for vibration mitigation</li>
+            <li>Specified water-lubricated rubber bearing attachment</li>
+            <li>Bolt pattern calculations per Maximum Stress Theory</li>
+            <li>Produced full construction documents for shipyard use</li>
+          </ul>
         </div>
+        <div class="mechanical-col">
+          <h3>Tools &amp; Standards</h3>
+          <ul>
+            <li>Rhinoceros 3D</li>
+            <li>AutoCAD (construction docs)</li>
+            <li>ABS Yacht Standards</li>
+            <li>2D CFD simulation</li>
+            <li>Stainless steel 316L spec</li>
+            <li>CHOCKFAST® ORANGE grouting</li>
+            <li>Fiberglass fairing process</li>
+          </ul>
+          <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:20px;">
+            <span class="skill-tag" style="background:var(--yellow-dark); color:var(--dark);">Rhino 3D</span>
+            <span class="skill-tag" style="background:var(--yellow-dark); color:var(--dark);">AutoCAD</span>
+            <span class="skill-tag" style="background:var(--yellow-dark); color:var(--dark);">ABS Standards</span>
+            <span class="skill-tag" style="background:var(--yellow-dark); color:var(--dark);">Naval Architecture</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="mechanical-buttons">
         <a href="pdfs/Designing_A_Marine_Strut_Signed.pdf" target="_blank" class="pdf-button">
           <span class="pdf-icon">📄</span>
           Read Full Challenge Report
         </a>
-        <a href="pdfs/Resume.pdf" target="_blank" class="pdf-button" style="margin-top:12px; background:var(--yellow); color:var(--dark);">
+        <a href="pdfs/Resume.pdf" target="_blank" class="pdf-button" style="background:var(--yellow); color:var(--dark);">
           <span class="pdf-icon" style="background:var(--dark); color:var(--yellow);">📋</span>
           Download Resume
         </a>
-      </div>
-      <div class="marine-right">
-        <div class="marine-photo-stack">
-          <img src="images/Female_DC_Power_Adapter_Model_Created_using_Calipers_Screenshot.PNG"
-               class="marine-photo-main"
-               alt="CAD model created using calipers">
-          <img src="images/MICROCONTROLLER_MODEL_screenshot.PNG"
-               class="marine-photo-float"
-               alt="Microcontroller model">
-        </div>
       </div>
     </div>
   </section>
@@ -998,15 +1034,15 @@
     <p class="workspace-label">Where it gets built</p>
     <div class="workspace-grid">
       <div class="photo-card photo-medium">
-        <img src="images/busy_workspace.jpeg" alt="Busy workshop with blue LED lighting">
+        <img src="images/busy workspace.jpeg" alt="Busy workshop with blue LED lighting">
         <span class="card-caption">Deep in a build session</span>
       </div>
       <div class="photo-card photo-medium">
-        <img src="images/workspace_Clean.jpeg" alt="Clean workspace">
+        <img src="images/workspace Clean.jpeg" alt="Clean workspace">
         <span class="card-caption">Planning phase</span>
       </div>
       <div class="photo-card photo-medium" style="border-radius:50%; overflow:hidden; width:260px; height:260px; align-self:center; justify-self:center;">
-        <img src="images/Initial_Rain_Reminder_Mockup.jpeg" alt="Rain Remindr prototype glowing blue">
+        <img src="images/Initial Rain Reminder Mockup.jpeg" alt="Rain Remindr prototype glowing blue">
         <span class="card-caption">Rain Remindr prototype</span>
       </div>
     </div>
