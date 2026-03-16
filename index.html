@@ -560,7 +560,7 @@
 
     .workspace-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
       gap: 20px;
       position: relative;
       z-index: 2;
@@ -782,7 +782,6 @@
       .project-grid-main { grid-template-columns: 1fr; }
       .project-grid-sub { grid-template-columns: 1fr 1fr; }
       .project-desc-card { grid-template-columns: 1fr; }
-      .marine-grid { grid-template-columns: 1fr; }
       .mechanical-cols { grid-template-columns: 1fr; }
       .workspace-grid { grid-template-columns: 1fr 1fr; }
       .skills-grid { grid-template-columns: 1fr 1fr; }
@@ -801,9 +800,75 @@
       .project-grid-sub { grid-template-columns: 1fr; }
       .skills-grid { grid-template-columns: 1fr; }
       .section-header { padding: 20px; }
+      .workspace-grid { grid-template-columns: 1fr; }
     }
 
     /* ─── HOVER REVEALS ─── */
+
+    /* ─── LIGHTBOX ─── */
+    .lightbox-trigger { cursor: zoom-in; }
+
+    #lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(0,0,0,0.92);
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+    }
+
+    #lightbox.open { display: flex; }
+
+    #lightbox img {
+      max-width: 90vw;
+      max-height: 90vh;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+      animation: lbIn 0.25s ease;
+    }
+
+    @keyframes lbIn {
+      from { opacity: 0; transform: scale(0.92); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+
+    #lightbox-close {
+      position: fixed;
+      top: 24px;
+      right: 32px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 36px;
+      color: white;
+      cursor: pointer;
+      opacity: 0.7;
+      line-height: 1;
+      transition: opacity .2s;
+      z-index: 10000;
+    }
+
+    #lightbox-close:hover { opacity: 1; }
+
+    #lightbox-caption {
+      position: fixed;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      white-space: nowrap;
+    }
+
+    /* ─── ROTATED IMAGE FIX ─── */
+    .img-rotate-cw {
+      transform: rotate(90deg) scale(1.45);
+      transform-origin: center center;
+    }
     .photo-card .card-caption {
       opacity: 0;
       transition: opacity 0.3s;
@@ -891,16 +956,16 @@
     </div>
 
     <div class="project-grid-main">
-      <div class="photo-card photo-tall">
+      <div class="photo-card photo-tall lightbox-trigger" data-src="images/Remindr Concept.png" data-caption="Concept Render — Ambient LED Umbrella Stand">
         <img src="images/Remindr Concept.png" alt="Rain Remindr concept render">
         <span class="card-caption">Concept Render — Ambient LED Umbrella Stand</span>
       </div>
       <div style="display:flex; flex-direction:column; gap:24px;">
-        <div class="photo-card" style="height:240px;">
+        <div class="photo-card lightbox-trigger" style="height:240px;" data-src="images/Initial Rain Reminder Mockup.jpeg" data-caption="Working prototype — blue LED ring">
           <img src="images/Initial Rain Reminder Mockup.jpeg" alt="Rain Remindr prototype">
           <span class="card-caption">Working prototype — blue LED ring</span>
         </div>
-        <div class="photo-card" style="height:200px;">
+        <div class="photo-card lightbox-trigger" style="height:200px;" data-src="images/PCB-1.jpeg" data-caption="Manufactured PCB — Rain Remindr v1">
           <img src="images/PCB-1.jpeg" alt="Manufactured PCB">
           <span class="card-caption">Manufactured PCB — Rain Remindr v1</span>
         </div>
@@ -908,15 +973,15 @@
     </div>
 
     <div class="project-grid-sub">
-      <div class="photo-card photo-short">
+      <div class="photo-card photo-short lightbox-trigger" data-src="images/Rain Remindr 6 Example Drawing.PNG" data-caption="PCB Layout — EasyEDA">
         <img src="images/Rain Remindr 6 Example Drawing.PNG" alt="PCB layout">
         <span class="card-caption">PCB Layout — EasyEDA</span>
       </div>
-      <div class="photo-card photo-short">
+      <div class="photo-card photo-short lightbox-trigger" data-src="images/MICROCONTROLLER MODEL screenshot.PNG" data-caption="PCB in enclosure — Onshape CAD">
         <img src="images/MICROCONTROLLER MODEL screenshot.PNG" alt="CAD model in enclosure">
         <span class="card-caption">PCB in enclosure — Onshape CAD</span>
       </div>
-      <div class="photo-card photo-short">
+      <div class="photo-card photo-short lightbox-trigger" data-src="images/Remindr Cad Model SS.PNG" data-caption="Full device CAD model">
         <img src="images/Remindr Cad Model SS.PNG" alt="Remindr CAD model">
         <span class="card-caption">Full device CAD model</span>
       </div>
@@ -1034,16 +1099,12 @@
     <p class="workspace-label">Where it gets built</p>
     <div class="workspace-grid">
       <div class="photo-card photo-medium">
-        <img src="images/busy workspace.jpeg" alt="Busy workshop with blue LED lighting">
+        <img src="images/busy workspace.jpeg" alt="Busy workshop with blue LED lighting" class="img-rotate-cw">
         <span class="card-caption">Deep in a build session</span>
       </div>
       <div class="photo-card photo-medium">
         <img src="images/workspace Clean.jpeg" alt="Clean workspace">
         <span class="card-caption">Planning phase</span>
-      </div>
-      <div class="photo-card photo-medium" style="border-radius:50%; overflow:hidden; width:260px; height:260px; align-self:center; justify-self:center;">
-        <img src="images/Initial Rain Reminder Mockup.jpeg" alt="Rain Remindr prototype glowing blue">
-        <span class="card-caption">Rain Remindr prototype</span>
       </div>
     </div>
     <div class="workspace-mega">STUDIO</div>
@@ -1136,6 +1197,39 @@
       <span>Victoria, BC, Canada</span>
     </div>
   </section>
+
+  <!-- LIGHTBOX -->
+  <div id="lightbox">
+    <span id="lightbox-close">✕</span>
+    <img id="lightbox-img" src="" alt="">
+    <span id="lightbox-caption"></span>
+  </div>
+
+  <script>
+    const lightbox     = document.getElementById('lightbox');
+    const lbImg        = document.getElementById('lightbox-img');
+    const lbCaption    = document.getElementById('lightbox-caption');
+    const lbClose      = document.getElementById('lightbox-close');
+
+    document.querySelectorAll('.lightbox-trigger').forEach(card => {
+      card.addEventListener('click', () => {
+        lbImg.src       = card.dataset.src;
+        lbCaption.textContent = card.dataset.caption || '';
+        lightbox.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      document.body.style.overflow = '';
+      lbImg.src = '';
+    }
+
+    lbClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+  </script>
 
 </body>
 </html>
