@@ -8,473 +8,138 @@
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600;700&family=Barlow:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --bg: #f6f3ee;
-      --bg-card: #ffffff;
-      --text: #1a1918;
-      --text-muted: #5a5750;
-      --text-faint: #9a9690;
-      --accent: #c94d1e;
-      --accent-light: #f0e8e3;
-      --border: #ddd9d1;
-      --border-strong: #c5c0b8;
-      --grid-color: rgba(0,0,0,0.04);
+      --bg: #f6f3ee; --bg-card: #ffffff; --text: #1a1918; --text-muted: #5a5750;
+      --text-faint: #9a9690; --accent: #c94d1e; --accent-light: #f0e8e3;
+      --border: #ddd9d1; --border-strong: #c5c0b8; --grid-color: rgba(0,0,0,0.04);
       --font-display: 'Barlow Condensed', 'Arial Narrow', sans-serif;
       --font-body: 'Barlow', system-ui, sans-serif;
       --font-mono: 'JetBrains Mono', 'Courier New', monospace;
     }
-
     html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.6; }
 
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--font-body);
-      font-size: 16px;
-      line-height: 1.6;
-    }
-
-    /* NAV */
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: var(--bg);
-      border-bottom: 1px solid var(--border);
-      padding: 0 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 56px;
-    }
-
-    .nav-logo {
-      font-family: var(--font-display);
-      font-weight: 600;
-      font-size: 1.1rem;
-      letter-spacing: 0.05em;
-      text-decoration: none;
-      color: var(--text);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-    }
-
-    .nav-links a {
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      text-decoration: none;
-      color: var(--text-muted);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      transition: color 0.2s;
-    }
-
+    nav { position: sticky; top: 0; z-index: 100; background: var(--bg); border-bottom: 1px solid var(--border); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 56px; }
+    .nav-logo { font-family: var(--font-display); font-weight: 600; font-size: 1.1rem; letter-spacing: 0.05em; text-decoration: none; color: var(--text); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { font-family: var(--font-mono); font-size: 0.75rem; text-decoration: none; color: var(--text-muted); letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
     .nav-links a:hover { color: var(--accent); }
 
-    /* HERO */
-    .hero {
-      min-height: calc(100vh - 56px);
-      display: flex;
-      align-items: center;
-      padding: 4rem 2rem;
-      position: relative;
-      overflow: hidden;
-      background-image:
-        linear-gradient(var(--grid-color) 1px, transparent 1px),
-        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
-      background-size: 40px 40px;
-    }
+    .hero { min-height: calc(100vh - 56px); display: flex; align-items: center; padding: 4rem 2rem; position: relative; overflow: hidden; background-image: linear-gradient(var(--grid-color) 1px, transparent 1px), linear-gradient(90deg, var(--grid-color) 1px, transparent 1px); background-size: 40px 40px; }
+    .hero-inner { max-width: 900px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1fr 220px; gap: 3rem; align-items: center; }
+    .hero-label { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem; }
+    .hero-label::before { content: ''; display: block; width: 32px; height: 1px; background: var(--accent); }
+    .hero-name { font-family: var(--font-display); font-size: clamp(3rem, 8vw, 6.5rem); font-weight: 700; line-height: 0.92; letter-spacing: -0.01em; color: var(--text); margin-bottom: 1.25rem; }
+    .hero-title { font-family: var(--font-display); font-size: clamp(1.25rem, 2.5vw, 2rem); font-weight: 400; color: var(--text-muted); letter-spacing: 0.02em; margin-bottom: 1.75rem; }
+    .hero-desc { max-width: 480px; font-size: 0.95rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 2rem; }
+    .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .hero-photo { width: 220px; height: 280px; object-fit: cover; object-position: center top; display: block; border: 1px solid var(--border); filter: grayscale(10%); }
+    .hero-meta { position: absolute; right: 2rem; bottom: 2rem; font-family: var(--font-mono); font-size: 0.65rem; color: var(--text-faint); letter-spacing: 0.1em; text-transform: uppercase; writing-mode: vertical-rl; }
 
-    .hero-inner {
-      max-width: 900px;
-      margin: 0 auto;
-      width: 100%;
-    }
-
-    .hero-label {
-      font-family: var(--font-mono);
-      font-size: 0.7rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 1.5rem;
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    .hero-label::before {
-      content: '';
-      display: block;
-      width: 32px;
-      height: 1px;
-      background: var(--accent);
-    }
-
-    .hero-name {
-      font-family: var(--font-display);
-      font-size: clamp(4rem, 10vw, 8rem);
-      font-weight: 700;
-      line-height: 0.9;
-      letter-spacing: -0.01em;
-      color: var(--text);
-      margin-bottom: 1.5rem;
-    }
-
-    .hero-title {
-      font-family: var(--font-display);
-      font-size: clamp(1.5rem, 3vw, 2.5rem);
-      font-weight: 400;
-      color: var(--text-muted);
-      letter-spacing: 0.02em;
-      margin-bottom: 2rem;
-    }
-
-    .hero-desc {
-      max-width: 520px;
-      font-size: 1rem;
-      color: var(--text-muted);
-      line-height: 1.7;
-      margin-bottom: 2.5rem;
-    }
-
-    .hero-cta {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.75rem 1.5rem;
-      background: var(--accent);
-      color: #fff;
-      text-decoration: none;
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      border: 1px solid var(--accent);
-      transition: all 0.2s;
-    }
-
+    .btn-primary { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: var(--accent); color: #fff; text-decoration: none; font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; border: 1px solid var(--accent); transition: all 0.2s; }
     .btn-primary:hover { background: #a83d15; border-color: #a83d15; }
-
-    .btn-outline {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.75rem 1.5rem;
-      background: transparent;
-      color: var(--text);
-      text-decoration: none;
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      border: 1px solid var(--border-strong);
-      transition: all 0.2s;
-    }
-
+    .btn-outline { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: transparent; color: var(--text); text-decoration: none; font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; border: 1px solid var(--border-strong); transition: all 0.2s; }
     .btn-outline:hover { border-color: var(--text); }
 
-    .hero-meta {
-      position: absolute;
-      right: 2rem;
-      bottom: 2rem;
-      font-family: var(--font-mono);
-      font-size: 0.65rem;
-      color: var(--text-faint);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      writing-mode: vertical-rl;
-    }
-
-    /* SECTION BASE */
     section { padding: 5rem 2rem; }
+    .section-inner { max-width: 900px; margin: 0 auto; }
+    .section-label { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.75rem; }
+    .section-label::before { content: attr(data-num); color: var(--text-faint); }
+    .section-heading { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3rem); font-weight: 600; line-height: 1.1; margin-bottom: 3rem; letter-spacing: 0.01em; }
+    .divider { border: none; border-top: 1px solid var(--border); }
 
-    .section-inner {
-      max-width: 900px;
-      margin: 0 auto;
-    }
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; }
+    .skill-group h3 { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-faint); margin-bottom: 0.75rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
+    .skill-list { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .skill-tag { font-family: var(--font-mono); font-size: 0.7rem; padding: 0.3rem 0.6rem; background: var(--bg-card); border: 1px solid var(--border); color: var(--text-muted); }
+    .skill-tag.highlight { background: var(--accent-light); border-color: #e8b8a2; color: var(--accent); }
 
-    .section-label {
-      font-family: var(--font-mono);
-      font-size: 0.7rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 0.75rem;
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    .section-label::before {
-      content: attr(data-num);
-      color: var(--text-faint);
-    }
-
-    .section-heading {
-      font-family: var(--font-display);
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 600;
-      line-height: 1.1;
-      margin-bottom: 3rem;
-      letter-spacing: 0.01em;
-    }
-
-    .divider {
-      border: none;
-      border-top: 1px solid var(--border);
-    }
-
-    /* SKILLS */
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 2rem;
-    }
-
-    .skill-group h3 {
-      font-family: var(--font-mono);
-      font-size: 0.65rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--text-faint);
-      margin-bottom: 0.75rem;
-      padding-bottom: 0.5rem;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .skill-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-    }
-
-    .skill-tag {
-      font-family: var(--font-mono);
-      font-size: 0.7rem;
-      padding: 0.3rem 0.6rem;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      color: var(--text-muted);
-      letter-spacing: 0.03em;
-    }
-
-    .skill-tag.highlight {
-      background: var(--accent-light);
-      border-color: #e8b8a2;
-      color: var(--accent);
-    }
-
-    /* PROJECTS */
     #projects { background: var(--bg-card); }
-
-    .projects-grid { display: grid; gap: 1.5rem; }
-
-    .project-card {
-      border: 1px solid var(--border);
-      padding: 2rem;
-      background: var(--bg);
-      transition: border-color 0.2s;
-    }
-
+    .projects-grid { display: grid; gap: 2.5rem; }
+    .project-card { border: 1px solid var(--border); background: var(--bg); transition: border-color 0.2s; overflow: hidden; }
     .project-card:hover { border-color: var(--accent); }
 
-    .project-num {
-      font-family: var(--font-mono);
-      font-size: 0.65rem;
-      color: var(--text-faint);
-      letter-spacing: 0.1em;
-      margin-bottom: 0.75rem;
-    }
+    .project-gallery { display: grid; gap: 3px; background: var(--border); }
+    .project-gallery.one { grid-template-columns: 1fr; }
+    .project-gallery.two { grid-template-columns: 1fr 1fr; }
+    .project-gallery.three { grid-template-columns: 2fr 1fr; grid-template-rows: 1fr 1fr; }
+    .project-gallery.three .gallery-img:first-child { grid-row: 1 / 3; aspect-ratio: unset !important; height: 100%; }
 
-    .project-title {
-      font-family: var(--font-display);
-      font-size: 1.6rem;
-      font-weight: 600;
-      letter-spacing: 0.01em;
-      margin-bottom: 0.5rem;
-      color: var(--text);
-    }
+    .gallery-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; background: var(--border); cursor: zoom-in; transition: opacity 0.2s; }
+    .gallery-img:hover { opacity: 0.88; }
+    .gallery-placeholder { width: 100%; aspect-ratio: 4/3; background: #eeeae3; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem; color: var(--text-faint); font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; }
 
-    .project-org {
-      font-family: var(--font-mono);
-      font-size: 0.7rem;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 1rem;
-    }
+    .project-body { padding: 2rem; }
+    .project-num { font-family: var(--font-mono); font-size: 0.65rem; color: var(--text-faint); letter-spacing: 0.1em; margin-bottom: 0.75rem; }
+    .project-title { font-family: var(--font-display); font-size: 1.6rem; font-weight: 600; letter-spacing: 0.01em; margin-bottom: 0.5rem; color: var(--text); }
+    .project-org { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+    .project-desc { font-size: 0.95rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 1.25rem; max-width: 640px; }
+    .project-footer { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem; }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .project-tag { font-family: var(--font-mono); font-size: 0.65rem; padding: 0.25rem 0.5rem; border: 1px solid var(--border); color: var(--text-faint); text-transform: uppercase; }
 
-    .project-desc {
-      font-size: 0.95rem;
-      color: var(--text-muted);
-      line-height: 1.7;
-      margin-bottom: 1.25rem;
-      max-width: 600px;
-    }
+    .pdf-link { display: inline-flex; align-items: center; gap: 0.4rem; font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); text-decoration: none; border: 1px solid #e8b8a2; padding: 0.35rem 0.75rem; background: var(--accent-light); transition: all 0.2s; white-space: nowrap; }
+    .pdf-link:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
 
-    .project-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-    }
+    .projects-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
 
-    .project-tag {
-      font-family: var(--font-mono);
-      font-size: 0.65rem;
-      padding: 0.25rem 0.5rem;
-      border: 1px solid var(--border);
-      color: var(--text-faint);
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-    }
-
-    .projects-two-col {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-    }
-
-    /* ABOUT */
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: start;
-    }
-
-    .about-text p {
-      font-size: 1rem;
-      color: var(--text-muted);
-      line-height: 1.8;
-      margin-bottom: 1rem;
-    }
-
-    .about-text p strong {
-      color: var(--text);
-      font-weight: 500;
-    }
-
-    .about-facts {
-      border: 1px solid var(--border);
-      padding: 1.5rem;
-      background: var(--bg-card);
-    }
-
-    .fact-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      padding: 0.75rem 0;
-      border-bottom: 1px solid var(--border);
-      gap: 1rem;
-    }
-
+    .about-grid { display: grid; grid-template-columns: 260px 1fr; gap: 4rem; align-items: start; }
+    .about-photo { width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: center top; display: block; border: 1px solid var(--border); }
+    .about-photo-placeholder { width: 100%; aspect-ratio: 3/4; background: var(--bg-card); border: 1px solid var(--border); display: none; flex-direction: column; align-items: center; justify-content: center; gap: 0.75rem; color: var(--text-faint); font-family: var(--font-mono); font-size: 0.65rem; text-transform: uppercase; }
+    .about-photo-caption { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-faint); margin-top: 0.6rem; text-align: center; }
+    .about-text p { font-size: 1rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 1rem; }
+    .about-text p strong { color: var(--text); font-weight: 500; }
+    .about-facts { border: 1px solid var(--border); padding: 1.5rem; background: var(--bg-card); margin-top: 2rem; }
+    .fact-row { display: flex; justify-content: space-between; align-items: baseline; padding: 0.75rem 0; border-bottom: 1px solid var(--border); gap: 1rem; }
     .fact-row:last-child { border-bottom: none; }
+    .fact-label { font-family: var(--font-mono); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-faint); white-space: nowrap; }
+    .fact-value { font-size: 0.9rem; color: var(--text); text-align: right; }
 
-    .fact-label {
-      font-family: var(--font-mono);
-      font-size: 0.65rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--text-faint);
-      white-space: nowrap;
-    }
-
-    .fact-value {
-      font-size: 0.9rem;
-      color: var(--text);
-      text-align: right;
-    }
-
-    /* CONTACT */
     #contact { background: var(--text); color: #f6f3ee; }
     #contact .section-label { color: #c94d1e; }
     #contact .section-label::before { color: rgba(246,243,238,0.3); }
     #contact .section-heading { color: #f6f3ee; }
+    .contact-tagline { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 4rem); font-weight: 300; color: rgba(246,243,238,0.45); line-height: 1.2; margin-bottom: 2.5rem; letter-spacing: 0.02em; }
+    .contact-tagline em { font-style: normal; color: #f6f3ee; }
+    .contact-bottom { display: grid; grid-template-columns: 1fr auto; gap: 3rem; align-items: end; }
+    .contact-links { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+    .contact-link { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.25rem; border: 1px solid rgba(246,243,238,0.2); color: rgba(246,243,238,0.65); text-decoration: none; font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; transition: all 0.2s; }
+    .contact-link:hover { border-color: rgba(246,243,238,0.6); color: #f6f3ee; }
+    .instagram-block { text-align: center; }
+    .instagram-qr { width: 110px; height: 110px; object-fit: cover; display: block; margin: 0 auto 0.5rem; border: 1px solid rgba(246,243,238,0.15); }
+    .instagram-label { font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(246,243,238,0.3); }
 
-    .contact-tagline {
-      font-family: var(--font-display);
-      font-size: clamp(2rem, 5vw, 4rem);
-      font-weight: 300;
-      color: rgba(246,243,238,0.45);
-      line-height: 1.2;
-      margin-bottom: 2.5rem;
-      letter-spacing: 0.02em;
-    }
+    .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.93); z-index: 999; align-items: center; justify-content: center; }
+    .lightbox.open { display: flex; }
+    .lightbox img { max-width: 90vw; max-height: 90vh; object-fit: contain; }
+    .lightbox-close { position: fixed; top: 1.5rem; right: 1.5rem; background: none; border: 1px solid rgba(255,255,255,0.3); color: #fff; font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.5rem 1rem; cursor: pointer; }
+    .lightbox-close:hover { background: rgba(255,255,255,0.1); }
 
-    .contact-tagline em {
-      font-style: normal;
-      color: #f6f3ee;
-    }
+    footer { background: var(--text); border-top: 1px solid rgba(246,243,238,0.1); padding: 1.5rem 2rem; display: flex; justify-content: space-between; align-items: center; }
+    footer span { font-family: var(--font-mono); font-size: 0.65rem; color: rgba(246,243,238,0.3); letter-spacing: 0.1em; text-transform: uppercase; }
 
-    .contact-links {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .contact-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.75rem 1.5rem;
-      border: 1px solid rgba(246,243,238,0.2);
-      color: rgba(246,243,238,0.65);
-      text-decoration: none;
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      transition: all 0.2s;
-    }
-
-    .contact-link:hover {
-      border-color: rgba(246,243,238,0.6);
-      color: #f6f3ee;
-    }
-
-    /* FOOTER */
-    footer {
-      background: var(--text);
-      border-top: 1px solid rgba(246,243,238,0.1);
-      padding: 1.5rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    footer span {
-      font-family: var(--font-mono);
-      font-size: 0.65rem;
-      color: rgba(246,243,238,0.3);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-
-    /* RESPONSIVE */
-    @media (max-width: 640px) {
+    @media (max-width: 700px) {
       nav { padding: 0 1rem; }
       .nav-links { gap: 1rem; }
       .hero, section { padding: 3rem 1rem; }
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-inner > img { display: none; }
       .hero-meta { display: none; }
-      .about-grid,
-      .projects-two-col { grid-template-columns: 1fr; gap: 1.5rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .projects-two-col { grid-template-columns: 1fr; }
+      .project-gallery.three { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+      .project-gallery.three .gallery-img:first-child { grid-row: auto; aspect-ratio: 4/3 !important; height: auto; }
+      .contact-bottom { grid-template-columns: 1fr; }
+      .instagram-block { display: none; }
     }
   </style>
 </head>
 <body>
+
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <button class="lightbox-close" onclick="closeLightbox()">Close &times;</button>
+    <img id="lightbox-img" src="" alt="">
+  </div>
 
   <nav>
     <a href="#" class="nav-logo">Adam Geggie-Bowker</a>
@@ -486,28 +151,25 @@
     </ul>
   </nav>
 
-  <!-- HERO -->
   <div class="hero" id="home">
     <div class="hero-inner">
-      <div class="hero-label">Victoria, BC &mdash; Open to Work</div>
-      <h1 class="hero-name">Adam<br>Geggie-Bowker</h1>
-      <p class="hero-title">Electronics &amp; CAD Designer</p>
-      <p class="hero-desc">
-        Engineering technologist with hands-on experience in PCB design, embedded systems,
-        and technical drafting. Co-founder of Remindr &mdash; a smart hardware product taken
-        from schematic to shipping firmware.
-      </p>
-      <div class="hero-cta">
-        <a href="#projects" class="btn-primary">View Projects &rarr;</a>
-        <a href="#contact" class="btn-outline">Get in Touch</a>
+      <div>
+        <div class="hero-label">Victoria, BC &mdash; Open to Work</div>
+        <h1 class="hero-name">Adam<br>Geggie-<br>Bowker</h1>
+        <p class="hero-title">Electronics &amp; CAD Designer</p>
+        <p class="hero-desc">Engineering technologist with hands-on experience in PCB design, embedded systems, and technical drafting. Co-founder of Remindr &mdash; a smart hardware product taken from schematic to shipping firmware.</p>
+        <div class="hero-cta">
+          <a href="#projects" class="btn-primary">View Projects &rarr;</a>
+          <a href="pdfs/resume.pdf" class="btn-outline" target="_blank">Download Resume</a>
+        </div>
       </div>
+      <img src="images/headshot.jpeg" alt="Adam Geggie-Bowker" style="width:220px;height:280px;object-fit:cover;object-position:center top;border:1px solid var(--border);filter:grayscale(10%);">
     </div>
-    <div class="hero-meta">Victoria, BC &bull; Canada &bull; 2025</div>
+    <div class="hero-meta">Victoria, BC &bull; Canada &bull; 2026</div>
   </div>
 
   <hr class="divider">
 
-  <!-- SKILLS -->
   <section id="skills">
     <div class="section-inner">
       <div class="section-label" data-num="01 &mdash;">Technical Skills</div>
@@ -559,7 +221,6 @@
 
   <hr class="divider">
 
-  <!-- PROJECTS -->
   <section id="projects">
     <div class="section-inner">
       <div class="section-label" data-num="02 &mdash;">Work &amp; Projects</div>
@@ -567,72 +228,104 @@
       <div class="projects-grid">
 
         <div class="project-card">
-          <div class="project-num">01 &mdash; Personal Project &amp; Startup</div>
-          <h3 class="project-title">Rain Remindr</h3>
-          <div class="project-org">Remindr &mdash; www.remind-r.ca</div>
-          <p class="project-desc">
-            Physical ambient weather display built around the ESP32-C3 microcontroller and an addressable COB LED strip.
-            Full firmware developed in PlatformIO: WiFi provisioning, live weather API integration, FastLED rendering engine,
-            captive portal setup wizard, and over-the-air (OTA) update system. Custom enclosure printed in PLA-CF.
-          </p>
-          <div class="project-tags">
-            <span class="project-tag">ESP32-C3</span>
-            <span class="project-tag">C++</span>
-            <span class="project-tag">PlatformIO</span>
-            <span class="project-tag">FastLED</span>
-            <span class="project-tag">REST API</span>
-            <span class="project-tag">OTA Updates</span>
-            <span class="project-tag">3D Printing</span>
+          <div class="project-gallery three">
+            <img class="gallery-img" src="images/remindr-concept.png" alt="Rain Remindr product concept" onclick="openLightbox(this.src)">
+            <img class="gallery-img" src="images/remindr-workspace.jpeg" alt="Development workspace" onclick="openLightbox(this.src)">
+            <img class="gallery-img" src="images/remindr-cad.png" alt="Rain Remindr CAD model" onclick="openLightbox(this.src)">
+          </div>
+          <div class="project-video-wrap">
+            <video controls playsinline preload="metadata" style="width:100%;display:block;background:#000;max-height:340px;">
+              <source src="videos/pwm-demo.mov" type="video/mp4">
+              Your browser does not support this video format.
+            </video>
+            <div style="padding:0.5rem 1rem;background:#1a1918;font-family:var(--font-mono);font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.35);">PWM LED control demo &mdash; Rain Remindr v1</div>
+          </div>
+          <div class="project-body">
+            <div class="project-num">01 &mdash; Personal Project &amp; Startup</div>
+            <h3 class="project-title">Rain Remindr</h3>
+            <div class="project-org">Remindr &mdash; www.remind-r.ca</div>
+            <p class="project-desc">Physical ambient weather display built around the ESP32-C3 microcontroller and an addressable COB LED strip. Full firmware in PlatformIO: WiFi provisioning, live weather API integration, FastLED rendering engine, captive portal setup wizard, and OTA updates. Custom enclosure printed in PLA-CF.</p>
+            <div class="project-footer">
+              <div class="project-tags">
+                <span class="project-tag">ESP32-C3</span>
+                <span class="project-tag">C++</span>
+                <span class="project-tag">PlatformIO</span>
+                <span class="project-tag">FastLED</span>
+                <span class="project-tag">REST API</span>
+                <span class="project-tag">OTA</span>
+                <span class="project-tag">3D Print</span>
+              </div>
+              <a href="https://www.remind-r.ca" class="pdf-link" target="_blank">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                Visit Site
+              </a>
+            </div>
           </div>
         </div>
 
         <div class="project-card">
-          <div class="project-num">02 &mdash; Co-op Work Term</div>
-          <h3 class="project-title">Naval Architecture Drafting</h3>
-          <div class="project-org">Gregory C. Marshall Naval Architect Ltd.</div>
-          <p class="project-desc">
-            Technical drafting and 3D modeling for luxury yacht systems during a professional co-op placement.
-            Produced engineering drawings and spatial models for vessel components, working directly with
-            licensed naval architects on active client projects.
-          </p>
-          <div class="project-tags">
-            <span class="project-tag">AutoCAD</span>
-            <span class="project-tag">Rhino 3D</span>
-            <span class="project-tag">Technical Drafting</span>
-            <span class="project-tag">Marine Systems</span>
+          <div class="project-gallery two">
+            <img class="gallery-img" src="images/workspace.jpeg" alt="Engineering workspace" onclick="openLightbox(this.src)">
+            <img class="gallery-img" src="images/cad-adapter.png" alt="3D model — DC power adapter" onclick="openLightbox(this.src)">
+          </div>
+          <div class="project-body">
+            <div class="project-num">02 &mdash; Co-op Work Term</div>
+            <h3 class="project-title">Naval Architecture Drafting</h3>
+            <div class="project-org">Gregory C. Marshall Naval Architect Ltd.</div>
+            <p class="project-desc">Technical drafting and 3D modeling for luxury yacht systems during a professional co-op placement. Produced engineering drawings and 3D models for vessel components including propulsion system design, marine strut design, fresh water, HVAC, and electrical systems for a 110 ft motor yacht.</p>
+            <div class="project-footer">
+              <div class="project-tags">
+                <span class="project-tag">AutoCAD</span>
+                <span class="project-tag">Rhino 3D</span>
+                <span class="project-tag">Technical Drafting</span>
+                <span class="project-tag">Marine Systems</span>
+              </div>
+              <a href="pdfs/naval-report.pdf" class="pdf-link" target="_blank">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                Technical Report
+              </a>
+            </div>
           </div>
         </div>
 
         <div class="projects-two-col">
           <div class="project-card">
-            <div class="project-num">03 &mdash; Electronics</div>
-            <h3 class="project-title">PCB Design</h3>
-            <div class="project-org">EasyEDA &amp; KiCad</div>
-            <p class="project-desc">
-              Designed and manufactured custom PCBs for embedded hardware projects &mdash; from schematic
-              capture and board layout through DRC and ordering fabricated prototypes.
-            </p>
-            <div class="project-tags">
-              <span class="project-tag">EasyEDA</span>
-              <span class="project-tag">KiCad</span>
-              <span class="project-tag">Schematic</span>
-              <span class="project-tag">PCB Layout</span>
+            <div class="project-gallery two">
+              <img class="gallery-img" src="images/pcb-1.jpeg" alt="Manufactured PCB" onclick="openLightbox(this.src)">
+              <img class="gallery-img" src="images/pcb-cad.png" alt="PCB fitted in enclosure CAD" onclick="openLightbox(this.src)">
+            </div>
+            <div class="project-body">
+              <div class="project-num">03 &mdash; Electronics</div>
+              <h3 class="project-title">PCB Design</h3>
+              <div class="project-org">EasyEDA &amp; KiCad</div>
+              <p class="project-desc">Custom PCBs designed and manufactured — schematic capture through to fabricated prototypes, fitted into 3D modeled enclosures.</p>
+              <div class="project-footer">
+                <div class="project-tags">
+                  <span class="project-tag">EasyEDA</span>
+                  <span class="project-tag">KiCad</span>
+                  <span class="project-tag">PCB Layout</span>
+                </div>
+              </div>
             </div>
           </div>
 
           <div class="project-card">
-            <div class="project-num">04 &mdash; CAD / Modeling</div>
-            <h3 class="project-title">3D Design &amp; Modeling</h3>
-            <div class="project-org">Onshape &mdash; Rhino &mdash; AutoCAD</div>
-            <p class="project-desc">
-              Parametric and freeform 3D modeling for product enclosures, mechanical components,
-              and architectural drafting across both engineering and design-focused workflows.
-            </p>
-            <div class="project-tags">
-              <span class="project-tag">Onshape</span>
-              <span class="project-tag">Rhino 3D</span>
-              <span class="project-tag">AutoCAD</span>
-              <span class="project-tag">Parametric</span>
+            <div class="project-gallery two">
+              <img class="gallery-img" src="images/cad-adapter.png" alt="DC adapter 3D model" onclick="openLightbox(this.src)">
+              <img class="gallery-img" src="images/remindr-drawing.png" alt="Remindr example drawing" onclick="openLightbox(this.src)">
+            </div>
+            <div class="project-body">
+              <div class="project-num">04 &mdash; CAD / Modeling</div>
+              <h3 class="project-title">3D Design</h3>
+              <div class="project-org">Onshape &mdash; Rhino &mdash; AutoCAD</div>
+              <p class="project-desc">Parametric and freeform 3D modeling for product enclosures, mechanical components, and technical construction documents.</p>
+              <div class="project-footer">
+                <div class="project-tags">
+                  <span class="project-tag">Onshape</span>
+                  <span class="project-tag">Rhino 3D</span>
+                  <span class="project-tag">AutoCAD</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -643,77 +336,84 @@
 
   <hr class="divider">
 
-  <!-- ABOUT -->
   <section id="about">
     <div class="section-inner">
       <div class="section-label" data-num="03 &mdash;">Background</div>
       <h2 class="section-heading">About Me</h2>
       <div class="about-grid">
-        <div class="about-text">
-          <p>
-            I'm an electronics and CAD designer based in <strong>Victoria, BC</strong>, with hands-on experience
-            spanning embedded hardware, PCB design, technical drafting, and firmware development.
-          </p>
-          <p>
-            My work on <strong>Rain Remindr</strong> &mdash; a self-contained ambient weather display device &mdash;
-            took me through the full product development cycle: PCB schematic, enclosure design, and production-ready
-            firmware with WiFi provisioning and OTA updates.
-          </p>
-          <p>
-            A professional co-op at <strong>Gregory C. Marshall Naval Architect Ltd.</strong> gave me real-world
-            experience translating engineering requirements into precise technical drawings and 3D models.
-          </p>
-          <p>
-            I'm currently seeking roles in <strong>CAD drafting / design</strong> or
-            <strong>low-voltage electrical / electronics</strong> in Victoria or remote.
-          </p>
+        <div>
+          <img class="about-photo" src="images/headshot.jpeg" alt="Adam Geggie-Bowker"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="about-photo-placeholder">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+            headshot.jpeg
+          </div>
+          <p class="about-photo-caption">Adam Geggie-Bowker &mdash; Victoria, BC</p>
         </div>
-        <div class="about-facts">
-          <div class="fact-row">
-            <span class="fact-label">Location</span>
-            <span class="fact-value">Victoria, BC, Canada</span>
+        <div>
+          <div class="about-text">
+            <p>I'm an electronics and CAD designer based in <strong>Victoria, BC</strong>, with hands-on experience spanning embedded hardware, PCB design, technical drafting, and firmware development.</p>
+            <p>My work on <strong>Rain Remindr</strong> &mdash; a self-contained ambient weather display &mdash; took me through the full product cycle: custom PCB, enclosure design, and production-ready firmware with WiFi provisioning, captive portal, and OTA updates.</p>
+            <p>A professional co-op at <strong>Gregory C. Marshall Naval Architect Ltd.</strong> gave me real-world experience translating engineering requirements into precise 3D models and construction documents for 110 ft luxury motor yachts.</p>
+            <p>Currently seeking roles in <strong>CAD drafting / design</strong> or <strong>low-voltage electrical / electronics</strong> in Victoria or remote.</p>
           </div>
-          <div class="fact-row">
-            <span class="fact-label">Status</span>
-            <span class="fact-value">Open to Opportunities</span>
-          </div>
-          <div class="fact-row">
-            <span class="fact-label">Focus Areas</span>
-            <span class="fact-value">CAD &bull; Electronics &bull; Embedded</span>
-          </div>
-          <div class="fact-row">
-            <span class="fact-label">Education</span>
-            <span class="fact-value">Electrical Eng. Studies, UVic</span>
-          </div>
-          <div class="fact-row">
-            <span class="fact-label">Work Auth.</span>
-            <span class="fact-value">Canadian Citizen</span>
-          </div>
-          <div class="fact-row">
-            <span class="fact-label">Remote</span>
-            <span class="fact-value">Open &mdash; hybrid &amp; remote welcome</span>
+          <div class="about-facts">
+            <div class="fact-row"><span class="fact-label">Location</span><span class="fact-value">Victoria, BC, Canada</span></div>
+            <div class="fact-row"><span class="fact-label">Status</span><span class="fact-value">Open to Opportunities</span></div>
+            <div class="fact-row"><span class="fact-label">Focus Areas</span><span class="fact-value">CAD &bull; Electronics &bull; Embedded</span></div>
+            <div class="fact-row"><span class="fact-label">Education</span><span class="fact-value">Electrical Eng. Studies, UVic</span></div>
+            <div class="fact-row"><span class="fact-label">Work Auth.</span><span class="fact-value">Canadian Citizen</span></div>
+            <div class="fact-row"><span class="fact-label">Remote</span><span class="fact-value">Open &mdash; hybrid &amp; remote welcome</span></div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CONTACT -->
   <section id="contact">
     <div class="section-inner">
       <div class="section-label" data-num="04 &mdash;">Contact</div>
-      <p class="contact-tagline">
-        Looking for a <em>detail-oriented designer</em><br>who ships real hardware?
-      </p>
-      <div class="contact-links">
-        <a href="/cdn-cgi/l/email-protection#1a63756f685a7f777b737634797577" class="contact-link">&#9993;&nbsp; Email</a>
-        <a href="https://github.com/yourusername" class="contact-link" target="_blank">&#9670;&nbsp; GitHub</a>
-        <a href="https://linkedin.com/in/yourprofile" class="contact-link" target="_blank">in&nbsp; LinkedIn</a>
-        <a href="https://www.remind-r.ca" class="contact-link" target="_blank">&#9654;&nbsp; Remindr</a>
+      <p class="contact-tagline">Looking for a <em>detail-oriented designer</em><br>who ships real hardware?</p>
+      <div class="contact-bottom">
+        <div class="contact-links">
+          <a href="/cdn-cgi/l/email-protection#a0d9cfd5d2e0c5cdc1c9cc8ec3cfcd" class="contact-link">&#9993;&nbsp; Email</a>
+          <a href="https://github.com/yourusername" class="contact-link" target="_blank">&#9670;&nbsp; GitHub</a>
+          <a href="https://linkedin.com/in/yourprofile" class="contact-link" target="_blank">in&nbsp; LinkedIn</a>
+          <a href="https://www.remind-r.ca" class="contact-link" target="_blank">&#9654;&nbsp; Remindr</a>
+          <a href="pdfs/resume.pdf" class="contact-link" target="_blank">&#8595;&nbsp; Resume PDF</a>
+        </div>
+        <div class="instagram-block">
+          <img class="instagram-qr" src="images/instagram-qr.jpeg" alt="Remindr Instagram">
+          <p class="instagram-label">@adam_gbowker &mdash; Remindr 2026</p>
+        </div>
       </div>
     </div>
   </section>
 
   <footer>
     <span>Adam Geggie-Bowker &mdash; Portfolio</span>
-    <span>Victoria, BC &bull; 2025
+    <span>Victoria, BC &bull; 2026</span>
+  </footer>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    function openLightbox(src) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('lightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+    document.querySelectorAll('.gallery-img').forEach(img => {
+      img.addEventListener('error', function() {
+        const ph = document.createElement('div');
+        ph.className = 'gallery-placeholder';
+        ph.innerHTML = '<img style="opacity:0.3;width:20px">' + '<span>' + (this.alt || 'photo coming soon') + '</span>';
+        this.parentNode.replaceChild(ph, this);
+      });
+    });
+  </script>
+</body>
+</html>
