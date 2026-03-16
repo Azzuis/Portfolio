@@ -26,7 +26,7 @@
     .nav-links a:hover { color: var(--accent); }
 
     .hero { min-height: calc(100vh - 56px); display: flex; align-items: center; padding: 4rem 2rem; position: relative; overflow: hidden; background-image: linear-gradient(var(--grid-color) 1px, transparent 1px), linear-gradient(90deg, var(--grid-color) 1px, transparent 1px); background-size: 40px 40px; }
-    .hero-inner { max-width: 900px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1fr 220px; gap: 3rem; align-items: center; }
+    .hero-inner { max-width: 860px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1fr 200px; gap: 2rem; align-items: center; }
     .hero-label { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem; }
     .hero-label::before { content: ''; display: block; width: 32px; height: 1px; background: var(--accent); }
     .hero-name { font-family: var(--font-display); font-size: clamp(3rem, 8vw, 6.5rem); font-weight: 700; line-height: 0.92; letter-spacing: -0.01em; color: var(--text); margin-bottom: 1.25rem; }
@@ -65,7 +65,7 @@
     .project-gallery.three { grid-template-columns: 2fr 1fr; grid-template-rows: 1fr 1fr; }
     .project-gallery.three .gallery-img:first-child { grid-row: 1 / 3; aspect-ratio: unset !important; height: 100%; }
 
-    .gallery-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; background: var(--border); cursor: zoom-in; transition: opacity 0.2s; }
+    .gallery-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; image-orientation: from-image; display: block; background: var(--border); cursor: zoom-in; transition: opacity 0.2s; }
     .gallery-img:hover { opacity: 0.88; }
     .gallery-placeholder { width: 100%; aspect-ratio: 4/3; background: #eeeae3; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem; color: var(--text-faint); font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; }
 
@@ -84,7 +84,7 @@
     .projects-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
 
     .about-grid { display: grid; grid-template-columns: 260px 1fr; gap: 4rem; align-items: start; }
-    .about-photo { width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: center top; display: block; border: 1px solid var(--border); }
+    .about-photo { width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: center 15%; display: block; border: 1px solid var(--border); }
     .about-photo-placeholder { width: 100%; aspect-ratio: 3/4; background: var(--bg-card); border: 1px solid var(--border); display: none; flex-direction: column; align-items: center; justify-content: center; gap: 0.75rem; color: var(--text-faint); font-family: var(--font-mono); font-size: 0.65rem; text-transform: uppercase; }
     .about-photo-caption { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-faint); margin-top: 0.6rem; text-align: center; }
     .about-text p { font-size: 1rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 1rem; }
@@ -163,7 +163,7 @@
           <a href="pdfs/resume.pdf" class="btn-outline" target="_blank">Download Resume</a>
         </div>
       </div>
-      <img src="images/Early Design Selfie.jpeg" alt="Adam Geggie-Bowker" style="width:220px;height:280px;object-fit:cover;object-position:center top;border:1px solid var(--border);filter:grayscale(10%);">
+      <img src="images/Early Design Selfie.jpeg" alt="Adam Geggie-Bowker" style="width:200px;height:260px;object-fit:cover;object-position:center 15%;border:1px solid var(--border);filter:grayscale(10%);">
     </div>
     <div class="hero-meta">Victoria, BC &bull; Canada &bull; 2026</div>
   </div>
@@ -230,11 +230,11 @@
         <div class="project-card">
           <div class="project-gallery three">
             <img class="gallery-img" src="images/Remindr Concept.png" alt="Rain Remindr product concept" onclick="openLightbox(this.src)">
-            <img class="gallery-img" src="images/busy workspace.jpeg" alt="Development workspace" onclick="openLightbox(this.src)">
+            <img class="gallery-img" src="images/workspace Clean.jpeg" alt="Development workspace" onclick="openLightbox(this.src)">
             <img class="gallery-img" src="images/Remindr Cad Model SS.PNG" alt="Rain Remindr CAD model" onclick="openLightbox(this.src)">
           </div>
           <div class="project-video-wrap">
-            <video controls playsinline preload="metadata" style="width:100%;display:block;background:#000;max-height:340px;">
+            <video controls playsinline preload="metadata" style="width:100%;display:block;background:#111;max-height:280px;">
               <source src="videos/pwm-demo.mov" type="video/mp4">
               Your browser does not support this video format.
             </video>
@@ -265,7 +265,7 @@
 
         <div class="project-card">
           <div class="project-gallery two">
-            <img class="gallery-img" src="images/workspace Clean.jpeg" alt="Engineering workspace" onclick="openLightbox(this.src)">
+            <img class="gallery-img" src="images/Initial Rain Reminder Mockup.jpeg" alt="Initial product mockup" onclick="openLightbox(this.src)">
             <img class="gallery-img" src="images/Female DC Power Adapter Model Created using Calipers Screenshot.PNG" alt="3D model — DC power adapter" onclick="openLightbox(this.src)">
           </div>
           <div class="project-body">
@@ -311,7 +311,7 @@
 
           <div class="project-card">
             <div class="project-gallery two">
-              <img class="gallery-img" src="images/Female DC Power Adapter Model Created using Calipers Screenshot.PNG" alt="DC adapter 3D model" onclick="openLightbox(this.src)">
+              <img class="gallery-img" src="images/Remindr Cad Model SS.PNG" alt="Remindr CAD model" onclick="openLightbox(this.src)">
               <img class="gallery-img" src="images/Rain Remindr 6 Example Drawing.PNG" alt="Remindr example drawing" onclick="openLightbox(this.src)">
             </div>
             <div class="project-body">
