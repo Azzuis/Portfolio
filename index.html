@@ -27,15 +27,7 @@
 
 *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
 html { scroll-behavior: smooth; }
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: var(--font-body);
-  font-size: 16px;
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
-}
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
 a { color: inherit; text-decoration: none; }
 img { display: block; max-width: 100%; height: auto; }
 
@@ -53,10 +45,10 @@ img { display: block; max-width: 100%; height: auto; }
 .row-span-2{grid-row:span 2}.row-span-3{grid-row:span 3}
 
 .t-display { font-family: var(--font-display); font-weight: 900; font-style: italic; line-height: 0.95; letter-spacing: -0.02em; }
-.t-display-sm  { font-size: clamp(2rem, 5vw, 3.5rem); }
-.t-display-md  { font-size: clamp(3rem, 7vw, 5.5rem); }
-.t-display-lg  { font-size: clamp(4rem, 10vw, 8rem); }
-.t-display-xl  { font-size: clamp(5rem, 14vw, 12rem); }
+.t-display-sm { font-size: clamp(2rem, 5vw, 3.5rem); }
+.t-display-md { font-size: clamp(3rem, 7vw, 5.5rem); }
+.t-display-lg { font-size: clamp(4rem, 10vw, 8rem); }
+.t-display-xl { font-size: clamp(5rem, 14vw, 12rem); }
 .t-label { font-family: var(--font-body); font-size: 11px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); }
 .t-body { font-size: 15px; line-height: 1.7; color: var(--text-muted); }
 .t-body-lg { font-size: 18px; line-height: 1.7; }
@@ -84,6 +76,19 @@ img { display: block; max-width: 100%; height: auto; }
 /* ── INTRO FULLSCREEN ── */
 .intro-fullscreen { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 80px 0; }
 .intro-photo { width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: 3px; }
+
+/* ── 3-COLUMN BIO ── */
+.intro-bio-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-top: 0;
+}
+.intro-bio-grid p {
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--text-muted);
+}
 
 /* ── PROJECT CARDS ── */
 .project-card { display: block; background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 3px; overflow: hidden; transition: border-color 0.3s, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); cursor: pointer; }
@@ -132,13 +137,14 @@ img { display: block; max-width: 100%; height: auto; }
 .lightbox-close { position: absolute; top: 24px; right: 32px; width: 48px; height: 48px; background: none; border: 1px solid rgba(255,255,255,0.2); border-radius: 50%; color: var(--text); font-size: 24px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: border-color 0.3s, background 0.3s; z-index: 10; }
 .lightbox-close:hover { border-color: var(--text); background: rgba(255,255,255,0.05); }
 .lightbox-content { display: flex; flex-direction: column; align-items: center; gap: 20px; max-width: 90vw; max-height: 90vh; width: 100%; }
-.lightbox-main-img { max-width: 100%; max-height: 65vh; object-fit: contain; border-radius: 4px; transition: opacity 0.3s; }
-.lightbox-thumbs { display: flex; gap: 12px; overflow-x: auto; padding: 8px 0; max-width: 100%; }
-.lightbox-thumb { width: 80px; height: 60px; object-fit: cover; border-radius: 3px; cursor: pointer; border: 2px solid transparent; opacity: 0.5; transition: opacity 0.3s, border-color 0.3s; flex-shrink: 0; }
+.lightbox-main-img { max-width: 100%; max-height: 60vh; object-fit: contain; border-radius: 4px; transition: opacity 0.25s; }
+.lightbox-main-img.rotate-90 { transform: rotate(90deg); max-height: 50vh; }
+.lightbox-thumbs { display: flex; gap: 10px; overflow-x: auto; padding: 8px 0; max-width: 100%; }
+.lightbox-thumb { width: 72px; height: 54px; object-fit: cover; border-radius: 3px; cursor: pointer; border: 2px solid transparent; opacity: 0.45; transition: opacity 0.3s, border-color 0.3s; flex-shrink: 0; }
 .lightbox-thumb:hover { opacity: 0.8; }
 .lightbox-thumb.active { opacity: 1; border-color: var(--text); }
 .lightbox-title { font-family: var(--font-display); font-weight: 700; font-size: 1.3rem; color: var(--text); }
-.lightbox-counter { font-size: 12px; color: var(--text-muted); letter-spacing: 0.1em; text-transform: uppercase; text-align: center; max-width: 600px; }
+.lightbox-counter { font-size: 12px; color: var(--text-muted); letter-spacing: 0.1em; text-align: center; max-width: 700px; }
 .lightbox-nav-btn { position: absolute; top: 50%; transform: translateY(-50%); width: 48px; height: 48px; background: none; border: 1px solid rgba(255,255,255,0.2); border-radius: 50%; color: var(--text); font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: border-color 0.3s, background 0.3s; }
 .lightbox-nav-btn:hover { border-color: var(--text); background: rgba(255,255,255,0.05); }
 .lightbox-prev { left: 24px; }
@@ -164,6 +170,7 @@ img { display: block; max-width: 100%; height: auto; }
   .col-4,.col-5,.col-6,.col-7,.col-8 { grid-column: span 4; }
   .intro-fullscreen { min-height: auto; padding: 60px 0; }
   .intro-photo { aspect-ratio: 1/1; }
+  .intro-bio-grid { grid-template-columns: 1fr; gap: 20px; }
   .project-card--wide { grid-template-columns: 1fr !important; }
   .lightbox-nav-btn { display: none; }
 }
@@ -201,9 +208,10 @@ img { display: block; max-width: 100%; height: auto; }
       <div>
         <p class="t-label" style="margin-bottom:8px">Contact</p>
         <ul class="hero__contact-list">
-          <li>Victoria, BC, Canada</li>
-          <li>adam@example.com</li>
+          <li>778-677-2208</li>/li>
+          <li>adamgeggiebowker@gmail.com</li>
           <li>remind-r.ca/Portfolio</li>
+          <li>Victoria BC</li></li>
         </ul>
       </div>
     </div>
@@ -215,7 +223,7 @@ img { display: block; max-width: 100%; height: auto; }
 </section>
 
 <!-- ═══════════════════════════════════════════
-     INTRODUCTION — Full viewport height
+     INTRODUCTION — Full viewport, 3-column bio
      ═══════════════════════════════════════════ -->
 <section id="intro" class="section section--bordered intro-fullscreen">
   <div class="container">
@@ -231,21 +239,27 @@ img { display: block; max-width: 100%; height: auto; }
       <h2 class="t-display t-display-md">Introduction</h2>
     </div>
 
-    <div class="grid" style="align-items:center;">
-      <div class="col-5 reveal">
+    <div class="grid" style="align-items:start; margin-bottom: clamp(32px, 4vw, 48px);">
+      <!-- Photo — left column -->
+      <div class="col-4 reveal">
         <img src="images/Early Design Selfie.jpeg" alt="Adam Geggie-Bowker" class="intro-photo">
+        <h3 style="font-family:var(--font-display); font-weight:700; font-size:clamp(1.8rem, 3.5vw, 2.6rem); line-height:1.15; margin-top:24px;">Adam Geggie-Bowker</h3>
+        <p class="t-label" style="margin-top:8px;">Product Designer</p>
       </div>
-      <div class="col-start-7 col-6 reveal" style="transition-delay:0.15s; display:flex; flex-direction:column; gap:24px;">
-        <h3 style="font-family:var(--font-display); font-weight:700; font-size:clamp(2rem, 4vw, 3rem); line-height:1.15;">Adam Geggie-Bowker</h3>
-        <p class="t-body" style="font-size:17px; line-height:1.8;">
-          Product designer and electronics engineer based in Victoria, BC. I design connected hardware products from concept through production — bridging industrial design, firmware, and PCB layout into cohesive user experiences.
-        </p>
-        <p class="t-body" style="font-size:17px; line-height:1.8;">
-          Co-founder of Remindr, where I lead hardware design and product development for smart IoT devices. My background in electrical engineering informs a systems-level approach to product design — every interface decision is grounded in what the hardware can deliver.
-        </p>
-        <p class="t-body" style="font-size:17px; line-height:1.8;">
-          From custom PCB design and 3D-printed enclosures to captive portal UIs and WebGL marketing sites, I work across the full stack of what it takes to bring a physical product to life.
-        </p>
+
+      <!-- 3-column bio text — right 8 columns -->
+      <div class="col-start-6 col-7 reveal" style="transition-delay:0.15s;">
+        <div class="intro-bio-grid">
+          <p>
+            Product designer based in Victoria, BC. I design connected hardware products from concept through production — bridging industrial design, firmware, and PCB layout into cohesive user experiences.
+          </p>
+          <p>
+            Co-founder of Remindr, where I lead hardware design and product development for smart IoT devices. My background in electrical engineering informs a systems-level approach to product design — every interface decision is grounded in what the hardware can deliver.
+          </p>
+          <p>
+            From custom PCB design and 3D-printed enclosures to captive portal UIs and WebGL marketing sites, I work across the full stack of what it takes to bring a physical product to life. I care about design that bridges the gap between digital and physical.
+          </p>
+        </div>
       </div>
     </div>
 
@@ -279,14 +293,11 @@ img { display: block; max-width: 100%; height: auto; }
       <div class="col-7 reveal">
         <div class="project-card" onclick="openGallery('rain-remindr')">
           <div class="project-card__image">
-            <!-- ✏️ Replace with your first Rain Remindr image: -->
-            <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:var(--bg-card);">
-              <span class="t-label">Rain Remindr — Click for Gallery</span>
-            </div>
+            <img src="images/Initial Rain Reminder Mockup.jpeg" alt="Rain Remindr early mockup">
           </div>
           <div class="project-card__body">
             <h3 class="project-card__title">Rain Remindr</h3>
-            <p class="project-card__desc">Smart ambient weather indicator — custom 4-layer PCB with ESP32-C3, captive portal UI for WiFi setup and sensitivity controls, and 3D-printed enclosure.</p>
+            <p class="project-card__desc">Smart ambient weather indicator — custom 4-layer PCB with ESP32-C3, captive portal UI, 3D-printed enclosure. From napkin sketch through breadboarding, failed PCBs, and redesigns to a production-ready prototype.</p>
             <div class="project-card__tags">
               <span class="tag">Hardware</span>
               <span class="tag">Firmware</span>
@@ -301,9 +312,7 @@ img { display: block; max-width: 100%; height: auto; }
       <div class="col-5 reveal" style="margin-top: 80px;">
         <div class="project-card" onclick="openGallery('garbage-remindr')">
           <div class="project-card__image">
-            <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:var(--bg-card);">
-              <span class="t-label">Garbage Remindr — Click for Gallery</span>
-            </div>
+            <img src="images/Remindr Concept.png" alt="Remindr Concept">
           </div>
           <div class="project-card__body">
             <h3 class="project-card__title">Garbage Remindr</h3>
@@ -317,11 +326,11 @@ img { display: block; max-width: 100%; height: auto; }
         </div>
       </div>
 
-      <!-- Remindr Website — with real screenshot -->
+      <!-- Remindr Website -->
       <div class="col-12 reveal">
         <div class="project-card project-card--wide" onclick="openGallery('remindr-website')" style="display:grid; grid-template-columns: 1fr 1fr;">
           <div class="project-card__image" style="min-height:300px;">
-            <img src="images/remindr-website.png" alt="Remindr Website">
+            <img src="images/RemindrSite.PNG" alt="Remindr Website">
           </div>
           <div class="project-card__body" style="display:flex;flex-direction:column;justify-content:center;">
             <h3 class="project-card__title">Remindr Startup Website</h3>
@@ -335,7 +344,7 @@ img { display: block; max-width: 100%; height: auto; }
         </div>
       </div>
 
-      <!-- Marine V-Strut — with real image + PDF link -->
+      <!-- Marine V-Strut -->
       <div class="col-12 reveal">
         <div class="project-card project-card--wide" onclick="openGallery('v-strut')" style="display:grid; grid-template-columns: 1fr 1fr;">
           <div class="project-card__image" style="min-height:300px; background:#c0c0c0;">
@@ -384,8 +393,8 @@ img { display: block; max-width: 100%; height: auto; }
         <h2 class="t-display t-display-md">My<br>Education</h2>
       </div>
       <div class="col-start-7 col-6 reveal">
-        <div style="aspect-ratio:16/9;background:var(--bg-card);border-radius:3px;display:flex;align-items:center;justify-content:center;border:1px dashed var(--border);">
-          <span style="color:var(--text-muted);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;">Education Photo</span>
+        <div style="aspect-ratio:16/9; overflow:hidden; border-radius:3px;">
+          <img src="images/Desk.jpg" alt="Workspace" style="width:100%;height:100%;object-fit:cover;">
         </div>
       </div>
     </div>
@@ -514,9 +523,7 @@ img { display: block; max-width: 100%; height: auto; }
   </div>
 </footer>
 
-<!-- ═══════════════════════════════════════════
-     LIGHTBOX GALLERY
-     ═══════════════════════════════════════════ -->
+<!-- LIGHTBOX -->
 <div class="lightbox-overlay" id="lightbox">
   <button class="lightbox-close" onclick="closeGallery()" aria-label="Close">✕</button>
   <button class="lightbox-nav-btn lightbox-prev" onclick="navGallery(-1)" aria-label="Previous">‹</button>
@@ -532,49 +539,50 @@ img { display: block; max-width: 100%; height: auto; }
 <script>
 /* ─────────────────────────────────────────────
    GALLERY DATA
-   ✏️ TO ADD IMAGES: Just add { src, caption } entries.
-   The gallery auto-builds thumbnails and navigation.
+   Each image: { src, caption, rotate? }
+   Set rotate: true for images that need 90° CW rotation.
    ───────────────────────────────────────────── */
 const galleryData = {
 
   'rain-remindr': {
     title: 'Rain Remindr',
     images: [
-      // ✏️ Add your Rain Remindr images:
-      // { src: 'images/rain-remindr-pcb-top.jpg', caption: 'Custom 4-layer PCB — top side' },
-      // { src: 'images/rain-remindr-pcb-bottom.jpg', caption: 'PCB bottom with ESP32-C3' },
-      // { src: 'images/rain-remindr-portal.jpg', caption: 'Captive portal WiFi setup screen' },
-      // { src: 'images/rain-remindr-enclosure.jpg', caption: '3D printed enclosure prototype' },
-      // { src: 'images/rain-remindr-leds.jpg', caption: 'LED strip ambient rain indication' },
+      { src: 'images/Initial Rain Reminder Mockup.jpeg', caption: 'Initial concept mockup — the very first physical prototype' },
+      { src: 'images/breadboarding.jpg', caption: 'Breadboarding phase — testing ESP32-C3 with WS2811 LEDs' },
+      { src: 'images/First PCB Design (NONFUNCTIONAL).PNG', caption: 'First PCB design attempt — non-functional, learned from failure' },
+      { src: 'images/MICROCONTROLLER MODEL screenshot.PNG', caption: 'Microcontroller 3D model — part of the early (obsolete) PCB design' },
+      { src: 'images/Circuit Redesign.jpg', caption: 'Circuit redesign — reworked schematic after first board failure' },
+      { src: 'images/currentPCBdesign.PNG', caption: 'Current PCB layout — 4-layer board with AP63203WU buck converter' },
+      { src: 'images/Current PCB Design.jpg', caption: 'Current PCB design — production-ready board' },
+      { src: 'images/Old Model.PNG', caption: 'Early enclosure 3D model' },
+      { src: 'images/RinglightBase.PNG', caption: 'Ring light base design for LED diffusion' },
+      { src: 'images/CuraSliceRingRemindrBase.PNG', caption: 'Cura slicer view — preparing enclosure for 3D printing' },
+      { src: 'images/Diffuser.jpeg', caption: 'Light diffuser — creating even ambient LED glow' },
+      { src: 'images/Desk.jpg', caption: 'The workspace — where it all comes together' },
+      { src: 'images/busy workspace.jpeg', caption: 'Deep in the build — mid-session workspace', rotate: true },
+      { src: 'images/Remindr Prototype 1.PNG', caption: 'Prototype v1 — first assembled unit' },
+      { src: 'images/Rain Remindr 6 Example Drawing.PNG', caption: 'Technical drawing — enclosure dimensions' },
     ]
   },
 
   'garbage-remindr': {
     title: 'Garbage Remindr',
     images: [
-      // ✏️ Add your Garbage Remindr images:
-      // { src: 'images/garbage-remindr-concept.jpg', caption: 'Product concept render' },
+      { src: 'images/Remindr Concept.png', caption: 'Remindr product concept — brand and product line vision' },
     ]
   },
 
   'remindr-website': {
     title: 'Remindr Website',
     images: [
-      { src: 'images/remindr-website.png', caption: 'Homepage — WebGL shader background with repeating typography' },
-      // ✏️ Add more website screenshots:
-      // { src: 'images/remindr-rain-page.jpg', caption: 'Rain Remindr product page' },
-      // { src: 'images/remindr-about.jpg', caption: 'About Us with founder headshots' },
+      { src: 'images/RemindrSite.PNG', caption: 'Homepage — WebGL shader background with repeating REMINDR typography' },
     ]
   },
 
   'v-strut': {
     title: 'Marine V-Strut Design',
     images: [
-      { src: 'images/VSTRUT.PNG', caption: 'V-Strut 3D CAD model — Rhinoceros' },
-      // ✏️ Add more project images:
-      // { src: 'images/v-strut-drawing.jpg', caption: 'Construction document — dimensioned views' },
-      // { src: 'images/v-strut-fluid-sim.jpg', caption: '2D fluid flow simulation' },
-      // { src: 'images/v-strut-installed.jpg', caption: 'Strut mounting detail' },
+      { src: 'images/VSTRUT.PNG', caption: 'V-Strut 3D CAD model — designed in Rhinoceros for a 110 ft yacht' },
     ]
   }
 
@@ -613,9 +621,19 @@ function goToSlide(i) { currentIndex = i; renderGallery(); }
 function renderGallery() {
   if (!currentGallery) return;
   const img = currentGallery.images[currentIndex];
+  const mainEl = document.getElementById('lightbox-main');
+
   document.getElementById('lightbox-title').textContent = currentGallery.title;
-  document.getElementById('lightbox-main').src = img.src;
-  document.getElementById('lightbox-main').alt = img.caption;
+  mainEl.src = img.src;
+  mainEl.alt = img.caption;
+
+  // Handle rotation for sideways images
+  if (img.rotate) {
+    mainEl.classList.add('rotate-90');
+  } else {
+    mainEl.classList.remove('rotate-90');
+  }
+
   document.getElementById('lightbox-counter').textContent =
     `${currentIndex + 1} / ${currentGallery.images.length} — ${img.caption}`;
 
@@ -627,6 +645,7 @@ function renderGallery() {
       t.src = item.src;
       t.alt = item.caption;
       t.className = 'lightbox-thumb' + (i === currentIndex ? ' active' : '');
+      if (item.rotate) t.style.transform = 'rotate(90deg)';
       t.onclick = () => goToSlide(i);
       tc.appendChild(t);
     });
