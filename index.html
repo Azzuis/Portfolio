@@ -51,7 +51,6 @@ img { display: block; max-width: 100%; height: auto; }
 .t-display-xl { font-size: clamp(5rem, 14vw, 12rem); }
 .t-label { font-family: var(--font-body); font-size: 11px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); }
 .t-body { font-size: 15px; line-height: 1.7; color: var(--text-muted); }
-.t-body-lg { font-size: 18px; line-height: 1.7; }
 .t-heading { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.5rem, 3vw, 2.2rem); line-height: 1.2; }
 
 .section { padding: var(--section-gap) 0; position: relative; }
@@ -67,28 +66,21 @@ img { display: block; max-width: 100%; height: auto; }
 .hero__arrow svg { width: clamp(60px, 8vw, 100px); height: auto; stroke: var(--text); stroke-width: 2; fill: none; }
 .hero__title { opacity: 0; animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards; }
 .hero__meta { margin-top: clamp(40px, 6vw, 80px); opacity: 0; animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards; }
-.hero__meta-inner { display: flex; gap: clamp(40px, 6vw, 100px); flex-wrap: wrap; }
+.hero__meta-inner { display: flex; gap: clamp(40px, 6vw, 100px); flex-wrap: wrap; align-items: baseline; }
 .hero__contact-list { list-style: none; display: flex; flex-direction: column; gap: 4px; }
 .hero__contact-list li { font-size: 14px; color: var(--text-muted); transition: color 0.3s; }
 .hero__contact-list li:hover { color: var(--text); }
+.hero__contact-list li a { border-bottom: 1px solid transparent; transition: border-color 0.3s; }
+.hero__contact-list li a:hover { border-color: var(--text-muted); }
 .hero__date { margin-top: clamp(30px, 4vw, 60px); opacity: 0; animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.7s forwards; }
 
 /* ── INTRO FULLSCREEN ── */
-.intro-fullscreen { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 80px 0; }
+.intro-section { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 80px 0; }
+.intro-layout { display: grid; grid-template-columns: 5fr 7fr; gap: clamp(32px, 5vw, 64px); align-items: center; }
+.intro-photo-wrap { position: relative; }
 .intro-photo { width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: 3px; }
-
-/* ── 3-COLUMN BIO ── */
-.intro-bio-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
-  margin-top: 0;
-}
-.intro-bio-grid p {
-  font-size: 16px;
-  line-height: 1.75;
-  color: var(--text-muted);
-}
+.intro-text-block { display: flex; flex-direction: column; gap: 20px; }
+.intro-text-block p { font-size: clamp(15px, 1.6vw, 18px); line-height: 1.8; color: var(--text-muted); }
 
 /* ── PROJECT CARDS ── */
 .project-card { display: block; background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 3px; overflow: hidden; transition: border-color 0.3s, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); cursor: pointer; }
@@ -119,10 +111,18 @@ img { display: block; max-width: 100%; height: auto; }
 .skill-block__list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
 .skill-block__list li { font-size: 14px; color: var(--text-muted); }
 
-/* ── CONTACT ── */
-.contact-cta { text-align: center; padding: clamp(80px, 12vw, 160px) 0; }
-.contact-cta__link { display: inline-block; font-family: var(--font-display); font-weight: 900; font-style: italic; font-size: clamp(2rem, 5vw, 4rem); border-bottom: 3px solid var(--text); padding-bottom: 8px; transition: opacity 0.3s; }
-.contact-cta__link:hover { opacity: 0.7; }
+/* ── CONTACT SECTION ── */
+.contact-section { padding: clamp(80px, 12vw, 160px) 0; }
+.contact-heading { font-family: var(--font-display); font-weight: 900; font-style: italic; font-size: clamp(2.5rem, 6vw, 5rem); line-height: 0.95; margin-bottom: clamp(40px, 6vw, 64px); }
+.contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 40px; }
+.contact-item {}
+.contact-item__label { font-size: 11px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; }
+.contact-item__value { font-size: 16px; color: var(--text); line-height: 1.6; }
+.contact-item__value a { border-bottom: 1px solid var(--border); padding-bottom: 2px; transition: border-color 0.3s; }
+.contact-item__value a:hover { border-color: var(--text); }
+.contact-back { display: inline-flex; align-items: center; gap: 8px; margin-top: clamp(40px, 6vw, 60px); font-size: 13px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); transition: color 0.3s; }
+.contact-back:hover { color: var(--text); }
+.contact-back svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; transform: rotate(180deg); }
 
 /* ── NAV ── */
 .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 20px var(--page-pad); display: flex; justify-content: space-between; align-items: center; mix-blend-mode: difference; }
@@ -138,11 +138,16 @@ img { display: block; max-width: 100%; height: auto; }
 .lightbox-close:hover { border-color: var(--text); background: rgba(255,255,255,0.05); }
 .lightbox-content { display: flex; flex-direction: column; align-items: center; gap: 20px; max-width: 90vw; max-height: 90vh; width: 100%; }
 .lightbox-main-img { max-width: 100%; max-height: 60vh; object-fit: contain; border-radius: 4px; transition: opacity 0.25s; }
-.lightbox-main-img.rotate-90 { transform: rotate(90deg); max-height: 50vh; }
+.lightbox-main-img.rotate-neg90 { transform: rotate(-90deg); max-height: 50vh; }
+.lightbox-message-slide { display: flex; align-items: center; justify-content: center; width: 100%; max-width: 600px; min-height: 300px; background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 6px; padding: 48px; text-align: center; }
+.lightbox-message-slide p { font-family: var(--font-display); font-size: clamp(1.2rem, 2.5vw, 1.6rem); font-weight: 400; font-style: italic; line-height: 1.6; color: var(--text-muted); }
 .lightbox-thumbs { display: flex; gap: 10px; overflow-x: auto; padding: 8px 0; max-width: 100%; }
 .lightbox-thumb { width: 72px; height: 54px; object-fit: cover; border-radius: 3px; cursor: pointer; border: 2px solid transparent; opacity: 0.45; transition: opacity 0.3s, border-color 0.3s; flex-shrink: 0; }
 .lightbox-thumb:hover { opacity: 0.8; }
 .lightbox-thumb.active { opacity: 1; border-color: var(--text); }
+.lightbox-thumb-msg { width: 72px; height: 54px; border-radius: 3px; cursor: pointer; border: 2px solid transparent; opacity: 0.45; transition: opacity 0.3s, border-color 0.3s; flex-shrink: 0; background: var(--bg-elevated); display: flex; align-items: center; justify-content: center; font-size: 18px; color: var(--text-muted); }
+.lightbox-thumb-msg:hover { opacity: 0.8; }
+.lightbox-thumb-msg.active { opacity: 1; border-color: var(--text); }
 .lightbox-title { font-family: var(--font-display); font-weight: 700; font-size: 1.3rem; color: var(--text); }
 .lightbox-counter { font-size: 12px; color: var(--text-muted); letter-spacing: 0.1em; text-align: center; max-width: 700px; }
 .lightbox-nav-btn { position: absolute; top: 50%; transform: translateY(-50%); width: 48px; height: 48px; background: none; border: 1px solid rgba(255,255,255,0.2); border-radius: 50%; color: var(--text); font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: border-color 0.3s, background 0.3s; }
@@ -168,11 +173,12 @@ img { display: block; max-width: 100%; height: auto; }
   .timeline-item { grid-template-columns: 1fr; gap: 8px; }
   .nav__links { display: none; }
   .col-4,.col-5,.col-6,.col-7,.col-8 { grid-column: span 4; }
-  .intro-fullscreen { min-height: auto; padding: 60px 0; }
+  .intro-section { min-height: auto; padding: 60px 0; }
+  .intro-layout { grid-template-columns: 1fr; }
   .intro-photo { aspect-ratio: 1/1; }
-  .intro-bio-grid { grid-template-columns: 1fr; gap: 20px; }
   .project-card--wide { grid-template-columns: 1fr !important; }
   .lightbox-nav-btn { display: none; }
+  .contact-grid { grid-template-columns: 1fr 1fr; }
 }
 </style>
 </head>
@@ -190,8 +196,10 @@ img { display: block; max-width: 100%; height: auto; }
   </ul>
 </nav>
 
-<!-- HERO -->
-<section class="hero container">
+<!-- ═══════════════════════════════════════════
+     HERO
+     ═══════════════════════════════════════════ -->
+<section id="top" class="hero container">
   <div class="hero__title">
     <span class="hero__arrow">
       <svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg">
@@ -203,15 +211,14 @@ img { display: block; max-width: 100%; height: auto; }
   </div>
   <div class="hero__meta">
     <div class="hero__meta-inner">
-      <div><p class="t-label" style="margin-bottom:4px">Adam Geggie-Bowker</p></div>
+      <div><p class="t-label">Adam Geggie-Bowker</p></div>
       <div><p class="t-label">Product Design</p></div>
       <div>
-        <p class="t-label" style="margin-bottom:8px">Contact</p>
+        <p class="t-label" style="margin-bottom:8px">My Contacts</p>
         <ul class="hero__contact-list">
-          <li>778-677-2208</li>/li>
-          <li>adamgeggiebowker@gmail.com</li>
-          <li>remind-r.ca/Portfolio</li>
-          <li>Victoria BC</li></li>
+          <li><a href="tel:7786772208">778-677-2208</a></li>
+          <li><a href="mailto:adamgeggiebowker@gmail.com">adamgeggiebowker@gmail.com</a></li>
+          <li>Victoria, BC, Canada</li>
         </ul>
       </div>
     </div>
@@ -223,9 +230,9 @@ img { display: block; max-width: 100%; height: auto; }
 </section>
 
 <!-- ═══════════════════════════════════════════
-     INTRODUCTION — Full viewport, 3-column bio
+     INTRODUCTION — Photo left, text block right
      ═══════════════════════════════════════════ -->
-<section id="intro" class="section section--bordered intro-fullscreen">
+<section id="intro" class="section section--bordered intro-section">
   <div class="container">
     <div class="section-header">
       <span class="t-label">Creative Portfolio</span>
@@ -239,27 +246,25 @@ img { display: block; max-width: 100%; height: auto; }
       <h2 class="t-display t-display-md">Introduction</h2>
     </div>
 
-    <div class="grid" style="align-items:start; margin-bottom: clamp(32px, 4vw, 48px);">
-      <!-- Photo — left column -->
-      <div class="col-4 reveal">
+    <div class="intro-layout reveal">
+      <!-- Photo side -->
+      <div class="intro-photo-wrap">
         <img src="images/Early Design Selfie.jpeg" alt="Adam Geggie-Bowker" class="intro-photo">
-        <h3 style="font-family:var(--font-display); font-weight:700; font-size:clamp(1.8rem, 3.5vw, 2.6rem); line-height:1.15; margin-top:24px;">Adam Geggie-Bowker</h3>
-        <p class="t-label" style="margin-top:8px;">Product Designer</p>
       </div>
 
-      <!-- 3-column bio text — right 8 columns -->
-      <div class="col-start-6 col-7 reveal" style="transition-delay:0.15s;">
-        <div class="intro-bio-grid">
-          <p>
-            Product designer based in Victoria, BC. I design connected hardware products from concept through production — bridging industrial design, firmware, and PCB layout into cohesive user experiences.
-          </p>
-          <p>
-            Co-founder of Remindr, where I lead hardware design and product development for smart IoT devices. My background in electrical engineering informs a systems-level approach to product design — every interface decision is grounded in what the hardware can deliver.
-          </p>
-          <p>
-            From custom PCB design and 3D-printed enclosures to captive portal UIs and WebGL marketing sites, I work across the full stack of what it takes to bring a physical product to life. I care about design that bridges the gap between digital and physical.
-          </p>
-        </div>
+      <!-- Text block — fills the right side -->
+      <div class="intro-text-block">
+        <h3 style="font-family:var(--font-display); font-weight:700; font-size:clamp(2rem, 4vw, 3rem); line-height:1.15;">Adam Geggie-Bowker</h3>
+
+        <p>
+          Product designer and electronics engineer based in Victoria, BC. I design connected hardware products from concept through production — bridging industrial design, firmware, and PCB layout into cohesive user experiences.
+        </p>
+        <p>
+          Co-founder of Remindr, where I lead hardware design and product development for smart IoT devices. My background in electrical engineering informs a systems-level approach to product design — every interface decision is grounded in what the hardware can deliver.
+        </p>
+        <p>
+          From custom PCB design and 3D-printed enclosures to captive portal UIs and WebGL marketing sites, I work across the full stack of what it takes to bring a physical product to life. I care about design that bridges the gap between digital and physical.
+        </p>
       </div>
     </div>
 
@@ -289,11 +294,11 @@ img { display: block; max-width: 100%; height: auto; }
 
     <div class="grid stagger">
 
-      <!-- Rain Remindr -->
+      <!-- Rain Remindr — now uses Remindr Concept as thumbnail -->
       <div class="col-7 reveal">
         <div class="project-card" onclick="openGallery('rain-remindr')">
           <div class="project-card__image">
-            <img src="images/Initial Rain Reminder Mockup.jpeg" alt="Rain Remindr early mockup">
+            <img src="images/Remindr Concept.png" alt="Rain Remindr concept">
           </div>
           <div class="project-card__body">
             <h3 class="project-card__title">Rain Remindr</h3>
@@ -308,11 +313,11 @@ img { display: block; max-width: 100%; height: auto; }
         </div>
       </div>
 
-      <!-- Garbage Remindr -->
+      <!-- Garbage Remindr — uses Concept Image as thumbnail -->
       <div class="col-5 reveal" style="margin-top: 80px;">
         <div class="project-card" onclick="openGallery('garbage-remindr')">
           <div class="project-card__image">
-            <img src="images/Remindr Concept.png" alt="Remindr Concept">
+            <img src="images/Concept Image.png" alt="Garbage Remindr concept">
           </div>
           <div class="project-card__body">
             <h3 class="project-card__title">Garbage Remindr</h3>
@@ -378,7 +383,9 @@ img { display: block; max-width: 100%; height: auto; }
   </div>
 </section>
 
-<!-- EDUCATION -->
+<!-- ═══════════════════════════════════════════
+     EDUCATION — No photo
+     ═══════════════════════════════════════════ -->
 <section id="education" class="section section--bordered">
   <div class="container">
     <div class="section-header">
@@ -388,17 +395,12 @@ img { display: block; max-width: 100%; height: auto; }
         <span class="year">2026</span>
       </div>
     </div>
-    <div class="grid">
-      <div class="col-5 reveal">
-        <h2 class="t-display t-display-md">My<br>Education</h2>
-      </div>
-      <div class="col-start-7 col-6 reveal">
-        <div style="aspect-ratio:16/9; overflow:hidden; border-radius:3px;">
-          <img src="images/Desk.jpg" alt="Workspace" style="width:100%;height:100%;object-fit:cover;">
-        </div>
-      </div>
+
+    <div class="reveal" style="margin-bottom: clamp(32px, 5vw, 56px);">
+      <h2 class="t-display t-display-md">My<br>Education</h2>
     </div>
-    <div class="grid reveal" style="margin-top:clamp(40px,6vw,60px)">
+
+    <div class="grid reveal">
       <div class="col-6">
         <h3 class="t-heading" style="margin-bottom:4px">University of Victoria</h3>
         <span class="t-label">(2020 – 2025)</span>
@@ -410,6 +412,7 @@ img { display: block; max-width: 100%; height: auto; }
         <p class="t-body" style="margin-top:16px">Continuous learning through hands-on product builds, PCB design iteration, firmware development, and full-stack prototyping across hardware and software domains.</p>
       </div>
     </div>
+
     <div class="section-footer">
       <span class="t-label">Adam Geggie-Bowker</span>
       <span class="t-label">Product Design</span>
@@ -503,16 +506,40 @@ img { display: block; max-width: 100%; height: auto; }
   </div>
 </section>
 
-<!-- CONTACT -->
+<!-- ═══════════════════════════════════════════
+     CONTACT — Real info, back-to-top link
+     ═══════════════════════════════════════════ -->
 <section id="contact" class="section section--bordered">
-  <div class="container contact-cta reveal">
-    <p class="t-label" style="margin-bottom:24px">Get In Touch</p>
-    <a href="mailto:adam@example.com" class="contact-cta__link">Let's Work Together</a>
-    <div style="margin-top:40px; display:flex; justify-content:center; gap:32px;">
-      <a href="#" class="t-label" style="transition:opacity 0.3s" onmouseover="this.style.opacity='0.6'" onmouseout="this.style.opacity='1'">LinkedIn</a>
-      <a href="#" class="t-label" style="transition:opacity 0.3s" onmouseover="this.style.opacity='0.6'" onmouseout="this.style.opacity='1'">GitHub</a>
-      <a href="https://remind-r.ca/Portfolio/" class="t-label" style="transition:opacity 0.3s" onmouseover="this.style.opacity='0.6'" onmouseout="this.style.opacity='1'">Portfolio Site</a>
+  <div class="container contact-section reveal">
+    <h2 class="contact-heading">Let's Work<br>Together</h2>
+
+    <div class="contact-grid">
+      <div class="contact-item">
+        <p class="contact-item__label">Email</p>
+        <p class="contact-item__value"><a href="mailto:adamgeggiebowker@gmail.com">adamgeggiebowker@gmail.com</a></p>
+      </div>
+      <div class="contact-item">
+        <p class="contact-item__label">Phone</p>
+        <p class="contact-item__value"><a href="tel:7786772208">778-677-2208</a></p>
+      </div>
+      <div class="contact-item">
+        <p class="contact-item__label">Location</p>
+        <p class="contact-item__value">Victoria, BC</p>
+      </div>
+      <div class="contact-item">
+        <p class="contact-item__label">LinkedIn</p>
+        <p class="contact-item__value"><a href="https://www.linkedin.com/in/adam-geggie-bowker-7a04b5275" target="_blank">Adam Geggie-Bowker</a></p>
+      </div>
+      <div class="contact-item">
+        <p class="contact-item__label">GitHub</p>
+        <p class="contact-item__value"><a href="https://github.com/Azzuis" target="_blank">Azzuis</a></p>
+      </div>
     </div>
+
+    <a href="#top" class="contact-back">
+      <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      Back to top
+    </a>
   </div>
 </section>
 
@@ -530,7 +557,8 @@ img { display: block; max-width: 100%; height: auto; }
   <button class="lightbox-nav-btn lightbox-next" onclick="navGallery(1)" aria-label="Next">›</button>
   <div class="lightbox-content">
     <span class="lightbox-title" id="lightbox-title"></span>
-    <img class="lightbox-main-img" id="lightbox-main" src="" alt="">
+    <img class="lightbox-main-img" id="lightbox-main" src="" alt="" style="display:none;">
+    <div class="lightbox-message-slide" id="lightbox-message" style="display:none;"></div>
     <div class="lightbox-thumbs" id="lightbox-thumbs"></div>
     <span class="lightbox-counter" id="lightbox-counter"></span>
   </div>
@@ -539,14 +567,15 @@ img { display: block; max-width: 100%; height: auto; }
 <script>
 /* ─────────────────────────────────────────────
    GALLERY DATA
-   Each image: { src, caption, rotate? }
-   Set rotate: true for images that need 90° CW rotation.
+   type: 'image' (default) or 'message'
+   rotate: 'neg90' for -90deg rotation
    ───────────────────────────────────────────── */
 const galleryData = {
 
   'rain-remindr': {
     title: 'Rain Remindr',
     images: [
+      { src: 'images/Remindr Concept.png', caption: 'Product concept — Remindr brand vision' },
       { src: 'images/Initial Rain Reminder Mockup.jpeg', caption: 'Initial concept mockup — the very first physical prototype' },
       { src: 'images/breadboarding.jpg', caption: 'Breadboarding phase — testing ESP32-C3 with WS2811 LEDs' },
       { src: 'images/First PCB Design (NONFUNCTIONAL).PNG', caption: 'First PCB design attempt — non-functional, learned from failure' },
@@ -559,7 +588,7 @@ const galleryData = {
       { src: 'images/CuraSliceRingRemindrBase.PNG', caption: 'Cura slicer view — preparing enclosure for 3D printing' },
       { src: 'images/Diffuser.jpeg', caption: 'Light diffuser — creating even ambient LED glow' },
       { src: 'images/Desk.jpg', caption: 'The workspace — where it all comes together' },
-      { src: 'images/busy workspace.jpeg', caption: 'Deep in the build — mid-session workspace', rotate: true },
+      { src: 'images/busy workspace.jpeg', caption: 'Deep in the build — mid-session workspace', rotate: 'neg90' },
       { src: 'images/Remindr Prototype 1.PNG', caption: 'Prototype v1 — first assembled unit' },
       { src: 'images/Rain Remindr 6 Example Drawing.PNG', caption: 'Technical drawing — enclosure dimensions' },
     ]
@@ -568,7 +597,9 @@ const galleryData = {
   'garbage-remindr': {
     title: 'Garbage Remindr',
     images: [
-      { src: 'images/Remindr Concept.png', caption: 'Remindr product concept — brand and product line vision' },
+      { src: 'images/Concept Image.png', caption: 'Product concept image' },
+      { src: 'images/Garbage Remindr V1.PNG', caption: 'Garbage Remindr V1 — initial design' },
+      { type: 'message', caption: 'Project Status', message: 'This project is still in the early stages of development. More design work and documentation to come as the product evolves.' },
     ]
   },
 
@@ -594,10 +625,8 @@ let currentIndex = 0;
 
 function openGallery(key) {
   const data = galleryData[key];
-  if (!data) return;
-  const valid = data.images.filter(img => img.src);
-  if (!valid.length) return;
-  currentGallery = { ...data, images: valid };
+  if (!data || !data.images.length) return;
+  currentGallery = { ...data, images: [...data.images] };
   currentIndex = 0;
   renderGallery();
   document.getElementById('lightbox').classList.add('active');
@@ -620,34 +649,51 @@ function goToSlide(i) { currentIndex = i; renderGallery(); }
 
 function renderGallery() {
   if (!currentGallery) return;
-  const img = currentGallery.images[currentIndex];
-  const mainEl = document.getElementById('lightbox-main');
+  const item = currentGallery.images[currentIndex];
+  const mainImg = document.getElementById('lightbox-main');
+  const msgDiv = document.getElementById('lightbox-message');
+  const isMessage = item.type === 'message';
 
   document.getElementById('lightbox-title').textContent = currentGallery.title;
-  mainEl.src = img.src;
-  mainEl.alt = img.caption;
 
-  // Handle rotation for sideways images
-  if (img.rotate) {
-    mainEl.classList.add('rotate-90');
+  if (isMessage) {
+    mainImg.style.display = 'none';
+    msgDiv.style.display = 'flex';
+    msgDiv.innerHTML = '<p>' + item.message + '</p>';
   } else {
-    mainEl.classList.remove('rotate-90');
+    msgDiv.style.display = 'none';
+    mainImg.style.display = 'block';
+    mainImg.src = item.src;
+    mainImg.alt = item.caption;
+    mainImg.className = 'lightbox-main-img';
+    if (item.rotate === 'neg90') {
+      mainImg.classList.add('rotate-neg90');
+    }
   }
 
   document.getElementById('lightbox-counter').textContent =
-    `${currentIndex + 1} / ${currentGallery.images.length} — ${img.caption}`;
+    `${currentIndex + 1} / ${currentGallery.images.length} — ${item.caption}`;
 
+  // Thumbnails
   const tc = document.getElementById('lightbox-thumbs');
   tc.innerHTML = '';
   if (currentGallery.images.length > 1) {
-    currentGallery.images.forEach((item, i) => {
-      const t = document.createElement('img');
-      t.src = item.src;
-      t.alt = item.caption;
-      t.className = 'lightbox-thumb' + (i === currentIndex ? ' active' : '');
-      if (item.rotate) t.style.transform = 'rotate(90deg)';
-      t.onclick = () => goToSlide(i);
-      tc.appendChild(t);
+    currentGallery.images.forEach((img, i) => {
+      if (img.type === 'message') {
+        const d = document.createElement('div');
+        d.className = 'lightbox-thumb-msg' + (i === currentIndex ? ' active' : '');
+        d.textContent = '…';
+        d.onclick = () => goToSlide(i);
+        tc.appendChild(d);
+      } else {
+        const t = document.createElement('img');
+        t.src = img.src;
+        t.alt = img.caption;
+        t.className = 'lightbox-thumb' + (i === currentIndex ? ' active' : '');
+        if (img.rotate === 'neg90') t.style.transform = 'rotate(-90deg)';
+        t.onclick = () => goToSlide(i);
+        tc.appendChild(t);
+      }
     });
   }
 }
