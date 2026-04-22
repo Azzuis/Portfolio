@@ -1,721 +1,757 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Adam Geggie-Bowker — Product Designer</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Adam Geggie-Bowker — Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg:          #111111;
-  --bg-elevated: #1a1a1a;
-  --bg-card:     #222222;
-  --text:        #f0ece4;
-  --text-muted:  #8a8680;
-  --accent:      #f0ece4;
-  --border:      #2a2a2a;
-  --font-display: 'Playfair Display', Georgia, serif;
-  --font-body:    'DM Sans', 'Helvetica Neue', sans-serif;
-  --page-max:     1280px;
-  --page-pad:     clamp(20px, 5vw, 80px);
-  --section-gap:  clamp(80px, 12vw, 160px);
-  --grid-cols:    12;
-  --grid-gap:     24px;
-}
+  :root {
+    --bg: #f5ebe4;
+    --ink: #0d0d0d;
+    --ink-soft: #2a2a2a;
+    --muted: #6b6b6b;
+    --line: rgba(0, 0, 0, 0.12);
+    --line-strong: rgba(0, 0, 0, 0.25);
+  }
 
-*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-html { scroll-behavior: smooth; }
-body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
-a { color: inherit; text-decoration: none; }
-img { display: block; max-width: 100%; height: auto; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
 
-.container { max-width: var(--page-max); margin: 0 auto; padding: 0 var(--page-pad); }
-.grid { display: grid; grid-template-columns: repeat(var(--grid-cols), 1fr); gap: var(--grid-gap); }
+  body {
+    font-family: 'Archivo', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.55;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
 
-.col-1{grid-column:span 1}.col-2{grid-column:span 2}.col-3{grid-column:span 3}
-.col-4{grid-column:span 4}.col-5{grid-column:span 5}.col-6{grid-column:span 6}
-.col-7{grid-column:span 7}.col-8{grid-column:span 8}.col-9{grid-column:span 9}
-.col-10{grid-column:span 10}.col-11{grid-column:span 11}.col-12{grid-column:span 12}
-.col-start-1{grid-column-start:1}.col-start-2{grid-column-start:2}.col-start-3{grid-column-start:3}
-.col-start-4{grid-column-start:4}.col-start-5{grid-column-start:5}.col-start-6{grid-column-start:6}
-.col-start-7{grid-column-start:7}.col-start-8{grid-column-start:8}.col-start-9{grid-column-start:9}
-.col-start-10{grid-column-start:10}.col-start-11{grid-column-start:11}.col-start-12{grid-column-start:12}
-.row-span-2{grid-row:span 2}.row-span-3{grid-row:span 3}
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.35;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.25'/%3E%3C/svg%3E");
+  }
 
-.t-display { font-family: var(--font-display); font-weight: 900; font-style: italic; line-height: 0.95; letter-spacing: -0.02em; }
-.t-display-sm { font-size: clamp(2rem, 5vw, 3.5rem); }
-.t-display-md { font-size: clamp(3rem, 7vw, 5.5rem); }
-.t-display-lg { font-size: clamp(4rem, 10vw, 8rem); }
-.t-display-xl { font-size: clamp(5rem, 14vw, 12rem); }
-.t-label { font-family: var(--font-body); font-size: 11px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); }
-.t-body { font-size: 15px; line-height: 1.7; color: var(--text-muted); }
-.t-heading { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.5rem, 3vw, 2.2rem); line-height: 1.2; }
+  .spray { position: absolute; pointer-events: none; z-index: 0; opacity: 0.85; }
+  .spray-br { bottom: -60px; right: -80px; width: 520px; height: 520px; }
+  .spray-tl { top: 40px; left: 80px; width: 380px; height: 380px; }
 
-.section { padding: var(--section-gap) 0; position: relative; }
-.section--bordered { border-top: 1px solid var(--border); }
-.section-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: clamp(40px, 6vw, 80px); }
-.section-header__date { text-align: right; line-height: 1.2; }
-.section-header__date .year { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 700; display: block; }
-.section-footer { display: flex; justify-content: space-between; align-items: center; margin-top: clamp(40px, 6vw, 60px); padding-top: 16px; border-top: 1px solid var(--border); }
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 70px 64px;
+    position: relative;
+    z-index: 2;
+  }
 
-/* ── HERO ── */
-.hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: clamp(60px, 10vw, 120px) 0; }
-.hero__arrow { display: inline-block; margin-right: 16px; opacity: 0; animation: slideInArrow 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards; }
-.hero__arrow svg { width: clamp(60px, 8vw, 100px); height: auto; stroke: var(--text); stroke-width: 2; fill: none; }
-.hero__title { opacity: 0; animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards; }
-.hero__meta { margin-top: clamp(40px, 6vw, 80px); opacity: 0; animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards; }
-.hero__meta-inner { display: flex; gap: clamp(40px, 6vw, 100px); flex-wrap: wrap; align-items: baseline; }
-.hero__contact-list { list-style: none; display: flex; flex-direction: column; gap: 4px; }
-.hero__contact-list li { font-size: 14px; color: var(--text-muted); transition: color 0.3s; }
-.hero__contact-list li:hover { color: var(--text); }
-.hero__contact-list li a { border-bottom: 1px solid transparent; transition: border-color 0.3s; }
-.hero__contact-list li a:hover { border-color: var(--text-muted); }
-.hero__date { margin-top: clamp(30px, 4vw, 60px); opacity: 0; animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.7s forwards; }
+  /* ---------- HEADER ---------- */
+  .header {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 64px;
+    align-items: start;
+    margin-bottom: 100px;
+  }
 
-/* ── INTRO FULLSCREEN ── */
-.intro-section { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 80px 0; }
-.intro-layout { display: grid; grid-template-columns: 5fr 7fr; gap: clamp(32px, 5vw, 64px); align-items: center; }
-.intro-photo-wrap { position: relative; }
-.intro-photo { width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: 3px; }
-.intro-text-block { display: flex; flex-direction: column; gap: 20px; }
-.intro-text-block p { font-size: clamp(15px, 1.6vw, 18px); line-height: 1.8; color: var(--text-muted); }
+  .portrait-wrap { position: relative; width: 100%; aspect-ratio: 1 / 1.15; }
+  .portrait {
+    position: relative; width: 100%; height: 100%;
+    background: #d4cac2;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 2;
+  }
+  .portrait::after {
+    content: 'PORTRAIT';
+    font-family: 'Archivo Black', sans-serif;
+    letter-spacing: 0.3em;
+    color: rgba(0,0,0,0.3);
+    font-size: 13px;
+  }
 
-/* ── PROJECT CARDS ── */
-.project-card { display: block; background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 3px; overflow: hidden; transition: border-color 0.3s, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); cursor: pointer; }
-.project-card:hover { border-color: #444; transform: translateY(-4px); }
-.project-card__image { position: relative; overflow: hidden; background: var(--bg-card); }
-.project-card__image::before { content: ''; display: block; padding-top: 62%; }
-.project-card__image img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.project-card__body { padding: clamp(20px, 3vw, 32px); }
-.project-card__title { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.2rem, 2.5vw, 1.6rem); margin-bottom: 8px; }
-.project-card__desc { font-size: 14px; color: var(--text-muted); line-height: 1.6; margin-bottom: 16px; }
-.project-card__tags { display: flex; gap: 8px; flex-wrap: wrap; }
-.tag { font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 12px; border: 1px solid var(--border); border-radius: 2px; color: var(--text-muted); }
+  .intro h1 {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 68px;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    margin-bottom: 24px;
+  }
 
-/* ── DOWNLOAD LINK ── */
-.download-link { display: inline-flex; align-items: center; gap: 10px; padding: 12px 24px; border: 1px solid var(--border); border-radius: 2px; font-size: 13px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); transition: all 0.3s; }
-.download-link:hover { border-color: var(--text); color: var(--text); background: rgba(255,255,255,0.03); }
-.download-link svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; }
+  .intro p.bio { font-size: 16px; max-width: 440px; color: var(--ink-soft); margin-bottom: 36px; }
 
-/* ── TIMELINE ── */
-.timeline-item { display: grid; grid-template-columns: 1fr 2fr; gap: var(--grid-gap); padding: clamp(24px, 4vw, 40px) 0; border-bottom: 1px solid var(--border); }
-.timeline-item:last-child { border-bottom: none; }
-.timeline-item__period { font-size: 14px; color: var(--text-muted); margin-top: 8px; }
+  .contact-block { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; max-width: 500px; }
+  .contact-block h3 { font-family: 'Archivo Black', sans-serif; font-size: 18px; margin-bottom: 14px; }
+  .contact-block p { font-size: 14.5px; color: var(--ink-soft); margin-bottom: 4px; }
+  .contact-block a { color: var(--ink-soft); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.2s ease; }
+  .contact-block a:hover { border-bottom-color: var(--ink); }
 
-/* ── SKILLS ── */
-.skill-block { padding: clamp(20px, 3vw, 32px); border: 1px solid var(--border); border-radius: 2px; transition: border-color 0.3s; }
-.skill-block:hover { border-color: #444; }
-.skill-block__title { font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; margin-bottom: 12px; }
-.skill-block__list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
-.skill-block__list li { font-size: 14px; color: var(--text-muted); }
+  /* ---------- NAV ---------- */
+  .nav {
+    display: flex; gap: 28px;
+    padding: 16px 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 80px;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    flex-wrap: wrap;
+  }
+  .nav a { color: var(--ink); text-decoration: none; position: relative; padding-bottom: 2px; }
+  .nav a::after {
+    content: ''; position: absolute;
+    left: 0; right: 100%; bottom: -4px;
+    height: 2px; background: var(--ink);
+    transition: right 0.3s ease;
+  }
+  .nav a:hover::after { right: 0; }
+  .nav .count { color: var(--muted); margin-left: 6px; font-weight: 400; }
 
-/* ── CONTACT SECTION ── */
-.contact-section { padding: clamp(80px, 12vw, 160px) 0; }
-.contact-heading { font-family: var(--font-display); font-weight: 900; font-style: italic; font-size: clamp(2.5rem, 6vw, 5rem); line-height: 0.95; margin-bottom: clamp(40px, 6vw, 64px); }
-.contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 40px; }
-.contact-item {}
-.contact-item__label { font-size: 11px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; }
-.contact-item__value { font-size: 16px; color: var(--text); line-height: 1.6; }
-.contact-item__value a { border-bottom: 1px solid var(--border); padding-bottom: 2px; transition: border-color 0.3s; }
-.contact-item__value a:hover { border-color: var(--text); }
-.contact-back { display: inline-flex; align-items: center; gap: 8px; margin-top: clamp(40px, 6vw, 60px); font-size: 13px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); transition: color 0.3s; }
-.contact-back:hover { color: var(--text); }
-.contact-back svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; transform: rotate(180deg); }
+  /* ---------- PROJECT ---------- */
+  .project { margin-bottom: 140px; scroll-margin-top: 40px; }
 
-/* ── NAV ── */
-.nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 20px var(--page-pad); display: flex; justify-content: space-between; align-items: center; mix-blend-mode: difference; }
-.nav__logo { font-family: var(--font-body); font-weight: 700; font-size: 14px; letter-spacing: 0.1em; text-transform: uppercase; }
-.nav__links { display: flex; gap: 32px; list-style: none; }
-.nav__links a { font-size: 13px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text); transition: opacity 0.3s; }
-.nav__links a:hover { opacity: 0.6; }
+  .project-head {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 60px;
+    align-items: end;
+    padding-bottom: 24px;
+    border-bottom: 2px solid var(--ink);
+    margin-bottom: 50px;
+  }
 
-/* ─── LIGHTBOX GALLERY ─── */
-.lightbox-overlay { position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,0.92); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
-.lightbox-overlay.active { opacity: 1; pointer-events: all; }
-.lightbox-close { position: absolute; top: 24px; right: 32px; width: 48px; height: 48px; background: none; border: 1px solid rgba(255,255,255,0.2); border-radius: 50%; color: var(--text); font-size: 24px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: border-color 0.3s, background 0.3s; z-index: 10; }
-.lightbox-close:hover { border-color: var(--text); background: rgba(255,255,255,0.05); }
-.lightbox-content { display: flex; flex-direction: column; align-items: center; gap: 20px; max-width: 90vw; max-height: 90vh; width: 100%; }
-.lightbox-main-img { max-width: 100%; max-height: 60vh; object-fit: contain; border-radius: 4px; transition: opacity 0.25s; }
-.lightbox-main-img.rotate-neg90 { transform: rotate(-90deg); max-height: 50vh; }
-.lightbox-message-slide { display: flex; align-items: center; justify-content: center; width: 100%; max-width: 600px; min-height: 300px; background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 6px; padding: 48px; text-align: center; }
-.lightbox-message-slide p { font-family: var(--font-display); font-size: clamp(1.2rem, 2.5vw, 1.6rem); font-weight: 400; font-style: italic; line-height: 1.6; color: var(--text-muted); }
-.lightbox-thumbs { display: flex; gap: 10px; overflow-x: auto; padding: 8px 0; max-width: 100%; }
-.lightbox-thumb { width: 72px; height: 54px; object-fit: cover; border-radius: 3px; cursor: pointer; border: 2px solid transparent; opacity: 0.45; transition: opacity 0.3s, border-color 0.3s; flex-shrink: 0; }
-.lightbox-thumb:hover { opacity: 0.8; }
-.lightbox-thumb.active { opacity: 1; border-color: var(--text); }
-.lightbox-thumb-msg { width: 72px; height: 54px; border-radius: 3px; cursor: pointer; border: 2px solid transparent; opacity: 0.45; transition: opacity 0.3s, border-color 0.3s; flex-shrink: 0; background: var(--bg-elevated); display: flex; align-items: center; justify-content: center; font-size: 18px; color: var(--text-muted); }
-.lightbox-thumb-msg:hover { opacity: 0.8; }
-.lightbox-thumb-msg.active { opacity: 1; border-color: var(--text); }
-.lightbox-title { font-family: var(--font-display); font-weight: 700; font-size: 1.3rem; color: var(--text); }
-.lightbox-counter { font-size: 12px; color: var(--text-muted); letter-spacing: 0.1em; text-align: center; max-width: 700px; }
-.lightbox-nav-btn { position: absolute; top: 50%; transform: translateY(-50%); width: 48px; height: 48px; background: none; border: 1px solid rgba(255,255,255,0.2); border-radius: 50%; color: var(--text); font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: border-color 0.3s, background 0.3s; }
-.lightbox-nav-btn:hover { border-color: var(--text); background: rgba(255,255,255,0.05); }
-.lightbox-prev { left: 24px; }
-.lightbox-next { right: 24px; }
+  .project-head .tag {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 14px;
+    display: block;
+  }
 
-/* ── ANIMATIONS ── */
-@keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes slideInArrow { from { opacity: 0; transform: translateX(-40px); } to { opacity: 1; transform: translateX(0); } }
-.reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
-.reveal.visible { opacity: 1; transform: translateY(0); }
-.stagger > .reveal:nth-child(1) { transition-delay: 0s; }
-.stagger > .reveal:nth-child(2) { transition-delay: 0.1s; }
-.stagger > .reveal:nth-child(3) { transition-delay: 0.2s; }
-.stagger > .reveal:nth-child(4) { transition-delay: 0.3s; }
-.stagger > .reveal:nth-child(5) { transition-delay: 0.4s; }
+  .project-head h2 {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 72px;
+    line-height: 0.92;
+    letter-spacing: -0.02em;
+  }
 
-/* ── RESPONSIVE ── */
-@media (max-width: 768px) {
-  :root { --grid-cols: 4; --grid-gap: 16px; }
-  .hero__meta-inner { flex-direction: column; gap: 24px; }
-  .timeline-item { grid-template-columns: 1fr; gap: 8px; }
-  .nav__links { display: none; }
-  .col-4,.col-5,.col-6,.col-7,.col-8 { grid-column: span 4; }
-  .intro-section { min-height: auto; padding: 60px 0; }
-  .intro-layout { grid-template-columns: 1fr; }
-  .intro-photo { aspect-ratio: 1/1; }
-  .project-card--wide { grid-template-columns: 1fr !important; }
-  .lightbox-nav-btn { display: none; }
-  .contact-grid { grid-template-columns: 1fr 1fr; }
-}
+  .project-head .summary { font-size: 15px; color: var(--ink-soft); padding-bottom: 6px; }
+
+  /* ---------- DISCIPLINE ---------- */
+  .discipline { margin-bottom: 70px; }
+
+  .discipline-head {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--line-strong);
+    margin-bottom: 36px;
+  }
+
+  .discipline-head .num {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 14px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+  }
+
+  .discipline-head h3 {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 32px;
+    letter-spacing: -0.01em;
+    flex: 1;
+  }
+
+  .discipline-head .meta {
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* ---------- STAGE ---------- */
+  .stage {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 48px;
+    margin-bottom: 48px;
+    padding-bottom: 48px;
+    border-bottom: 1px dashed var(--line);
+  }
+  .stage:last-child { border-bottom: none; padding-bottom: 0; }
+
+  .stage-label { position: sticky; top: 20px; align-self: start; }
+  .stage-label .stage-tag {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: block;
+    margin-bottom: 6px;
+  }
+  .stage-label h4 {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 22px;
+    letter-spacing: -0.01em;
+    line-height: 1.05;
+  }
+
+  .stage-body p { font-size: 15px; color: var(--ink-soft); margin-bottom: 20px; max-width: 640px; }
+
+  .stage-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 20px;
+  }
+  .stage-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+  .stage-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+  .media {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    background: #d4cac2;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  .media.tall { aspect-ratio: 3 / 4; }
+  .media.wide { aspect-ratio: 16 / 9; }
+  .media.square { aspect-ratio: 1 / 1; }
+
+  .media::before {
+    content: attr(data-label);
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Archivo Black', sans-serif;
+    letter-spacing: 0.22em;
+    color: rgba(0,0,0,0.32);
+    font-size: 11px;
+    text-align: center;
+    padding: 8px;
+  }
+
+  .media::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.55), transparent 50%);
+    opacity: 0; transition: opacity 0.3s ease;
+  }
+
+  .media .caption {
+    position: absolute; left: 12px; right: 12px; bottom: 12px;
+    color: #fff;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 2;
+  }
+
+  .media:hover { transform: translateY(-3px); }
+  .media:hover::after { opacity: 1; }
+  .media:hover .caption { opacity: 1; transform: translateY(0); }
+
+  /* ---------- FOOTER ---------- */
+  .footer {
+    margin-top: 120px;
+    padding-top: 40px;
+    border-top: 2px solid var(--ink);
+    display: flex; justify-content: space-between;
+    align-items: baseline; flex-wrap: wrap; gap: 20px;
+  }
+  .footer .mark { font-family: 'Archivo Black', sans-serif; font-size: 28px; letter-spacing: -0.01em; }
+  .footer .year { font-size: 13px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
+
+  /* Reveal */
+  .reveal { opacity: 0; transform: translateY(20px); animation: reveal 0.8s ease forwards; }
+  @keyframes reveal { to { opacity: 1; transform: translateY(0); } }
+  .reveal:nth-child(1) { animation-delay: 0.05s; }
+  .reveal:nth-child(2) { animation-delay: 0.15s; }
+  .reveal:nth-child(3) { animation-delay: 0.25s; }
+  .reveal:nth-child(4) { animation-delay: 0.35s; }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .container { padding: 40px 24px; }
+    .header { grid-template-columns: 1fr; gap: 40px; margin-bottom: 60px; }
+    .portrait-wrap { max-width: 280px; }
+    .intro h1 { font-size: 44px; }
+    .contact-block { grid-template-columns: 1fr; gap: 20px; }
+    .project-head { grid-template-columns: 1fr; gap: 20px; }
+    .project-head h2 { font-size: 44px; }
+    .discipline-head h3 { font-size: 24px; }
+    .stage { grid-template-columns: 1fr; gap: 20px; padding-bottom: 36px; margin-bottom: 36px; }
+    .stage-label { position: static; }
+    .stage-grid, .stage-grid.cols-2, .stage-grid.cols-4 { grid-template-columns: repeat(2, 1fr); }
+    .spray-br { width: 320px; height: 320px; }
+    .spray-tl { display: none; }
+    .nav { gap: 16px; font-size: 11px; margin-bottom: 50px; }
+    .project { margin-bottom: 90px; }
+  }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav class="nav">
-  <div class="nav__logo">Adam G-B</div>
-  <ul class="nav__links">
-    <li><a href="#intro">About</a></li>
-    <li><a href="#work">Work</a></li>
-    <li><a href="#education">Education</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-</nav>
+  <svg class="spray spray-tl" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <filter id="spray1">
+        <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" seed="5"/>
+        <feDisplacementMap in="SourceGraphic" scale="40"/>
+      </filter>
+    </defs>
+    <ellipse cx="200" cy="200" rx="150" ry="130" fill="#0d0d0d" opacity="0.55" filter="url(#spray1)"/>
+    <ellipse cx="200" cy="200" rx="90" ry="80" fill="#0d0d0d" opacity="0.35" filter="url(#spray1)"/>
+  </svg>
 
-<!-- ═══════════════════════════════════════════
-     HERO
-     ═══════════════════════════════════════════ -->
-<section id="top" class="hero container">
-  <div class="hero__title">
-    <span class="hero__arrow">
-      <svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg">
-        <line x1="0" y1="20" x2="85" y2="20" />
-        <polyline points="70,6 88,20 70,34" />
-      </svg>
-    </span>
-    <span class="t-display t-display-xl">Portfolio</span>
-  </div>
-  <div class="hero__meta">
-    <div class="hero__meta-inner">
-      <div><p class="t-label">Adam Geggie-Bowker</p></div>
-      <div><p class="t-label">Product Design</p></div>
-      <div>
-        <p class="t-label" style="margin-bottom:8px">My Contacts</p>
-        <ul class="hero__contact-list">
-          <li><a href="tel:7786772208">778-677-2208</a></li>
-          <li><a href="mailto:adamgeggiebowker@gmail.com">adamgeggiebowker@gmail.com</a></li>
-          <li>Victoria, BC, Canada</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <div class="hero__date">
-    <span class="t-label">March</span><br>
-    <span class="t-display" style="font-size:clamp(2.5rem,5vw,4rem)">2026</span>
-  </div>
-</section>
+  <svg class="spray spray-br" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <filter id="spray2">
+        <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="4" seed="12"/>
+        <feDisplacementMap in="SourceGraphic" scale="35"/>
+      </filter>
+    </defs>
+    <path d="M 80 280 Q 150 180, 220 260 T 340 220 Q 380 200, 340 140" stroke="#0d0d0d" stroke-width="45" fill="none" opacity="0.55" filter="url(#spray2)" stroke-linecap="round"/>
+    <path d="M 80 280 Q 150 180, 220 260 T 340 220" stroke="#0d0d0d" stroke-width="25" fill="none" opacity="0.35" filter="url(#spray2)" stroke-linecap="round"/>
+  </svg>
 
-<!-- ═══════════════════════════════════════════
-     INTRODUCTION — Photo left, text block right
-     ═══════════════════════════════════════════ -->
-<section id="intro" class="section section--bordered intro-section">
   <div class="container">
-    <div class="section-header">
-      <span class="t-label">Creative Portfolio</span>
-      <div class="section-header__date">
-        <span class="t-label">Product Designer</span>
-        <span class="year">2026</span>
-      </div>
-    </div>
 
-    <div class="reveal" style="margin-bottom: clamp(32px, 5vw, 56px);">
-      <h2 class="t-display t-display-md">Introduction</h2>
-    </div>
+    <!-- HEADER -->
+    <header class="header">
+      <div class="portrait-wrap reveal"><div class="portrait"></div></div>
 
-    <div class="intro-layout reveal">
-      <!-- Photo side -->
-      <div class="intro-photo-wrap">
-        <img src="images/Early Design Selfie.jpeg" alt="Adam Geggie-Bowker" class="intro-photo">
-      </div>
-
-      <!-- Text block — fills the right side -->
-      <div class="intro-text-block">
-        <h3 style="font-family:var(--font-display); font-weight:700; font-size:clamp(2rem, 4vw, 3rem); line-height:1.15;">Adam Geggie-Bowker</h3>
-
-        <p>
-          Product designer and electronics engineer based in Victoria, BC. I design connected hardware products from concept through production — bridging industrial design, firmware, and PCB layout into cohesive user experiences.
+      <div class="intro">
+        <h1 class="reveal">Adam<br/>Geggie-Bowker</h1>
+        <p class="bio reveal">
+          Hardware engineer and product designer based in Victoria, BC. Co-founder of Remindr — a consumer IoT startup. I work across PCB design, embedded firmware, industrial design, and the occasional marine project or pen-and-ink drawing.
         </p>
-        <p>
-          Co-founder of Remindr, where I lead hardware design and product development for smart IoT devices. My background in electrical engineering informs a systems-level approach to product design — every interface decision is grounded in what the hardware can deliver.
-        </p>
-        <p>
-          From custom PCB design and 3D-printed enclosures to captive portal UIs and WebGL marketing sites, I work across the full stack of what it takes to bring a physical product to life. I care about design that bridges the gap between digital and physical.
+
+        <div class="contact-block reveal">
+          <div>
+            <h3>Contact:</h3>
+            <p>Victoria, BC</p>
+            <p><a href="mailto:hello@example.com">hello@example.com</a></p>
+            <p><a href="https://remind-r.ca">remind-r.ca</a></p>
+          </div>
+          <div>
+            <h3>Elsewhere:</h3>
+            <p><a href="#">github.com/adam</a></p>
+            <p><a href="#">linkedin.com/in/adam</a></p>
+            <p><a href="#">@adam</a></p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- NAV -->
+    <nav class="nav">
+      <a href="#rain-remindr">Rain Remindr <span class="count">/ 01</span></a>
+      <a href="#remindr-pucks">Remindr Pucks <span class="count">/ 02</span></a>
+      <a href="#marine-strut">Marine Strut <span class="count">/ 03</span></a>
+      <a href="#single-line">Single Line Drawing <span class="count">/ 04</span></a>
+    </nav>
+
+    <!-- ============================================================ -->
+    <!-- PROJECT 01 — RAIN REMINDR                                      -->
+    <!-- ============================================================ -->
+    <section id="rain-remindr" class="project">
+      <div class="project-head">
+        <div>
+          <span class="tag">Project 01 — Consumer IoT</span>
+          <h2>Rain<br/>Remindr</h2>
+        </div>
+        <p class="summary">
+          A weather-reactive ambient light that glows when rain is forecast for your commute. ESP32-C3, Open-Meteo API, WS2811 LED ring, captive portal setup flow. First shipping product from Remindr.
         </p>
       </div>
-    </div>
 
-    <div class="section-footer">
-      <span class="t-label">Adam Geggie-Bowker</span>
-      <span class="t-label">Product Design</span>
-    </div>
-  </div>
-</section>
+      <!-- DISCIPLINE: ELECTRICAL -->
+      <div class="discipline">
+        <div class="discipline-head">
+          <span class="num">A</span>
+          <h3>Electrical</h3>
+          <span class="meta">Schematic · Layout · Assembly</span>
+        </div>
 
-<!-- ═══════════════════════════════════════════
-     WORK / PROJECTS
-     ═══════════════════════════════════════════ -->
-<section id="work" class="section section--bordered">
-  <div class="container">
-    <div class="section-header">
-      <span class="t-label">Selected Work</span>
-      <div class="section-header__date">
-        <span class="t-label">Projects</span>
-        <span class="year">2026</span>
-      </div>
-    </div>
-
-    <div class="reveal">
-      <h2 class="t-display t-display-md" style="margin-bottom: clamp(40px,6vw,80px)">My Work</h2>
-    </div>
-
-    <div class="grid stagger">
-
-      <!-- Rain Remindr — now uses Remindr Concept as thumbnail -->
-      <div class="col-7 reveal">
-        <div class="project-card" onclick="openGallery('rain-remindr')">
-          <div class="project-card__image">
-            <img src="images/Remindr Concept.png" alt="Rain Remindr concept">
+        <!-- STAGE -->
+        <div class="stage">
+          <div class="stage-label">
+            <span class="stage-tag">Stage 01</span>
+            <h4>ECAD</h4>
           </div>
-          <div class="project-card__body">
-            <h3 class="project-card__title">Rain Remindr</h3>
-            <p class="project-card__desc">Smart ambient weather indicator — custom 4-layer PCB with ESP32-C3, captive portal UI, 3D-printed enclosure. From napkin sketch through breadboarding, failed PCBs, and redesigns to a production-ready prototype.</p>
-            <div class="project-card__tags">
-              <span class="tag">Hardware</span>
-              <span class="tag">Firmware</span>
-              <span class="tag">PCB Design</span>
-              <span class="tag">IoT</span>
+          <div class="stage-body">
+            <p>
+              Schematic and PCB layout work in KiCad. Designed around an ESP32-C3 module driving a WS2811 LED strip, with USB-C input stepped down by an AP63203WU buck converter. Focused on a compact two-layer board suitable for low-volume JLCPCB runs.
+            </p>
+            <div class="stage-grid">
+              <div class="media" data-label="SCHEMATIC"><div class="caption">Power + MCU sheet</div></div>
+              <div class="media" data-label="LAYOUT"><div class="caption">PCB top view</div></div>
+              <div class="media" data-label="3D RENDER"><div class="caption">KiCad 3D view</div></div>
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- Garbage Remindr — uses Concept Image as thumbnail -->
-      <div class="col-5 reveal" style="margin-top: 80px;">
-        <div class="project-card" onclick="openGallery('garbage-remindr')">
-          <div class="project-card__image">
-            <img src="images/Concept Image.png" alt="Garbage Remindr concept">
+        <div class="stage">
+          <div class="stage-label">
+            <span class="stage-tag">Stage 02</span>
+            <h4>Breadboarding</h4>
           </div>
-          <div class="project-card__body">
-            <h3 class="project-card__title">Garbage Remindr</h3>
-            <p class="project-card__desc">Automated collection day reminder with municipality schedule integration and ambient light notification system.</p>
-            <div class="project-card__tags">
-              <span class="tag">Product Design</span>
-              <span class="tag">IoT</span>
-              <span class="tag">UX</span>
+          <div class="stage-body">
+            <p>
+              Early validation of the LED driver, power supply, and Wi-Fi behaviour before committing to a PCB. Used a dev board and a short WS2811 strip to prove out the timing-critical bit-banged protocol and the captive portal join flow.
+            </p>
+            <div class="stage-grid">
+              <div class="media" data-label="DEV BOARD"><div class="caption">ESP32-C3 + LEDs</div></div>
+              <div class="media" data-label="WIRING"><div class="caption">Power test</div></div>
+              <div class="media" data-label="SCOPE"><div class="caption">WS2811 timing</div></div>
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- Remindr Website -->
-      <div class="col-12 reveal">
-        <div class="project-card project-card--wide" onclick="openGallery('remindr-website')" style="display:grid; grid-template-columns: 1fr 1fr;">
-          <div class="project-card__image" style="min-height:300px;">
-            <img src="images/RemindrSite.PNG" alt="Remindr Website">
+        <div class="stage">
+          <div class="stage-label">
+            <span class="stage-tag">Stage 03</span>
+            <h4>Protoboard</h4>
           </div>
-          <div class="project-card__body" style="display:flex;flex-direction:column;justify-content:center;">
-            <h3 class="project-card__title">Remindr Startup Website</h3>
-            <p class="project-card__desc">Multi-page marketing site with WebGL shader backgrounds, buoy physics simulations, product pages, dev logs, and interactive roadmaps. Built from scratch.</p>
-            <div class="project-card__tags" style="margin-top:auto;">
-              <span class="tag">Web Design</span>
-              <span class="tag">WebGL</span>
-              <span class="tag">Frontend</span>
+          <div class="stage-body">
+            <p>
+              Hand-soldered perfboard version bridging the breadboard prototype and the first PCB. Useful for burn-in testing and checking mechanical fit inside the enclosure mock-up before paying for fabrication.
+            </p>
+            <div class="stage-grid">
+              <div class="media" data-label="TOP"><div class="caption">Component side</div></div>
+              <div class="media" data-label="BOTTOM"><div class="caption">Solder side</div></div>
+              <div class="media" data-label="IN SITU"><div class="caption">Mounted in test rig</div></div>
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- Marine V-Strut -->
-      <div class="col-12 reveal">
-        <div class="project-card project-card--wide" onclick="openGallery('v-strut')" style="display:grid; grid-template-columns: 1fr 1fr;">
-          <div class="project-card__image" style="min-height:300px; background:#c0c0c0;">
-            <img src="images/VSTRUT.PNG" alt="Marine V-Strut CAD Model">
+        <div class="stage">
+          <div class="stage-label">
+            <span class="stage-tag">Stage 04</span>
+            <h4>Prototype 01</h4>
           </div>
-          <div class="project-card__body" style="display:flex;flex-direction:column;justify-content:center;">
-            <h3 class="project-card__title">Marine Propeller V-Strut</h3>
-            <p class="project-card__desc">Custom V-strut designed for a 110 ft pleasure yacht at Gregory C. Marshall Naval Architect. Hydrodynamic analysis, ABS compliance, 3D modeling in Rhino, and full construction documentation.</p>
-            <div class="project-card__tags">
-              <span class="tag">CAD</span>
-              <span class="tag">Naval Architecture</span>
-              <span class="tag">Engineering</span>
-              <span class="tag">Rhino 3D</span>
-            </div>
-            <div style="margin-top:20px;">
-              <a href="pdfs/Designing A Marine Strut Signed.pdf" target="_blank" class="download-link" onclick="event.stopPropagation()">
-                <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 18 15 15"/></svg>
-                Full Design Report (PDF)
-              </a>
+          <div class="stage-body">
+            <p>
+              First real PCB — USB-C input, buck converter, ESP32-C3 module, four-pin LED strip header. Caught a silk error on the USB footprint and a missing pull-down on the enable line. Fully functional after a couple of bodge wires.
+            </p>
+            <div class="stage-grid">
+              <div class="media" data-label="BARE PCB"><div class="caption">Fresh from fab</div></div>
+              <div class="media" data-label="ASSEMBLED"><div class="caption">Populated board</div></div>
+              <div class="media" data-label="BODGES"><div class="caption">Rework notes</div></div>
             </div>
           </div>
         </div>
+
+        <!-- ADD MORE STAGES HERE — copy a <div class="stage"> block above -->
       </div>
 
-    </div>
+      <!-- DISCIPLINE: MECHANICAL -->
+      <div class="discipline">
+        <div class="discipline-head">
+          <span class="num">B</span>
+          <h3>Mechanical</h3>
+          <span class="meta">CAD · 3D Print · Tolerance</span>
+        </div>
 
-    <div class="section-footer">
-      <span class="t-label">Adam Geggie-Bowker</span>
-      <span class="t-label">Product Design</span>
-    </div>
-  </div>
-</section>
+        <div class="stage">
+          <div class="stage-label">
+            <span class="stage-tag">Stage 01</span>
+            <h4>Concept CAD</h4>
+          </div>
+          <div class="stage-body">
+            <p>
+              Onshape models exploring the toroidal light-ring form factor. Iterated on diffuser wall thickness, LED strip channel geometry, and mounting options for the PCB carrier.
+            </p>
+            <div class="stage-grid">
+              <div class="media" data-label="SECTION"><div class="caption">Cutaway view</div></div>
+              <div class="media" data-label="EXPLODED"><div class="caption">Assembly diagram</div></div>
+              <div class="media" data-label="DIMENSIONS"><div class="caption">Drawing pack</div></div>
+            </div>
+          </div>
+        </div>
 
-<!-- ═══════════════════════════════════════════
-     EDUCATION — No photo
-     ═══════════════════════════════════════════ -->
-<section id="education" class="section section--bordered">
-  <div class="container">
-    <div class="section-header">
-      <span class="t-label">Creative Portfolio</span>
-      <div class="section-header__date">
-        <span class="t-label">Background</span>
-        <span class="year">2026</span>
+        <div class="stage">
+          <div class="stage-label">
+            <span class="stage-tag">Stage 02</span>
+            <h4>Prototype 01 — FDM</h4>
+          </div>
+          <div class="stage-body">
+            <p>
+              First physical diffuser — 283 mm diameter transparent PETG print on the Neptune Pro Plus. Bed adhesion and first-layer consistency were the main fights. Light transmission and ring uniformity came out better than expected.
+            </p>
+            <div class="stage-grid">
+              <div class="media" data-label="ON PRINTER"><div class="caption">Mid-print</div></div>
+              <div class="media" data-label="FINISHED"><div class="caption">Off the bed</div></div>
+              <div class="media" data-label="LIT"><div class="caption">LED test</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ADD MORE STAGES HERE -->
       </div>
-    </div>
 
-    <div class="reveal" style="margin-bottom: clamp(32px, 5vw, 56px);">
-      <h2 class="t-display t-display-md">My<br>Education</h2>
-    </div>
+      <!-- DISCIPLINE: PROGRAMMING -->
+      <div class="discipline">
+        <div class="discipline-head">
+          <span class="num">C</span>
+          <h3>Programming</h3>
+          <span class="meta">Firmware · API · UI</span>
+        </div>
 
-    <div class="grid reveal">
-      <div class="col-6">
-        <h3 class="t-heading" style="margin-bottom:4px">University of Victoria</h3>
-        <span class="t-label">(2020 – 2025)</span>
-        <p class="t-body" style="margin-top:16px">Electrical Engineering Studies. Deep foundation in circuit design, embedded systems, signal processing, and systems-level thinking applied to product development.</p>
+        <div class="stage">
+          <div class="stage-label">
+            <span class="stage-tag">Stage 01</span>
+            <h4>Firmware — v1.2.0</h4>
+          </div>
+          <div class="stage-body">
+            <p>
+              ESP32-C3 Arduino firmware polling Open-Meteo for rain probability on a configurable schedule and translating the forecast into colour and animation on a WS2811 strip. Sensitivity threshold, colour presets, and strip length are all user-tuneable.
+            </p>
+            <div class="stage-grid">
+              <div class="media" data-label="CODE"><div class="caption">main loop</div></div>
+              <div class="media" data-label="STATE DIAGRAM"><div class="caption">Forecast → colour</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="stage">
+          <div class="stage-label">
+            <span class="stage-tag">Stage 02</span>
+            <h4>Captive Portal UI</h4>
+          </div>
+          <div class="stage-body">
+            <p>
+              Browser-based setup flow served directly from the ESP32. Wi-Fi onboarding, location search, sensitivity slider, colour picker, and a strip-length finder that walks the user through calibrating their specific install.
+            </p>
+            <div class="stage-grid">
+              <div class="media" data-label="WIFI JOIN"><div class="caption">Onboarding step 1</div></div>
+              <div class="media" data-label="SETTINGS"><div class="caption">Preferences screen</div></div>
+              <div class="media" data-label="FINDER"><div class="caption">Strip calibration</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ADD MORE STAGES HERE -->
       </div>
-      <div class="col-6">
-        <h3 class="t-heading" style="margin-bottom:4px">Self-Directed Practice</h3>
-        <span class="t-label">(Ongoing)</span>
-        <p class="t-body" style="margin-top:16px">Continuous learning through hands-on product builds, PCB design iteration, firmware development, and full-stack prototyping across hardware and software domains.</p>
-      </div>
-    </div>
+    </section>
 
-    <div class="section-footer">
-      <span class="t-label">Adam Geggie-Bowker</span>
-      <span class="t-label">Product Design</span>
-    </div>
-  </div>
-</section>
-
-<!-- EXPERIENCE -->
-<section class="section section--bordered">
-  <div class="container">
-    <div class="section-header">
-      <span class="t-label">Experience</span>
-      <div class="section-header__date"><span class="t-label">Career</span><span class="year">2026</span></div>
-    </div>
-    <div class="reveal">
-      <h2 class="t-display t-display-md" style="margin-bottom: clamp(40px,6vw,60px)">Experience</h2>
-    </div>
-    <div class="reveal">
-      <div class="timeline-item">
+    <!-- ============================================================ -->
+    <!-- PROJECT 02 — REMINDR PUCKS                                     -->
+    <!-- ============================================================ -->
+    <section id="remindr-pucks" class="project">
+      <div class="project-head">
         <div>
-          <h3 class="t-heading">Remindr</h3>
-          <p class="timeline-item__period">2024 – Present</p>
+          <span class="tag">Project 02 — Consumer IoT</span>
+          <h2>Remindr<br/>Pucks</h2>
         </div>
+        <p class="summary">
+          Small, magnetic, battery-powered pucks that sit around your home and glow with ambient notifications from a central dock. nRF52832 BLE, SK6812MINI-E LED, LiPo with magnetic charging contacts.
+        </p>
+      </div>
+
+      <!-- DISCIPLINE: ELECTRICAL -->
+      <div class="discipline">
+        <div class="discipline-head">
+          <span class="num">A</span>
+          <h3>Electrical</h3>
+          <span class="meta">BLE · Power · Charging</span>
+        </div>
+
+        <div class="stage">
+          <div class="stage-label">
+            <span class="stage-tag">Stage 01</span>
+            <h4>ECAD</h4>
+          </div>
+          <div class="stage-body">
+            <p>
+              KiCad schematic around the nRF52832 with an MCP73831 LiPo charger, a single SK6812MINI-E addressable LED, and exposed pogo pads for magnetic charging. Careful attention to BLE antenna keepout and charger routing.
+            </p>
+            <div class="stage-grid">
+              <div class="media" data-label="SCHEMATIC"><div class="caption">MCU + BLE</div></div>
+              <div class="media" data-label="CHARGER"><div class="caption">MCP73831 sheet</div></div>
+              <div class="media" data-label="LAYOUT"><div class="caption">Round PCB</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ADD MORE STAGES HERE -->
+      </div>
+
+      <!-- DISCIPLINE: MECHANICAL -->
+      <div class="discipline">
+        <div class="discipline-head">
+          <span class="num">B</span>
+          <h3>Mechanical</h3>
+          <span class="meta">Enclosure · Magnets · Light pipe</span>
+        </div>
+
+        <div class="stage">
+          <div class="stage-label">
+            <span class="stage-tag">Stage 01</span>
+            <h4>Concept CAD</h4>
+          </div>
+          <div class="stage-body">
+            <p>
+              Exploring enclosure shapes that feel good in hand, hold a LiPo securely, align reliably to the dock via magnets, and diffuse the single SK6812 evenly across the top surface.
+            </p>
+            <div class="stage-grid">
+              <div class="media" data-label="PUCK"><div class="caption">Top shell</div></div>
+              <div class="media" data-label="EXPLODED"><div class="caption">Stack-up</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ADD MORE STAGES HERE -->
+      </div>
+
+      <!-- DISCIPLINE: PROGRAMMING -->
+      <div class="discipline">
+        <div class="discipline-head">
+          <span class="num">C</span>
+          <h3>Programming</h3>
+          <span class="meta">BLE protocol · Power management</span>
+        </div>
+
+        <div class="stage">
+          <div class="stage-label">
+            <span class="stage-tag">Stage 01</span>
+            <h4>BLE Protocol</h4>
+          </div>
+          <div class="stage-body">
+            <p>
+              Custom GATT service for puck-to-dock communication. Messages cover colour commands, animation selection, battery state reporting, and low-power pairing. Designed for multi-puck deployments off one dock.
+            </p>
+            <div class="stage-grid">
+              <div class="media" data-label="GATT"><div class="caption">Service layout</div></div>
+              <div class="media" data-label="PAIRING"><div class="caption">Flow diagram</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ADD MORE STAGES HERE -->
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- PROJECT 03 — MARINE STRUT                                      -->
+    <!-- ============================================================ -->
+    <section id="marine-strut" class="project">
+      <div class="project-head">
         <div>
-          <p class="t-label" style="margin-bottom:8px">Co-Founder & Lead Product Designer</p>
-          <p class="t-body">End-to-end product design for smart IoT devices. PCB layout, enclosure design, firmware architecture, captive portal UX, and brand identity. Shipped Rain Remindr from napkin sketch to production-ready prototype.</p>
+          <span class="tag">Project 03 — Naval Architecture</span>
+          <h2>Marine<br/>Strut</h2>
         </div>
+        <p class="summary">
+          Structural shaft strut designed during my co-op at Gregory C. Marshall Naval Architect. Modelled in CAD, dimensioned for machining, and detailed for fabrication drawings.
+        </p>
       </div>
-      <div class="timeline-item">
+
+      <div class="discipline">
+        <div class="discipline-head">
+          <span class="num">A</span>
+          <h3>Design &amp; Drafting</h3>
+          <span class="meta">CAD · Drawings · Review</span>
+        </div>
+
+        <div class="stage">
+          <div class="stage-label">
+            <span class="stage-tag">Stage 01</span>
+            <h4>CAD Model</h4>
+          </div>
+          <div class="stage-body">
+            <p>
+              Solid model of the strut body capturing hull-interface geometry, bearing bore, and fairing surfaces. Built with manufacturability and future machining setups in mind.
+            </p>
+            <div class="stage-grid cols-2">
+              <div class="media wide" data-label="ISO VIEW"><div class="caption">Full assembly</div></div>
+              <div class="media wide" data-label="SECTION"><div class="caption">Bore detail</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="stage">
+          <div class="stage-label">
+            <span class="stage-tag">Stage 02</span>
+            <h4>Fabrication Drawings</h4>
+          </div>
+          <div class="stage-body">
+            <p>
+              Fully dimensioned 2D drawing pack — GD&amp;T, weld callouts, finish notes, and revision block. Formatted to the studio's template for handoff to the machine shop.
+            </p>
+            <div class="stage-grid cols-2">
+              <div class="media wide" data-label="SHEET 1"><div class="caption">Overall dimensions</div></div>
+              <div class="media wide" data-label="SHEET 2"><div class="caption">Detail views</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ADD MORE STAGES HERE -->
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- PROJECT 04 — SINGLE LINE DRAWING                               -->
+    <!-- ============================================================ -->
+    <section id="single-line" class="project">
+      <div class="project-head">
         <div>
-          <h3 class="t-heading">Gregory C. Marshall</h3>
-          <p class="timeline-item__period">Co-op Term</p>
+          <span class="tag">Project 04 — Personal Work</span>
+          <h2>Single Line<br/>Drawing</h2>
         </div>
-        <div>
-          <p class="t-label" style="margin-bottom:8px">Naval Architecture — CAD & Engineering</p>
-          <p class="t-body">Mechanical and electrical systems design for luxury yachts. 3D modeling in Rhino and 2D construction documents. Designed a custom marine V-strut for a 110 ft motor yacht's propulsion system to ABS standards.</p>
+        <p class="summary">
+          A continuous-line ink study — one unbroken stroke from start to finish. An exercise in commitment, composition, and not lifting the pen.
+        </p>
+      </div>
+
+      <div class="discipline">
+        <div class="discipline-head">
+          <span class="num">A</span>
+          <h3>The Piece</h3>
+          <span class="meta">Ink on paper</span>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- SKILLS -->
-<section id="skills" class="section section--bordered">
-  <div class="container">
-    <div class="section-header">
-      <span class="t-label">Capabilities</span>
-      <div class="section-header__date"><span class="t-label">Tools & Methods</span><span class="year">2026</span></div>
-    </div>
-    <div class="reveal">
-      <h2 class="t-display t-display-md" style="margin-bottom: clamp(40px,6vw,80px)">Skills</h2>
-    </div>
-    <div class="grid stagger">
-      <div class="col-4 reveal">
-        <div class="skill-block">
-          <h3 class="skill-block__title">Hardware Design</h3>
-          <ul class="skill-block__list">
-            <li>PCB Layout & Schematic</li>
-            <li>KiCad / EDA Tools</li>
-            <li>ESP32 / Embedded Systems</li>
-            <li>Power Supply Design</li>
-            <li>DFM & JLCPCB Production</li>
-          </ul>
+        <div class="stage">
+          <div class="stage-label">
+            <span class="stage-tag">Stage 01</span>
+            <h4>Final</h4>
+          </div>
+          <div class="stage-body">
+            <p>
+              Finished drawing, scanned and cleaned. The appeal of a single-line constraint is that every stroke has to earn its place — no corrections, no shortcuts, just one continuous path.
+            </p>
+            <div class="stage-grid cols-2">
+              <div class="media wide square" data-label="FULL PIECE"><div class="caption">Final scan</div></div>
+              <div class="media square" data-label="DETAIL"><div class="caption">Close-up crop</div></div>
+            </div>
+          </div>
         </div>
+
+        <!-- ADD MORE STAGES HERE -->
       </div>
-      <div class="col-4 reveal">
-        <div class="skill-block">
-          <h3 class="skill-block__title">Product & UX</h3>
-          <ul class="skill-block__list">
-            <li>Concept to Prototype</li>
-            <li>Captive Portal UI</li>
-            <li>User Flow Design</li>
-            <li>Enclosure / Industrial</li>
-            <li>3D Printing & Prototyping</li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-4 reveal">
-        <div class="skill-block">
-          <h3 class="skill-block__title">Software & Web</h3>
-          <ul class="skill-block__list">
-            <li>C++ / Arduino / PlatformIO</li>
-            <li>HTML / CSS / JavaScript</li>
-            <li>WebGL / Shader Programming</li>
-            <li>Git & Version Control</li>
-            <li>Full-Stack Prototyping</li>
-          </ul>
-        </div>
-      </div>
-    </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="mark">AGB</div>
+      <div class="year">© 2026 — Built in Victoria, BC</div>
+    </footer>
+
   </div>
-</section>
 
-<!-- ═══════════════════════════════════════════
-     CONTACT — Real info, back-to-top link
-     ═══════════════════════════════════════════ -->
-<section id="contact" class="section section--bordered">
-  <div class="container contact-section reveal">
-    <h2 class="contact-heading">Let's Work<br>Together</h2>
-
-    <div class="contact-grid">
-      <div class="contact-item">
-        <p class="contact-item__label">Email</p>
-        <p class="contact-item__value"><a href="mailto:adamgeggiebowker@gmail.com">adamgeggiebowker@gmail.com</a></p>
-      </div>
-      <div class="contact-item">
-        <p class="contact-item__label">Phone</p>
-        <p class="contact-item__value"><a href="tel:7786772208">778-677-2208</a></p>
-      </div>
-      <div class="contact-item">
-        <p class="contact-item__label">Location</p>
-        <p class="contact-item__value">Victoria, BC</p>
-      </div>
-      <div class="contact-item">
-        <p class="contact-item__label">LinkedIn</p>
-        <p class="contact-item__value"><a href="https://www.linkedin.com/in/adam-geggie-bowker-7a04b5275" target="_blank">Adam Geggie-Bowker</a></p>
-      </div>
-      <div class="contact-item">
-        <p class="contact-item__label">GitHub</p>
-        <p class="contact-item__value"><a href="https://github.com/Azzuis" target="_blank">Azzuis</a></p>
-      </div>
-    </div>
-
-    <a href="#top" class="contact-back">
-      <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      Back to top
-    </a>
-  </div>
-</section>
-
-<footer style="padding:40px var(--page-pad); border-top:1px solid var(--border);">
-  <div class="container" style="display:flex; justify-content:space-between; align-items:center;">
-    <span class="t-label">© 2026 Adam Geggie-Bowker</span>
-    <span class="t-label">Product Designer — Victoria, BC</span>
-  </div>
-</footer>
-
-<!-- LIGHTBOX -->
-<div class="lightbox-overlay" id="lightbox">
-  <button class="lightbox-close" onclick="closeGallery()" aria-label="Close">✕</button>
-  <button class="lightbox-nav-btn lightbox-prev" onclick="navGallery(-1)" aria-label="Previous">‹</button>
-  <button class="lightbox-nav-btn lightbox-next" onclick="navGallery(1)" aria-label="Next">›</button>
-  <div class="lightbox-content">
-    <span class="lightbox-title" id="lightbox-title"></span>
-    <img class="lightbox-main-img" id="lightbox-main" src="" alt="" style="display:none;">
-    <div class="lightbox-message-slide" id="lightbox-message" style="display:none;"></div>
-    <div class="lightbox-thumbs" id="lightbox-thumbs"></div>
-    <span class="lightbox-counter" id="lightbox-counter"></span>
-  </div>
-</div>
-
-<script>
-/* ─────────────────────────────────────────────
-   GALLERY DATA
-   type: 'image' (default) or 'message'
-   rotate: 'neg90' for -90deg rotation
-   ───────────────────────────────────────────── */
-const galleryData = {
-
-  'rain-remindr': {
-    title: 'Rain Remindr',
-    images: [
-      { src: 'images/Remindr Concept.png', caption: 'Product concept — Remindr brand vision' },
-      { src: 'images/Initial Rain Reminder Mockup.jpeg', caption: 'Initial concept mockup — the very first physical prototype' },
-      { src: 'images/breadboarding.jpg', caption: 'Breadboarding phase — testing ESP32-C3 with WS2811 LEDs' },
-      { src: 'images/First PCB Design (NONFUNCTIONAL).PNG', caption: 'First PCB design attempt — non-functional, learned from failure' },
-      { src: 'images/MICROCONTROLLER MODEL screenshot.PNG', caption: 'Microcontroller 3D model — part of the early (obsolete) PCB design' },
-      { src: 'images/Circuit Redesign.jpg', caption: 'Circuit redesign — reworked schematic after first board failure' },
-      { src: 'images/currentPCBdesign.PNG', caption: 'Current PCB layout — 4-layer board with AP63203WU buck converter' },
-      { src: 'images/Current PCB Design.jpg', caption: 'Current PCB design — production-ready board' },
-      { src: 'images/Old Model.PNG', caption: 'Early enclosure 3D model' },
-      { src: 'images/RinglightBase.PNG', caption: 'Ring light base design for LED diffusion' },
-      { src: 'images/CuraSliceRingRemindrBase.PNG', caption: 'Cura slicer view — preparing enclosure for 3D printing' },
-      { src: 'images/Diffuser.jpeg', caption: 'Light diffuser — creating even ambient LED glow' },
-      { src: 'images/Desk.jpg', caption: 'The workspace — where it all comes together' },
-      { src: 'images/busy workspace.jpeg', caption: 'Deep in the build — mid-session workspace', rotate: 'neg90' },
-      { src: 'images/Remindr Prototype 1.PNG', caption: 'Prototype v1 — first assembled unit' },
-      { src: 'images/Rain Remindr 6 Example Drawing.PNG', caption: 'Technical drawing — enclosure dimensions' },
-    ]
-  },
-
-  'garbage-remindr': {
-    title: 'Garbage Remindr',
-    images: [
-      { src: 'images/Concept Image.png', caption: 'Product concept image' },
-      { src: 'images/Garbage Remindr V1.PNG', caption: 'Garbage Remindr V1 — initial design' },
-      { type: 'message', caption: 'Project Status', message: 'This project is still in the early stages of development. More design work and documentation to come as the product evolves.' },
-    ]
-  },
-
-  'remindr-website': {
-    title: 'Remindr Website',
-    images: [
-      { src: 'images/RemindrSite.PNG', caption: 'Homepage — WebGL shader background with repeating REMINDR typography' },
-    ]
-  },
-
-  'v-strut': {
-    title: 'Marine V-Strut Design',
-    images: [
-      { src: 'images/VSTRUT.PNG', caption: 'V-Strut 3D CAD model — designed in Rhinoceros for a 110 ft yacht' },
-    ]
-  }
-
-};
-
-/* ─── Gallery Logic ─── */
-let currentGallery = null;
-let currentIndex = 0;
-
-function openGallery(key) {
-  const data = galleryData[key];
-  if (!data || !data.images.length) return;
-  currentGallery = { ...data, images: [...data.images] };
-  currentIndex = 0;
-  renderGallery();
-  document.getElementById('lightbox').classList.add('active');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeGallery() {
-  document.getElementById('lightbox').classList.remove('active');
-  document.body.style.overflow = '';
-  currentGallery = null;
-}
-
-function navGallery(dir) {
-  if (!currentGallery) return;
-  currentIndex = (currentIndex + dir + currentGallery.images.length) % currentGallery.images.length;
-  renderGallery();
-}
-
-function goToSlide(i) { currentIndex = i; renderGallery(); }
-
-function renderGallery() {
-  if (!currentGallery) return;
-  const item = currentGallery.images[currentIndex];
-  const mainImg = document.getElementById('lightbox-main');
-  const msgDiv = document.getElementById('lightbox-message');
-  const isMessage = item.type === 'message';
-
-  document.getElementById('lightbox-title').textContent = currentGallery.title;
-
-  if (isMessage) {
-    mainImg.style.display = 'none';
-    msgDiv.style.display = 'flex';
-    msgDiv.innerHTML = '<p>' + item.message + '</p>';
-  } else {
-    msgDiv.style.display = 'none';
-    mainImg.style.display = 'block';
-    mainImg.src = item.src;
-    mainImg.alt = item.caption;
-    mainImg.className = 'lightbox-main-img';
-    if (item.rotate === 'neg90') {
-      mainImg.classList.add('rotate-neg90');
-    }
-  }
-
-  document.getElementById('lightbox-counter').textContent =
-    `${currentIndex + 1} / ${currentGallery.images.length} — ${item.caption}`;
-
-  // Thumbnails
-  const tc = document.getElementById('lightbox-thumbs');
-  tc.innerHTML = '';
-  if (currentGallery.images.length > 1) {
-    currentGallery.images.forEach((img, i) => {
-      if (img.type === 'message') {
-        const d = document.createElement('div');
-        d.className = 'lightbox-thumb-msg' + (i === currentIndex ? ' active' : '');
-        d.textContent = '…';
-        d.onclick = () => goToSlide(i);
-        tc.appendChild(d);
-      } else {
-        const t = document.createElement('img');
-        t.src = img.src;
-        t.alt = img.caption;
-        t.className = 'lightbox-thumb' + (i === currentIndex ? ' active' : '');
-        if (img.rotate === 'neg90') t.style.transform = 'rotate(-90deg)';
-        t.onclick = () => goToSlide(i);
-        tc.appendChild(t);
-      }
-    });
-  }
-}
-
-document.addEventListener('keydown', e => {
-  if (!currentGallery) return;
-  if (e.key === 'Escape') closeGallery();
-  if (e.key === 'ArrowLeft') navGallery(-1);
-  if (e.key === 'ArrowRight') navGallery(1);
-});
-
-document.getElementById('lightbox').addEventListener('click', e => {
-  if (e.target === document.getElementById('lightbox')) closeGallery();
-});
-
-/* ─── Scroll Reveal ─── */
-document.addEventListener('DOMContentLoaded', () => {
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-});
-</script>
 </body>
 </html>
