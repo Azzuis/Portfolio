@@ -4,21 +4,33 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Adam Geggie-Bowker — Portfolio</title>
+<meta name="description" content="Hardware engineer and product designer. PCB design, embedded firmware, industrial design, naval architecture." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #f5ebe4;
+    --bg-deep: #ede0d5;
     --ink: #0d0d0d;
     --ink-soft: #2a2a2a;
     --muted: #6b6b6b;
     --line: rgba(0, 0, 0, 0.12);
     --line-strong: rgba(0, 0, 0, 0.25);
+    --accent: #c44a1f;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
+
+  /* ---------- CUSTOM CURSOR ---------- */
+  /* Sharp crosshair-style cursor, SVG data URI so it ships with the file */
+  html, body {
+    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><path d='M12 1 L12 9 M12 15 L12 23 M1 12 L9 12 M15 12 L23 12' stroke='%230d0d0d' stroke-width='1.5' fill='none'/><circle cx='12' cy='12' r='1.5' fill='%23c44a1f'/></svg>") 12 12, crosshair;
+  }
+  a, button, .media, .nav a, .project-head h2 {
+    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'><path d='M14 1 L14 10 M14 18 L14 27 M1 14 L10 14 M18 14 L27 14' stroke='%23c44a1f' stroke-width='2' fill='none'/><circle cx='14' cy='14' r='2.5' fill='%230d0d0d' stroke='%23c44a1f' stroke-width='1.5'/></svg>") 14 14, pointer;
+  }
 
   body {
     font-family: 'Archivo', sans-serif;
@@ -30,13 +42,14 @@
     overflow-x: hidden;
   }
 
+  /* Film grain overlay */
   body::before {
     content: '';
     position: fixed;
     inset: 0;
     pointer-events: none;
     z-index: 1;
-    opacity: 0.35;
+    opacity: 0.28;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.25'/%3E%3C/svg%3E");
   }
 
@@ -65,32 +78,66 @@
   .portrait {
     position: relative; width: 100%; height: 100%;
     background: #d4cac2;
-    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
     z-index: 2;
   }
-  .portrait::after {
-    content: 'PORTRAIT';
-    font-family: 'Archivo Black', sans-serif;
-    letter-spacing: 0.3em;
-    color: rgba(0,0,0,0.3);
-    font-size: 13px;
+  .portrait img {
+    width: 100%; height: 100%; object-fit: cover;
+    filter: grayscale(0.15) contrast(1.02);
+  }
+  .portrait-tag {
+    position: absolute; top: 14px; left: 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--ink);
+    background: var(--bg);
+    padding: 4px 8px;
+    border: 1px solid var(--ink);
+    z-index: 3;
+  }
+
+  .intro .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .intro .eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 28px; height: 1px;
+    background: var(--ink);
   }
 
   .intro h1 {
     font-family: 'Archivo Black', sans-serif;
-    font-size: 68px;
-    line-height: 0.95;
-    letter-spacing: -0.02em;
-    margin-bottom: 24px;
+    font-size: 72px;
+    line-height: 0.92;
+    letter-spacing: -0.025em;
+    margin-bottom: 28px;
   }
+  .intro h1 .accent { color: var(--accent); }
 
-  .intro p.bio { font-size: 16px; max-width: 440px; color: var(--ink-soft); margin-bottom: 36px; }
+  .intro p.bio { font-size: 16.5px; max-width: 460px; color: var(--ink-soft); margin-bottom: 40px; line-height: 1.6; }
 
   .contact-block { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; max-width: 500px; }
-  .contact-block h3 { font-family: 'Archivo Black', sans-serif; font-size: 18px; margin-bottom: 14px; }
+  .contact-block h3 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    color: var(--muted);
+  }
   .contact-block p { font-size: 14.5px; color: var(--ink-soft); margin-bottom: 4px; }
-  .contact-block a { color: var(--ink-soft); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.2s ease; }
-  .contact-block a:hover { border-bottom-color: var(--ink); }
+  .contact-block a { color: var(--ink-soft); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.2s ease, color 0.2s ease; }
+  .contact-block a:hover { border-bottom-color: var(--accent); color: var(--ink); }
 
   /* ---------- NAV ---------- */
   .nav {
@@ -109,11 +156,17 @@
   .nav a::after {
     content: ''; position: absolute;
     left: 0; right: 100%; bottom: -4px;
-    height: 2px; background: var(--ink);
+    height: 2px; background: var(--accent);
     transition: right 0.3s ease;
   }
   .nav a:hover::after { right: 0; }
-  .nav .count { color: var(--muted); margin-left: 6px; font-weight: 400; }
+  .nav .count {
+    color: var(--muted);
+    margin-left: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 400;
+    font-size: 11px;
+  }
 
   /* ---------- PROJECT ---------- */
   .project { margin-bottom: 140px; scroll-margin-top: 40px; }
@@ -129,23 +182,48 @@
   }
 
   .project-head .tag {
-    font-family: 'Archivo Black', sans-serif;
-    font-size: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--muted);
     margin-bottom: 14px;
     display: block;
   }
+  .project-head .tag .dot {
+    display: inline-block;
+    width: 6px; height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
 
   .project-head h2 {
     font-family: 'Archivo Black', sans-serif;
-    font-size: 72px;
-    line-height: 0.92;
-    letter-spacing: -0.02em;
+    font-size: 76px;
+    line-height: 0.9;
+    letter-spacing: -0.025em;
   }
 
-  .project-head .summary { font-size: 15px; color: var(--ink-soft); padding-bottom: 6px; }
+  .project-head .summary { font-size: 15px; color: var(--ink-soft); padding-bottom: 6px; line-height: 1.6; }
+
+  .project-meta {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 50px;
+    padding-bottom: 30px;
+    border-bottom: 1px dashed var(--line-strong);
+    flex-wrap: wrap;
+  }
+  .meta-item {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .meta-item .label { color: var(--muted); display: block; margin-bottom: 4px; }
+  .meta-item .value { color: var(--ink); }
 
   /* ---------- DISCIPLINE ---------- */
   .discipline { margin-bottom: 70px; }
@@ -160,10 +238,11 @@
   }
 
   .discipline-head .num {
-    font-family: 'Archivo Black', sans-serif;
-    font-size: 14px;
-    color: var(--muted);
-    letter-spacing: 0.08em;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    font-weight: 500;
   }
 
   .discipline-head h3 {
@@ -174,7 +253,8 @@
   }
 
   .discipline-head .meta {
-    font-size: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
     color: var(--muted);
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -193,8 +273,8 @@
 
   .stage-label { position: sticky; top: 20px; align-self: start; }
   .stage-label .stage-tag {
-    font-family: 'Archivo Black', sans-serif;
-    font-size: 11px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--muted);
@@ -208,7 +288,8 @@
     line-height: 1.05;
   }
 
-  .stage-body p { font-size: 15px; color: var(--ink-soft); margin-bottom: 20px; max-width: 640px; }
+  .stage-body p { font-size: 15px; color: var(--ink-soft); margin-bottom: 20px; max-width: 640px; line-height: 1.65; }
+  .stage-body p + p { margin-top: -4px; }
 
   .stage-grid {
     display: grid;
@@ -218,43 +299,56 @@
   }
   .stage-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
   .stage-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+  .stage-grid.cols-1 { grid-template-columns: 1fr; }
 
   .media {
     position: relative;
     aspect-ratio: 4 / 3;
-    background: #d4cac2;
+    background: var(--bg-deep);
     overflow: hidden;
-    cursor: pointer;
     transition: transform 0.3s ease;
+    border: 1px solid var(--line);
   }
   .media.tall { aspect-ratio: 3 / 4; }
   .media.wide { aspect-ratio: 16 / 9; }
   .media.square { aspect-ratio: 1 / 1; }
 
+  .media img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+  .media:hover img { transform: scale(1.03); }
+
+  /* Fallback label when image doesn't load */
   .media::before {
     content: attr(data-label);
     position: absolute; inset: 0;
     display: flex; align-items: center; justify-content: center;
-    font-family: 'Archivo Black', sans-serif;
-    letter-spacing: 0.22em;
-    color: rgba(0,0,0,0.32);
-    font-size: 11px;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.2em;
+    color: rgba(0,0,0,0.3);
+    font-size: 10px;
     text-align: center;
     padding: 8px;
+    z-index: 0;
   }
 
   .media::after {
     content: ''; position: absolute; inset: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.55), transparent 50%);
+    background: linear-gradient(to top, rgba(0,0,0,0.6), transparent 55%);
     opacity: 0; transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 1;
   }
 
   .media .caption {
     position: absolute; left: 12px; right: 12px; bottom: 12px;
     color: #fff;
-    font-family: 'Archivo Black', sans-serif;
-    font-size: 11px;
-    letter-spacing: 0.1em;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
     opacity: 0;
     transform: translateY(6px);
@@ -266,6 +360,29 @@
   .media:hover::after { opacity: 1; }
   .media:hover .caption { opacity: 1; transform: translateY(0); }
 
+  /* Pull-quote for strut project */
+  .pullquote {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 24px;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    padding: 30px 0 30px 30px;
+    border-left: 3px solid var(--accent);
+    margin: 30px 0;
+    max-width: 640px;
+    color: var(--ink);
+  }
+  .pullquote .source {
+    display: block;
+    margin-top: 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
   /* ---------- FOOTER ---------- */
   .footer {
     margin-top: 120px;
@@ -274,8 +391,15 @@
     display: flex; justify-content: space-between;
     align-items: baseline; flex-wrap: wrap; gap: 20px;
   }
-  .footer .mark { font-family: 'Archivo Black', sans-serif; font-size: 28px; letter-spacing: -0.01em; }
-  .footer .year { font-size: 13px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
+  .footer .mark { font-family: 'Archivo Black', sans-serif; font-size: 32px; letter-spacing: -0.02em; }
+  .footer .mark .accent { color: var(--accent); }
+  .footer .year {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
 
   /* Reveal */
   .reveal { opacity: 0; transform: translateY(20px); animation: reveal 0.8s ease forwards; }
@@ -285,15 +409,19 @@
   .reveal:nth-child(3) { animation-delay: 0.25s; }
   .reveal:nth-child(4) { animation-delay: 0.35s; }
 
+  /* Scroll-triggered fade-in for stages */
+  .stage { opacity: 0; transform: translateY(15px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .stage.in-view { opacity: 1; transform: translateY(0); }
+
   /* Responsive */
   @media (max-width: 900px) {
     .container { padding: 40px 24px; }
     .header { grid-template-columns: 1fr; gap: 40px; margin-bottom: 60px; }
     .portrait-wrap { max-width: 280px; }
-    .intro h1 { font-size: 44px; }
+    .intro h1 { font-size: 46px; }
     .contact-block { grid-template-columns: 1fr; gap: 20px; }
     .project-head { grid-template-columns: 1fr; gap: 20px; }
-    .project-head h2 { font-size: 44px; }
+    .project-head h2 { font-size: 46px; }
     .discipline-head h3 { font-size: 24px; }
     .stage { grid-template-columns: 1fr; gap: 20px; padding-bottom: 36px; margin-bottom: 36px; }
     .stage-label { position: static; }
@@ -302,6 +430,7 @@
     .spray-tl { display: none; }
     .nav { gap: 16px; font-size: 11px; margin-bottom: 50px; }
     .project { margin-bottom: 90px; }
+    .pullquote { font-size: 18px; padding-left: 20px; }
   }
 </style>
 </head>
@@ -333,23 +462,29 @@
 
     <!-- HEADER -->
     <header class="header">
-      <div class="portrait-wrap reveal"><div class="portrait"></div></div>
+      <div class="portrait-wrap reveal">
+        <div class="portrait">
+          <span class="portrait-tag">AGB / 2026</span>
+          <img src="./General/Early%20Design%20Selfie.jpeg" alt="Adam Geggie-Bowker" onerror="this.style.display='none'">
+        </div>
+      </div>
 
       <div class="intro">
-        <h1 class="reveal">Adam<br/>Geggie-Bowker</h1>
+        <p class="eyebrow reveal">Portfolio — April 2026</p>
+        <h1 class="reveal">Adam<br/>Geggie-<span class="accent">Bowker</span></h1>
         <p class="bio reveal">
           Hardware engineer and product designer based in Victoria, BC. Co-founder of Remindr — a consumer IoT startup. I work across PCB design, embedded firmware, industrial design, and the occasional marine project or pen-and-ink drawing.
         </p>
 
         <div class="contact-block reveal">
           <div>
-            <h3>Contact:</h3>
+            <h3>Contact</h3>
             <p>Victoria, BC</p>
             <p><a href="mailto:hello@example.com">hello@example.com</a></p>
             <p><a href="https://remind-r.ca">remind-r.ca</a></p>
           </div>
           <div>
-            <h3>Elsewhere:</h3>
+            <h3>Elsewhere</h3>
             <p><a href="#">github.com/adam</a></p>
             <p><a href="#">linkedin.com/in/adam</a></p>
             <p><a href="#">@adam</a></p>
@@ -362,17 +497,19 @@
     <nav class="nav">
       <a href="#rain-remindr">Rain Remindr <span class="count">/ 01</span></a>
       <a href="#remindr-pucks">Remindr Pucks <span class="count">/ 02</span></a>
-      <a href="#marine-strut">Marine Strut <span class="count">/ 03</span></a>
-      <a href="#single-line">Single Line Drawing <span class="count">/ 04</span></a>
+      <a href="#garbage-remindr">Garbage Remindr <span class="count">/ 03</span></a>
+      <a href="#marine-strut">Marine Strut <span class="count">/ 04</span></a>
+      <a href="#bahtinov">Bahtinov Mask <span class="count">/ 05</span></a>
+      <a href="#single-line">Single Line <span class="count">/ 06</span></a>
     </nav>
 
     <!-- ============================================================ -->
-    <!-- PROJECT 01 — RAIN REMINDR                                      -->
+    <!-- 01 — RAIN REMINDR                                             -->
     <!-- ============================================================ -->
     <section id="rain-remindr" class="project">
       <div class="project-head">
         <div>
-          <span class="tag">Project 01 — Consumer IoT</span>
+          <span class="tag"><span class="dot"></span>Project 01 — Consumer IoT</span>
           <h2>Rain<br/>Remindr</h2>
         </div>
         <p class="summary">
@@ -380,28 +517,33 @@
         </p>
       </div>
 
+      <div class="project-meta">
+        <div class="meta-item"><span class="label">Role</span><span class="value">Lead EE + ME</span></div>
+        <div class="meta-item"><span class="label">Stack</span><span class="value">KiCad · Onshape · Arduino</span></div>
+        <div class="meta-item"><span class="label">PCB Revisions</span><span class="value">v1 → v7.5</span></div>
+        <div class="meta-item"><span class="label">Status</span><span class="value">Shipping</span></div>
+      </div>
+
       <!-- DISCIPLINE: ELECTRICAL -->
       <div class="discipline">
         <div class="discipline-head">
-          <span class="num">A</span>
+          <span class="num">A / 01</span>
           <h3>Electrical</h3>
           <span class="meta">Schematic · Layout · Assembly</span>
         </div>
 
-        <!-- STAGE -->
         <div class="stage">
           <div class="stage-label">
             <span class="stage-tag">Stage 01</span>
-            <h4>ECAD</h4>
+            <h4>Breadboard</h4>
           </div>
           <div class="stage-body">
             <p>
-              Schematic and PCB layout work in KiCad. Designed around an ESP32-C3 module driving a WS2811 LED strip, with USB-C input stepped down by an AP63203WU buck converter. Focused on a compact two-layer board suitable for low-volume JLCPCB runs.
+              Before committing to a PCB, I validated the LED driver, USB power path, and Wi-Fi behaviour on a dev board. The bit-banged WS2811 timing and the captive-portal join flow were the two things most likely to bite me — both got proven out here first.
             </p>
-            <div class="stage-grid">
-              <div class="media" data-label="SCHEMATIC"><div class="caption">Power + MCU sheet</div></div>
-              <div class="media" data-label="LAYOUT"><div class="caption">PCB top view</div></div>
-              <div class="media" data-label="3D RENDER"><div class="caption">KiCad 3D view</div></div>
+            <div class="stage-grid cols-2">
+              <div class="media" data-label="BREADBOARD"><img src="./Rain%20Remindr/ECAD/Early%20Breadboard/breadboarding.jpg" alt="Breadboard prototype" onerror="this.parentElement.querySelector('.caption').style.display='none'"><div class="caption">ESP32-C3 + WS2811</div></div>
+              <div class="media" data-label="DESK SETUP"><img src="./Rain%20Remindr/ECAD/Early%20Breadboard/Desk.jpg" alt="Desk during early prototyping" onerror="this.parentElement.querySelector('.caption').style.display='none'"><div class="caption">Mid-debug</div></div>
             </div>
           </div>
         </div>
@@ -409,16 +551,16 @@
         <div class="stage">
           <div class="stage-label">
             <span class="stage-tag">Stage 02</span>
-            <h4>Breadboarding</h4>
+            <h4>First PCB</h4>
           </div>
           <div class="stage-body">
             <p>
-              Early validation of the LED driver, power supply, and Wi-Fi behaviour before committing to a PCB. Used a dev board and a short WS2811 strip to prove out the timing-critical bit-banged protocol and the captive portal join flow.
+              First real fab run — and it didn't work. A footprint error on the USB-C connector and a missing pull-down on the enable line meant the board never enumerated. Frustrating at the time, instructive in retrospect. I keep the dead board around as a reminder to always zoom in on footprints before ordering.
             </p>
             <div class="stage-grid">
-              <div class="media" data-label="DEV BOARD"><div class="caption">ESP32-C3 + LEDs</div></div>
-              <div class="media" data-label="WIRING"><div class="caption">Power test</div></div>
-              <div class="media" data-label="SCOPE"><div class="caption">WS2811 timing</div></div>
+              <div class="media" data-label="FIRST PCB"><img src="./Rain%20Remindr/ECAD/First%20PCB/First%20PCB%20(NONFUNCTIONAL).PNG" alt="First PCB render" onerror="this.parentElement.querySelector('.caption').style.display='none'"><div class="caption">Render (non-functional)</div></div>
+              <div class="media" data-label="DESIGN"><img src="./Rain%20Remindr/ECAD/First%20PCB/First%20PCB%20Design%20(NONFUNCTIONAL).PNG" alt="First PCB design" onerror="this.parentElement.querySelector('.caption').style.display='none'"><div class="caption">Layout</div></div>
+              <div class="media" data-label="PCB-1"><img src="./Rain%20Remindr/ECAD/First%20PCB/PCB-1.jpeg" alt="First PCB populated" onerror="this.parentElement.querySelector('.caption').style.display='none'"><div class="caption">Populated board</div></div>
             </div>
           </div>
         </div>
@@ -426,16 +568,21 @@
         <div class="stage">
           <div class="stage-label">
             <span class="stage-tag">Stage 03</span>
-            <h4>Protoboard</h4>
+            <h4>Iteration — v2 through v7.5</h4>
           </div>
           <div class="stage-body">
             <p>
-              Hand-soldered perfboard version bridging the breadboard prototype and the first PCB. Useful for burn-in testing and checking mechanical fit inside the enclosure mock-up before paying for fabrication.
+              Seven-plus revisions between the broken first board and a working design. Each turn tightened the power path, cleaned up the LED header, and shrank the footprint. The schematic barely changed after v3 — most of the iteration was layout and mechanical fit.
             </p>
-            <div class="stage-grid">
-              <div class="media" data-label="TOP"><div class="caption">Component side</div></div>
-              <div class="media" data-label="BOTTOM"><div class="caption">Solder side</div></div>
-              <div class="media" data-label="IN SITU"><div class="caption">Mounted in test rig</div></div>
+            <div class="stage-grid cols-4">
+              <div class="media" data-label="V2"><img src="./Rain%20Remindr/ECAD/Early%20Designs/V2%20PCB%20Layout.PNG" alt="V2 layout" onerror="this.parentElement.querySelector('.caption').style.display='none'"><div class="caption">v2 layout</div></div>
+              <div class="media" data-label="V3"><img src="./Rain%20Remindr/ECAD/Early%20Designs/V3%20PCB%20Layout.PNG" alt="V3 layout" onerror="this.parentElement.querySelector('.caption').style.display='none'"><div class="caption">v3 layout</div></div>
+              <div class="media" data-label="V5"><img src="./Rain%20Remindr/ECAD/Early%20Designs/v5%20PCB%20LAYOUT.PNG" alt="V5 layout" onerror="this.parentElement.querySelector('.caption').style.display='none'"><div class="caption">v5 layout</div></div>
+              <div class="media" data-label="V6"><img src="./Rain%20Remindr/ECAD/Early%20Designs/v6%20PCB%20LAYOUT.PNG" alt="V6 layout" onerror="this.parentElement.querySelector('.caption').style.display='none'"><div class="caption">v6 layout</div></div>
+            </div>
+            <div class="stage-grid cols-2" style="margin-top: 12px;">
+              <div class="media" data-label="V3 SCHEMATIC"><img src="./Rain%20Remindr/ECAD/Early%20Designs/V3%20Schematic.PNG" alt="V3 schematic" onerror="this.parentElement.querySelector('.caption').style.display='none'"><div class="caption">v3 schematic</div></div>
+              <div class="media" data-label="V7.5 SCHEMATIC"><img src="./Rain%20Remindr/ECAD/Early%20Designs/V7.5%20Schematic.PNG" alt="V7.5 schematic" onerror="this.parentElement.querySelector('.caption').style.display='none'"><div class="caption">v7.5 schematic</div></div>
             </div>
           </div>
         </div>
@@ -443,44 +590,42 @@
         <div class="stage">
           <div class="stage-label">
             <span class="stage-tag">Stage 04</span>
-            <h4>Prototype 01</h4>
+            <h4>Current Design</h4>
           </div>
           <div class="stage-body">
             <p>
-              First real PCB — USB-C input, buck converter, ESP32-C3 module, four-pin LED strip header. Caught a silk error on the USB footprint and a missing pull-down on the enable line. Fully functional after a couple of bodge wires.
+              The shipping revision. Two-layer, USB-C in, AP63203WU buck down to 3.3V, ESP32-C3 module, four-pin header for the LED strip. Compact enough to sit inside the diffuser ring without crowding the light path.
             </p>
             <div class="stage-grid">
-              <div class="media" data-label="BARE PCB"><div class="caption">Fresh from fab</div></div>
-              <div class="media" data-label="ASSEMBLED"><div class="caption">Populated board</div></div>
-              <div class="media" data-label="BODGES"><div class="caption">Rework notes</div></div>
+              <div class="media" data-label="CURRENT PCB"><img src="./Rain%20Remindr/ECAD/Current%20PCB/Current%20PCB%20Design.jpg" alt="Current PCB" onerror="this.parentElement.querySelector('.caption').style.display='none'"><div class="caption">Current PCB</div></div>
+              <div class="media" data-label="REDESIGN"><img src="./Rain%20Remindr/ECAD/Current%20PCB/Circuit%20Redesign.jpg" alt="Circuit redesign" onerror="this.parentElement.querySelector('.caption').style.display='none'"><div class="caption">Circuit redesign</div></div>
+              <div class="media" data-label="LAYOUT"><img src="./Rain%20Remindr/ECAD/Current%20PCB/currentPCBdesign.PNG" alt="Current PCB layout" onerror="this.parentElement.querySelector('.caption').style.display='none'"><div class="caption">Layout view</div></div>
             </div>
           </div>
         </div>
-
-        <!-- ADD MORE STAGES HERE — copy a <div class="stage"> block above -->
       </div>
 
       <!-- DISCIPLINE: MECHANICAL -->
       <div class="discipline">
         <div class="discipline-head">
-          <span class="num">B</span>
+          <span class="num">A / 02</span>
           <h3>Mechanical</h3>
-          <span class="meta">CAD · 3D Print · Tolerance</span>
+          <span class="meta">CAD · 3D Print · Diffuser</span>
         </div>
 
         <div class="stage">
           <div class="stage-label">
             <span class="stage-tag">Stage 01</span>
-            <h4>Concept CAD</h4>
+            <h4>Early Mockup</h4>
           </div>
           <div class="stage-body">
             <p>
-              Onshape models exploring the toroidal light-ring form factor. Iterated on diffuser wall thickness, LED strip channel geometry, and mounting options for the PCB carrier.
+              A quick-and-dirty enclosure to get something in my hand. Not the final form factor, but enough to validate that the LED ring concept actually looked good when lit and that the PCB would fit somewhere sensible.
             </p>
             <div class="stage-grid">
-              <div class="media" data-label="SECTION"><div class="caption">Cutaway view</div></div>
-              <div class="media" data-label="EXPLODED"><div class="caption">Assembly diagram</div></div>
-              <div class="media" data-label="DIMENSIONS"><div class="caption">Drawing pack</div></div>
+              <div class="media" data-label="MOCKUP MODEL"><img src="./Rain%20Remindr/MCAD/Mockup/Initial%20Mockup%20Rain%20Remindr%20Model.PNG" alt="Initial mockup CAD" onerror="this.parentElement.querySelector('.caption').style.display='none'"><div class="caption">CAD mockup</div></div>
+              <div class="media" data-label="PRINTED TOP"><img src="./Rain%20Remindr/MCAD/Mockup/Mockup%20Top%20Printed.jpg" alt="Printed mockup top" onerror="this.parentElement.querySelector('.caption').style.display='none'"><div class="caption">Printed top</div></div>
+              <div class="media" data-label="ASSEMBLED"><img src="./Rain%20Remindr/MCAD/Mockup/Initial%20Rain%20Reminder%20Mockup.jpeg" alt="Assembled mockup" onerror="this.parentElement.querySelector('.caption').style.display='none'"><div class="caption">Assembled</div></div>
             </div>
           </div>
         </div>
@@ -488,75 +633,96 @@
         <div class="stage">
           <div class="stage-label">
             <span class="stage-tag">Stage 02</span>
-            <h4>Prototype 01 — FDM</h4>
+            <h4>V1 — V2 Base</h4>
           </div>
           <div class="stage-body">
             <p>
-              First physical diffuser — 283 mm diameter transparent PETG print on the Neptune Pro Plus. Bed adhesion and first-layer consistency were the main fights. Light transmission and ring uniformity came out better than expected.
+              First real enclosure revisions. V1 was a solid base with top-mounted PCB; V2 added a proper diffuser cavity and better cable routing. The printed V1 was when I first stopped calling this project a "prototype" and started calling it a product.
             </p>
-            <div class="stage-grid">
-              <div class="media" data-label="ON PRINTER"><div class="caption">Mid-print</div></div>
-              <div class="media" data-label="FINISHED"><div class="caption">Off the bed</div></div>
-              <div class="media" data-label="LIT"><div class="caption">LED test</div></div>
+            <div class="stage-grid cols-4">
+              <div class="media" data-label="V1 MODEL"><img src="./Rain%20Remindr/MCAD/V1/V1%20Rain%20Remindr%20Model.PNG" alt="V1 CAD model" onerror="this.parentElement.querySelector('.caption').style.display='none'"><div class="caption">V1 CAD</div></div>
+              <div class="media" data-label="V1 PRINTED"><img src="./Rain%20Remindr/MCAD/V1/V1%20Base%20Printed.jpg" alt="V1 printed" onerror="this.parentElement.querySelector('.caption').style.display='none'"><div class="caption">V1 printed</div></div>
+              <div class="media" data-label="V2 MODEL"><img src="./Rain%20Remindr/MCAD/V2/V2%20Rain%20Remindr%20Model.PNG" alt="V2 model" onerror="this.parentElement.querySelector('.caption').style.display='none'"><div class="caption">V2 CAD</div></div>
+              <div class="media" data-label="V2 DIFFUSER"><img src="./Rain%20Remindr/MCAD/V2/V2%20Rain%20Remindr%20Diffuser%20Sketch.PNG" alt="V2 diffuser sketch" onerror="this.parentElement.querySelector('.caption').style.display='none'"><div class="caption">Diffuser sketch</div></div>
             </div>
           </div>
         </div>
 
-        <!-- ADD MORE STAGES HERE -->
+        <div class="stage">
+          <div class="stage-label">
+            <span class="stage-tag">Stage 03</span>
+            <h4>V3 — Light Ring</h4>
+          </div>
+          <div class="stage-body">
+            <p>
+              This is where the product took its current shape. Toroidal diffuser, LED strip channel running around the circumference, PCB carrier press-fit into the base. Cura slicing was a fight — clear PETG at this diameter wants to warp.
+            </p>
+            <div class="stage-grid">
+              <div class="media" data-label="LIGHT RING"><img src="./Rain%20Remindr/MCAD/V3/V3%20Rain%20Remindr%20Lightring%20Model.PNG" alt="V3 light ring" onerror="this.parentElement.querySelector('.caption').style.display='none'"><div class="caption">V3 model</div></div>
+              <div class="media" data-label="SLICING"><img src="./Rain%20Remindr/MCAD/V3/CuraSliceRingRemindrBase.PNG" alt="Cura slice" onerror="this.parentElement.querySelector('.caption').style.display='none'"><div class="caption">Cura slice</div></div>
+              <div class="media" data-label="PRINTED BASE"><img src="./Rain%20Remindr/MCAD/V3/V3%20Rain%20Remindr%20Lightring%20Printed%20Base%20Model.PNG" alt="Printed base" onerror="this.parentElement.querySelector('.caption').style.display='none'"><div class="caption">Printed base</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="stage">
+          <div class="stage-label">
+            <span class="stage-tag">Stage 04</span>
+            <h4>V4 — PCB Housing</h4>
+          </div>
+          <div class="stage-body">
+            <p>
+              Refinement pass on the PCB carrier. Tighter tolerances, better strain relief on the USB-C cutout, and snap features that let the whole thing assemble without fasteners.
+            </p>
+            <div class="stage-grid cols-2">
+              <div class="media wide" data-label="V4 HOUSING"><img src="./Rain%20Remindr/MCAD/V4/V4%20Rain%20Remindr%20Lightring%20Early%20Iteration%20of%20PCB%20base%20housing%20l.PNG" alt="V4 PCB housing" onerror="this.parentElement.querySelector('.caption').style.display='none'"><div class="caption">PCB base housing</div></div>
+              <div class="media wide" data-label="V4 INTEGRATION"><img src="./Rain%20Remindr/MCAD/V4/V4%20Rain%20Remindr%20Lightring%20Early%20Iteration%20of%20PCB%20Models%20l.PNG" alt="V4 integration" onerror="this.parentElement.querySelector('.caption').style.display='none'"><div class="caption">PCB integration</div></div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- DISCIPLINE: PROGRAMMING -->
       <div class="discipline">
         <div class="discipline-head">
-          <span class="num">C</span>
+          <span class="num">A / 03</span>
           <h3>Programming</h3>
-          <span class="meta">Firmware · API · UI</span>
+          <span class="meta">Firmware · API · Captive Portal</span>
         </div>
 
         <div class="stage">
           <div class="stage-label">
             <span class="stage-tag">Stage 01</span>
-            <h4>Firmware — v1.2.0</h4>
+            <h4>Firmware</h4>
           </div>
           <div class="stage-body">
             <p>
-              ESP32-C3 Arduino firmware polling Open-Meteo for rain probability on a configurable schedule and translating the forecast into colour and animation on a WS2811 strip. Sensitivity threshold, colour presets, and strip length are all user-tuneable.
+              ESP32-C3 Arduino firmware polling Open-Meteo for rain probability on a configurable schedule and translating the forecast into colour and animation on a WS2811 strip. Sensitivity threshold, colour presets, and strip length are all user-tuneable and persist across reboots.
             </p>
-            <div class="stage-grid">
-              <div class="media" data-label="CODE"><div class="caption">main loop</div></div>
-              <div class="media" data-label="STATE DIAGRAM"><div class="caption">Forecast → colour</div></div>
-            </div>
           </div>
         </div>
 
         <div class="stage">
           <div class="stage-label">
             <span class="stage-tag">Stage 02</span>
-            <h4>Captive Portal UI</h4>
+            <h4>Captive Portal</h4>
           </div>
           <div class="stage-body">
             <p>
-              Browser-based setup flow served directly from the ESP32. Wi-Fi onboarding, location search, sensitivity slider, colour picker, and a strip-length finder that walks the user through calibrating their specific install.
+              Browser-based setup flow served directly from the ESP32 — no app, no account. Wi-Fi onboarding, location search, sensitivity slider, colour picker, and a strip-length finder that walks through calibrating the specific install. The goal was to make the out-of-box experience feel closer to a Nest than a Raspberry Pi project.
             </p>
-            <div class="stage-grid">
-              <div class="media" data-label="WIFI JOIN"><div class="caption">Onboarding step 1</div></div>
-              <div class="media" data-label="SETTINGS"><div class="caption">Preferences screen</div></div>
-              <div class="media" data-label="FINDER"><div class="caption">Strip calibration</div></div>
-            </div>
           </div>
         </div>
-
-        <!-- ADD MORE STAGES HERE -->
       </div>
     </section>
 
     <!-- ============================================================ -->
-    <!-- PROJECT 02 — REMINDR PUCKS                                     -->
+    <!-- 02 — REMINDR PUCKS                                             -->
     <!-- ============================================================ -->
     <section id="remindr-pucks" class="project">
       <div class="project-head">
         <div>
-          <span class="tag">Project 02 — Consumer IoT</span>
+          <span class="tag"><span class="dot"></span>Project 02 — Consumer IoT</span>
           <h2>Remindr<br/>Pucks</h2>
         </div>
         <p class="summary">
@@ -564,10 +730,15 @@
         </p>
       </div>
 
-      <!-- DISCIPLINE: ELECTRICAL -->
+      <div class="project-meta">
+        <div class="meta-item"><span class="label">Role</span><span class="value">Lead EE + ME</span></div>
+        <div class="meta-item"><span class="label">Stack</span><span class="value">KiCad · Onshape · Zephyr</span></div>
+        <div class="meta-item"><span class="label">Status</span><span class="value">Active WIP</span></div>
+      </div>
+
       <div class="discipline">
         <div class="discipline-head">
-          <span class="num">A</span>
+          <span class="num">B / 01</span>
           <h3>Electrical</h3>
           <span class="meta">BLE · Power · Charging</span>
         </div>
@@ -575,27 +746,23 @@
         <div class="stage">
           <div class="stage-label">
             <span class="stage-tag">Stage 01</span>
-            <h4>ECAD</h4>
+            <h4>Puck + Dock</h4>
           </div>
           <div class="stage-body">
             <p>
-              KiCad schematic around the nRF52832 with an MCP73831 LiPo charger, a single SK6812MINI-E addressable LED, and exposed pogo pads for magnetic charging. Careful attention to BLE antenna keepout and charger routing.
+              Two boards, one system. The puck runs an nRF52832 with a single SK6812MINI-E, MCP73831 LiPo charger, and exposed pads for magnetic dock contacts. The dock handles pairing, power, and routing. BLE antenna keepout and charger routing were the two spots I sweated most.
             </p>
-            <div class="stage-grid">
-              <div class="media" data-label="SCHEMATIC"><div class="caption">MCU + BLE</div></div>
-              <div class="media" data-label="CHARGER"><div class="caption">MCP73831 sheet</div></div>
-              <div class="media" data-label="LAYOUT"><div class="caption">Round PCB</div></div>
+            <div class="stage-grid cols-2">
+              <div class="media" data-label="PUCK SCHEMATIC"><img src="./Puck%20Remindr/ECAD/Puck%20Schematic%20WIP.PNG" alt="Puck schematic" onerror="this.parentElement.querySelector('.caption').style.display='none'"><div class="caption">Puck schematic</div></div>
+              <div class="media" data-label="DOCK SCHEMATIC"><img src="./Puck%20Remindr/ECAD/Dock%20Schematic%20WIP.PNG" alt="Dock schematic" onerror="this.parentElement.querySelector('.caption').style.display='none'"><div class="caption">Dock schematic</div></div>
             </div>
           </div>
         </div>
-
-        <!-- ADD MORE STAGES HERE -->
       </div>
 
-      <!-- DISCIPLINE: MECHANICAL -->
       <div class="discipline">
         <div class="discipline-head">
-          <span class="num">B</span>
+          <span class="num">B / 02</span>
           <h3>Mechanical</h3>
           <span class="meta">Enclosure · Magnets · Light pipe</span>
         </div>
@@ -603,83 +770,109 @@
         <div class="stage">
           <div class="stage-label">
             <span class="stage-tag">Stage 01</span>
-            <h4>Concept CAD</h4>
+            <h4>Concept</h4>
           </div>
           <div class="stage-body">
             <p>
-              Exploring enclosure shapes that feel good in hand, hold a LiPo securely, align reliably to the dock via magnets, and diffuse the single SK6812 evenly across the top surface.
+              Exploring shapes that feel good in hand, hold a LiPo securely, align reliably to the dock via magnets, and diffuse the single SK6812 evenly across the top face. The hockey-puck form factor sold itself quickly.
             </p>
-            <div class="stage-grid">
-              <div class="media" data-label="PUCK"><div class="caption">Top shell</div></div>
-              <div class="media" data-label="EXPLODED"><div class="caption">Stack-up</div></div>
+            <div class="stage-grid cols-1">
+              <div class="media wide" data-label="CONCEPT"><img src="./Puck%20Remindr/MCAD/Concept.jpg" alt="Puck concept" onerror="this.parentElement.querySelector('.caption').style.display='none'"><div class="caption">Concept render</div></div>
             </div>
           </div>
         </div>
-
-        <!-- ADD MORE STAGES HERE -->
-      </div>
-
-      <!-- DISCIPLINE: PROGRAMMING -->
-      <div class="discipline">
-        <div class="discipline-head">
-          <span class="num">C</span>
-          <h3>Programming</h3>
-          <span class="meta">BLE protocol · Power management</span>
-        </div>
-
-        <div class="stage">
-          <div class="stage-label">
-            <span class="stage-tag">Stage 01</span>
-            <h4>BLE Protocol</h4>
-          </div>
-          <div class="stage-body">
-            <p>
-              Custom GATT service for puck-to-dock communication. Messages cover colour commands, animation selection, battery state reporting, and low-power pairing. Designed for multi-puck deployments off one dock.
-            </p>
-            <div class="stage-grid">
-              <div class="media" data-label="GATT"><div class="caption">Service layout</div></div>
-              <div class="media" data-label="PAIRING"><div class="caption">Flow diagram</div></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- ADD MORE STAGES HERE -->
       </div>
     </section>
 
     <!-- ============================================================ -->
-    <!-- PROJECT 03 — MARINE STRUT                                      -->
+    <!-- 03 — GARBAGE REMINDR                                           -->
     <!-- ============================================================ -->
-    <section id="marine-strut" class="project">
+    <section id="garbage-remindr" class="project">
       <div class="project-head">
         <div>
-          <span class="tag">Project 03 — Naval Architecture</span>
-          <h2>Marine<br/>Strut</h2>
+          <span class="tag"><span class="dot"></span>Project 03 — Consumer IoT</span>
+          <h2>Garbage<br/>Remindr</h2>
         </div>
         <p class="summary">
-          Structural shaft strut designed during my co-op at Gregory C. Marshall Naval Architect. Modelled in CAD, dimensioned for machining, and detailed for fabrication drawings.
+          A third member of the Remindr family. Tells you which bin to put out this week — calendar-aware, glanceable, silent until it matters.
         </p>
+      </div>
+
+      <div class="project-meta">
+        <div class="meta-item"><span class="label">Role</span><span class="value">Concept + ECAD</span></div>
+        <div class="meta-item"><span class="label">Status</span><span class="value">Early WIP</span></div>
       </div>
 
       <div class="discipline">
         <div class="discipline-head">
-          <span class="num">A</span>
-          <h3>Design &amp; Drafting</h3>
-          <span class="meta">CAD · Drawings · Review</span>
+          <span class="num">C / 01</span>
+          <h3>Concept &amp; ECAD</h3>
+          <span class="meta">Form · Schematic</span>
         </div>
 
         <div class="stage">
           <div class="stage-label">
             <span class="stage-tag">Stage 01</span>
-            <h4>CAD Model</h4>
+            <h4>Early Work</h4>
           </div>
           <div class="stage-body">
             <p>
-              Solid model of the strut body capturing hull-interface geometry, bearing bore, and fairing surfaces. Built with manufacturability and future machining setups in mind.
+              Still in the sketch-and-schematic phase. The form-factor direction is a vertical bar with discrete segments per bin type; the electrical work is re-using as much of the Rain Remindr stack as possible to keep BOM overlap high across the product family.
             </p>
-            <div class="stage-grid cols-2">
-              <div class="media wide" data-label="ISO VIEW"><div class="caption">Full assembly</div></div>
-              <div class="media wide" data-label="SECTION"><div class="caption">Bore detail</div></div>
+            <div class="stage-grid">
+              <div class="media" data-label="CONCEPT"><img src="./Garbage%20Remindr/Concept%20Image.png" alt="Garbage Remindr concept" onerror="this.parentElement.querySelector('.caption').style.display='none'"><div class="caption">Concept</div></div>
+              <div class="media" data-label="ECAD WIP"><img src="./Garbage%20Remindr/GARBAGE%20REMINDR%20ECAD%20WIP.PNG" alt="ECAD WIP" onerror="this.parentElement.querySelector('.caption').style.display='none'"><div class="caption">ECAD — WIP</div></div>
+              <div class="media" data-label="V1"><img src="./Garbage%20Remindr/Garbage%20Remindr%20V1.PNG" alt="Garbage Remindr V1" onerror="this.parentElement.querySelector('.caption').style.display='none'"><div class="caption">V1</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 04 — MARINE STRUT                                              -->
+    <!-- ============================================================ -->
+    <section id="marine-strut" class="project">
+      <div class="project-head">
+        <div>
+          <span class="tag"><span class="dot"></span>Project 04 — Naval Architecture</span>
+          <h2>Marine<br/>Strut</h2>
+        </div>
+        <p class="summary">
+          Custom V-strut for the propulsion system of a 110 ft hybrid motor yacht. Designed during my co-op at Gregory C. Marshall Naval Architect — dimensioned to ABS standards, shaped for hydrodynamic efficiency, and drafted for the shipyard.
+        </p>
+      </div>
+
+      <div class="project-meta">
+        <div class="meta-item"><span class="label">Client</span><span class="value">GCMNA</span></div>
+        <div class="meta-item"><span class="label">Vessel</span><span class="value">110 ft Motor Yacht</span></div>
+        <div class="meta-item"><span class="label">Standard</span><span class="value">ABS</span></div>
+        <div class="meta-item"><span class="label">Material</span><span class="value">316 Stainless</span></div>
+      </div>
+
+      <div class="discipline">
+        <div class="discipline-head">
+          <span class="num">D / 01</span>
+          <h3>Design &amp; Analysis</h3>
+          <span class="meta">CAD · CFD · ABS Compliance</span>
+        </div>
+
+        <div class="stage">
+          <div class="stage-label">
+            <span class="stage-tag">Stage 01</span>
+            <h4>Profile &amp; Sizing</h4>
+          </div>
+          <div class="stage-body">
+            <p>
+              A V-strut with a rough NACA airfoil cross-section, dimensioned against ABS standards for a 3½" shaft. Minimum barrel thickness, minor/major arm thickness, and overall length all sized off the shaft diameter per spec.
+            </p>
+            <p>
+              I ran simple 2D fluid sims comparing an airfoil profile to a cylindrical one — the wake behaviour is dramatically cleaner on the airfoil, which matters directly for propeller vibration.
+            </p>
+            <div class="stage-grid">
+              <div class="media" data-label="FRONT PROFILE"><img src="./GCMNA/MCAD/Front%20Prof.PNG" alt="Front profile" onerror="this.parentElement.querySelector('.caption').style.display='none'"><div class="caption">Front profile</div></div>
+              <div class="media" data-label="SIDE PROFILE"><img src="./GCMNA/MCAD/Side%20Prof%20VSTRUT.PNG" alt="Side profile V-strut" onerror="this.parentElement.querySelector('.caption').style.display='none'"><div class="caption">Side profile</div></div>
+              <div class="media" data-label="V-STRUT"><img src="./GCMNA/MCAD/VSTRUT.PNG" alt="V-strut assembly" onerror="this.parentElement.querySelector('.caption').style.display='none'"><div class="caption">V-strut assembly</div></div>
             </div>
           </div>
         </div>
@@ -687,40 +880,124 @@
         <div class="stage">
           <div class="stage-label">
             <span class="stage-tag">Stage 02</span>
-            <h4>Fabrication Drawings</h4>
+            <h4>Fluid Behaviour</h4>
           </div>
           <div class="stage-body">
             <p>
-              Fully dimensioned 2D drawing pack — GD&amp;T, weld callouts, finish notes, and revision block. Formatted to the studio's template for handoff to the machine shop.
+              2D fluid sim of high-speed water curl passing over the section profile. Not a full CFD study — intended to illustrate the wake-shedding difference between shapes, and to inform the angle-of-attack decision.
             </p>
-            <div class="stage-grid cols-2">
-              <div class="media wide" data-label="SHEET 1"><div class="caption">Overall dimensions</div></div>
-              <div class="media wide" data-label="SHEET 2"><div class="caption">Detail views</div></div>
+            <div class="stage-grid cols-1">
+              <div class="media wide" data-label="FLUID SIM"><img src="./GCMNA/MCAD/Fluid%20SIm.PNG" alt="Fluid simulation" onerror="this.parentElement.querySelector('.caption').style.display='none'"><div class="caption">Vortex shedding visualisation</div></div>
             </div>
           </div>
         </div>
 
-        <!-- ADD MORE STAGES HERE -->
+        <div class="stage">
+          <div class="stage-label">
+            <span class="stage-tag">Stage 03</span>
+            <h4>The 42° Decision</h4>
+          </div>
+          <div class="stage-body">
+            <p>
+              The most interesting call on the project. ABS requires a minimum 40° angle between strut legs for load-path reasons. But there's a less-obvious upper bound too — if the struts are angled at 90° relative to each other, their vortices reach the 4-blade propeller simultaneously, doubling the vibration impulse on each rotation.
+            </p>
+
+            <div class="pullquote">
+              If one strut's vortex was going to strike a propeller, the other strut's vortex would also collide with another propeller blade. This effectively doubles the force being applied during any given vortex strike.
+              <span class="source">— Challenge Report, Dec 2023</span>
+            </div>
+
+            <p>
+              42° threads that needle — comfortably above the 40° minimum, nowhere near the 90° failure mode, and with enough base separation to avoid a high-pressure zone between the two strut feet.
+            </p>
+          </div>
+        </div>
+
+        <div class="stage">
+          <div class="stage-label">
+            <span class="stage-tag">Stage 04</span>
+            <h4>Bolt Pattern</h4>
+          </div>
+          <div class="stage-body">
+            <p>
+              Eight M24 316-stainless bolts per pad, sixteen per strut. Sizing approach: treat the bolt pattern as a beam section and match its section modulus to the strut's. The final pattern sits about 4% over the strut's capacity — enough margin without over-building.
+            </p>
+            <p>
+              Pads are bonded to the hull tunnels with Chockfast Orange — a two-component compound rated for marine service by ABS, Lloyd's, Bureau Veritas, DNV, and Germanischer Lloyd. Fibreglass fairing on top, sanded smooth, painted to match.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div style="padding-top: 10px;">
+        <p style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px;">Full Report</p>
+        <a href="./GCMNA/CODING/Designing%20A%20Marine%20Strut%20Signed.pdf" target="_blank" style="display: inline-block; padding: 14px 24px; background: var(--ink); color: var(--bg); text-decoration: none; font-family: 'Archivo Black', sans-serif; font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase;">
+          Read the challenge report →
+        </a>
       </div>
     </section>
 
     <!-- ============================================================ -->
-    <!-- PROJECT 04 — SINGLE LINE DRAWING                               -->
+    <!-- 05 — BAHTINOV MASK                                             -->
+    <!-- ============================================================ -->
+    <section id="bahtinov" class="project">
+      <div class="project-head">
+        <div>
+          <span class="tag"><span class="dot"></span>Project 05 — Tooling</span>
+          <h2>Bahtinov<br/>Mask</h2>
+        </div>
+        <p class="summary">
+          A parametric Bahtinov mask generator for astrophotography focusing. Punch in your telescope's aperture and focal length, get a printable SVG and a matching 3D model. Useful when your kit doesn't come with one and you'd rather not buy a $50 piece of plastic.
+        </p>
+      </div>
+
+      <div class="project-meta">
+        <div class="meta-item"><span class="label">Role</span><span class="value">Personal project</span></div>
+        <div class="meta-item"><span class="label">Output</span><span class="value">SVG · STL</span></div>
+      </div>
+
+      <div class="discipline">
+        <div class="discipline-head">
+          <span class="num">E / 01</span>
+          <h3>Generator</h3>
+          <span class="meta">SVG · CAD · Print</span>
+        </div>
+
+        <div class="stage">
+          <div class="stage-label">
+            <span class="stage-tag">Stage 01</span>
+            <h4>Pattern &amp; Model</h4>
+          </div>
+          <div class="stage-body">
+            <p>
+              The slit geometry follows the standard Bahtinov derivation — three slit groups at specific angles, sized so the diffraction spikes converge on a focused star and split when you're off. From the generated SVG I extrude a mask body with a friction-fit lip for common telescope apertures.
+            </p>
+            <div class="stage-grid cols-2">
+              <div class="media wide" data-label="SVG"><img src="./Bahtinov%20Mask/MCAD/Bahtinov%20Mask%20Generated%20SVG.PNG" alt="Generated SVG" onerror="this.parentElement.querySelector('.caption').style.display='none'"><div class="caption">Generated SVG</div></div>
+              <div class="media wide" data-label="MODEL"><img src="./Bahtinov%20Mask/MCAD/Bahtinov%20Mask%20Model.PNG" alt="3D model" onerror="this.parentElement.querySelector('.caption').style.display='none'"><div class="caption">3D model</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 06 — SINGLE LINE                                               -->
     <!-- ============================================================ -->
     <section id="single-line" class="project">
       <div class="project-head">
         <div>
-          <span class="tag">Project 04 — Personal Work</span>
-          <h2>Single Line<br/>Drawing</h2>
+          <span class="tag"><span class="dot"></span>Project 06 — Personal Work</span>
+          <h2>Single<br/>Line</h2>
         </div>
         <p class="summary">
-          A continuous-line ink study — one unbroken stroke from start to finish. An exercise in commitment, composition, and not lifting the pen.
+          A continuous-line ink study. One unbroken stroke from start to finish — an exercise in commitment, composition, and not lifting the pen.
         </p>
       </div>
 
       <div class="discipline">
         <div class="discipline-head">
-          <span class="num">A</span>
+          <span class="num">F / 01</span>
           <h3>The Piece</h3>
           <span class="meta">Ink on paper</span>
         </div>
@@ -732,26 +1009,40 @@
           </div>
           <div class="stage-body">
             <p>
-              Finished drawing, scanned and cleaned. The appeal of a single-line constraint is that every stroke has to earn its place — no corrections, no shortcuts, just one continuous path.
+              The appeal of a single-line constraint is that every stroke has to earn its place — no corrections, no shortcuts, just one continuous path. I find it lines up surprisingly well with how I think about hardware: every compromise visible, no do-overs once the pen leaves the paper or the board leaves the fab.
             </p>
-            <div class="stage-grid cols-2">
-              <div class="media wide square" data-label="FULL PIECE"><div class="caption">Final scan</div></div>
-              <div class="media square" data-label="DETAIL"><div class="caption">Close-up crop</div></div>
+            <div class="stage-grid cols-1">
+              <div class="media wide" data-label="FINAL PIECE"><img src="./Single%20Line%20Portfolio%20Piece/ECAD/2026%20April%20Portfolio.pdf" alt="Final drawing" onerror="this.parentElement.querySelector('.caption').style.display='none'"><div class="caption">Final scan</div></div>
             </div>
+            <p style="margin-top: 16px; font-size: 13px; color: var(--muted);">
+              Note: drop a PNG/JPG of the scan into <code style="font-family: 'JetBrains Mono', monospace; background: var(--bg-deep); padding: 2px 6px;">/Single Line Portfolio Piece/MCAD/</code> and update the <code style="font-family: 'JetBrains Mono', monospace; background: var(--bg-deep); padding: 2px 6px;">src</code> above.
+            </p>
           </div>
         </div>
-
-        <!-- ADD MORE STAGES HERE -->
       </div>
     </section>
 
     <!-- FOOTER -->
     <footer class="footer">
-      <div class="mark">AGB</div>
+      <div class="mark">AG<span class="accent">B</span></div>
       <div class="year">© 2026 — Built in Victoria, BC</div>
     </footer>
 
   </div>
+
+  <script>
+    // Simple scroll-triggered reveal for stages
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.stage').forEach(el => observer.observe(el));
+  </script>
 
 </body>
 </html>
