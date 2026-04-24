@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Adam Geggie-Bowker, Portfolio</title>
-<meta name="description" content="Hardware engineer and product designer. PCB design, embedded firmware, industrial design, naval architecture." />
+<meta name="description" content="Industrial Designer. PCB design, embedded firmware, industrial design, naval architecture. Looking for work in the electrical field. Here are some of the projects I've been building." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -325,19 +325,6 @@
   }
   .media:hover img { transform: scale(1.03); }
 
-  .media::before {
-    content: attr(data-label);
-    position: absolute; inset: 0;
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'JetBrains Mono', monospace;
-    letter-spacing: 0.2em;
-    color: rgba(0,0,0,0.3);
-    font-size: 10px;
-    text-align: center;
-    padding: 8px;
-    z-index: 0;
-  }
-
   .media::after {
     content: '\2922';
     position: absolute;
@@ -582,7 +569,7 @@
         <p class="eyebrow reveal">Portfolio, April 2026</p>
         <h1 class="reveal">Adam<br/>Geggie<span class="accent">Bowker</span></h1>
         <p class="bio reveal">
-          Hardware engineer and product designer based in Victoria, BC. Co-founder of Remindr, a consumer IoT startup. I work across PCB design, embedded firmware, industrial design, and the occasional marine project or pen-and-ink drawing.
+          Industrial Designer. PCB design, embedded firmware, industrial design, naval architecture. Looking for work in the electrical field. Here are some of the projects I've been building.
         </p>
 
         <div class="contact-block reveal">
@@ -635,145 +622,10 @@
           <h3>Electrical</h3>
           <span class="meta">Schematic, Layout, Assembly</span>
         </div>
-
-        <div class="stage">
+      <div class="stage">
           <div class="stage-label">
-            <span class="stage-tag">Stage 01</span>
-            <h4>Schematic Design</h4>
-          </div>
-          <div class="stage-body">
-            <p>
-              The electrical design started in KiCad with a clear goal: USB-C input, buck down to 3.3V for the ESP32-C3, a clean strip header for the WS2811s, and nothing else. The schematic went through several passes before anything hit copper. Each revision tightened decoupling, adjusted the buck topology, and cleaned up the net names so the layout could track the intent.
-            </p>
-            <div class="stage-grid cols-1">
-              <div class="media-wrap">
-                <div class="media wide" data-label="V3 SCHEMATIC" data-gallery="rain-elec" data-full="./Professional%20Portfolio/Rain%20Remindr/ECAD/Early%20Designs/V3%20Schematic.PNG" data-caption="v3 Schematic, early pass">
-                  <img src="./Professional%20Portfolio/Rain%20Remindr/ECAD/Early%20Designs/V3%20Schematic.PNG" alt="V3 schematic" onerror="this.style.display='none'">
-                </div>
-                <p class="media-caption"><span class="idx">01</span>v3 schematic, the early pass that informed the first fab run</p>
-              </div>
-              <div class="media-wrap">
-                <div class="media wide" data-label="V7 SCHEMATIC" data-gallery="rain-elec" data-full="./Professional%20Portfolio/Rain%20Remindr/ECAD/Early%20Designs/V7%20Schematic.PNG" data-caption="v7 Schematic">
-                  <img src="./Professional%20Portfolio/Rain%20Remindr/ECAD/Early%20Designs/V7%20Schematic.PNG" alt="V7 schematic" onerror="this.style.display='none'">
-                </div>
-                <p class="media-caption"><span class="idx">02</span>v7 schematic, cleaned up power and strip header</p>
-              </div>
-              <div class="media-wrap">
-                <div class="media wide" data-label="V7.5 SCHEMATIC" data-gallery="rain-elec" data-full="./Professional%20Portfolio/Rain%20Remindr/ECAD/Early%20Designs/V7.5%20Schematic.PNG" data-caption="v7.5 Schematic, current">
-                  <img src="./Professional%20Portfolio/Rain%20Remindr/ECAD/Early%20Designs/V7.5%20Schematic.PNG" alt="V7.5 schematic" onerror="this.style.display='none'">
-                </div>
-                <p class="media-caption"><span class="idx">03</span>v7.5 schematic, current shipping revision</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="stage">
-          <div class="stage-label">
-            <span class="stage-tag">Stage 02</span>
-            <h4>Breadboarding</h4>
-          </div>
-          <div class="stage-body">
-            <p>
-              With a schematic direction set, the next job was proving the risky parts in hardware before paying for fabrication. The bit-banged WS2811 timing and the captive-portal join flow were the two things most likely to bite, so both got validated on a dev board and a short LED strip. The messy desk is accurate.
-            </p>
-            <div class="stage-grid">
-              <div class="media-wrap">
-                <div class="media" data-label="BREADBOARD" data-gallery="rain-elec" data-full="./Professional%20Portfolio/Rain%20Remindr/ECAD/Early%20Breadboard/breadboarding.jpg" data-caption="Breadboard prototype">
-                  <img src="./Professional%20Portfolio/Rain%20Remindr/ECAD/Early%20Breadboard/breadboarding.jpg" alt="Breadboard prototype" onerror="this.style.display='none'">
-                </div>
-                <p class="media-caption"><span class="idx">04</span>ESP32-C3 and WS2811 on the breadboard</p>
-              </div>
-              <div class="media-wrap">
-                <div class="media" data-label="DESK SETUP" data-gallery="rain-elec" data-full="./Professional%20Portfolio/Rain%20Remindr/ECAD/Early%20Breadboard/Desk.jpg" data-caption="Desk setup mid-debug">
-                  <img src="./Professional%20Portfolio/Rain%20Remindr/ECAD/Early%20Breadboard/Desk.jpg" alt="Desk during early prototyping" onerror="this.style.display='none'">
-                </div>
-                <p class="media-caption"><span class="idx">05</span>Desk setup, mid-debug</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="stage">
-          <div class="stage-label">
-            <span class="stage-tag">Stage 03</span>
-            <h4>First PCB</h4>
-          </div>
-          <div class="stage-body">
-            <p>
-              First real fab run, and it didn't work. Two shorts on the board: one across the USB-C pins and another on the buck converter. Most of the blame landed on the fab, but some of it was mine. Early layout choices left traces too tight and pads too generous for the process tolerances of a low-cost run. Lesson learned: design for the fab you're actually going to use, not the ideal one in your head.
-            </p>
-            <div class="stage-grid cols-3">
-              <div class="media-wrap">
-                <div class="media" data-label="FIRST PCB RENDER" data-gallery="rain-elec" data-full="./Professional%20Portfolio/Rain%20Remindr/ECAD/First%20PCB/First%20PCB%20(NONFUNCTIONAL).PNG" data-caption="First PCB render, non-functional">
-                  <img src="./Professional%20Portfolio/Rain%20Remindr/ECAD/First%20PCB/First%20PCB%20(NONFUNCTIONAL).PNG" alt="First PCB render" onerror="this.style.display='none'">
-                </div>
-                <p class="media-caption"><span class="idx">06</span>Render, non-functional</p>
-              </div>
-              <div class="media-wrap">
-                <div class="media" data-label="FIRST PCB DESIGN" data-gallery="rain-elec" data-full="./Professional%20Portfolio/Rain%20Remindr/ECAD/First%20PCB/First%20PCB%20Design%20(NONFUNCTIONAL).PNG" data-caption="First PCB layout">
-                  <img src="./Professional%20Portfolio/Rain%20Remindr/ECAD/First%20PCB/First%20PCB%20Design%20(NONFUNCTIONAL).PNG" alt="First PCB design" onerror="this.style.display='none'">
-                </div>
-                <p class="media-caption"><span class="idx">07</span>Layout</p>
-              </div>
-              <div class="media-wrap">
-                <div class="media" data-label="POPULATED" data-gallery="rain-elec" data-full="./Professional%20Portfolio/Rain%20Remindr/ECAD/First%20PCB/PCB-1.jpeg" data-caption="First PCB populated">
-                  <img src="./Professional%20Portfolio/Rain%20Remindr/ECAD/First%20PCB/PCB-1.jpeg" alt="First PCB populated" onerror="this.style.display='none'">
-                </div>
-                <p class="media-caption"><span class="idx">08</span>Populated board</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="stage">
-          <div class="stage-label">
-            <span class="stage-tag">Stage 04</span>
-            <h4>PCB Iterations</h4>
-          </div>
-          <div class="stage-body">
-            <p>
-              Seven revisions between the broken first board and a working design. Each turn tightened the power path, cleaned up the LED header, and shrank the footprint. The schematic barely changed after v3. Most of the work was in layout, mechanical fit, and killing the clearance issues that caused the first fab shorts.
-            </p>
-            <div class="stage-grid">
-              <div class="media-wrap">
-                <div class="media" data-label="V2 LAYOUT" data-gallery="rain-elec" data-full="./Professional%20Portfolio/Rain%20Remindr/ECAD/Early%20Designs/V2%20PCB%20Layout.PNG" data-caption="v2 PCB Layout">
-                  <img src="./Professional%20Portfolio/Rain%20Remindr/ECAD/Early%20Designs/V2%20PCB%20Layout.PNG" alt="V2 PCB layout" onerror="this.style.display='none'">
-                </div>
-                <p class="media-caption"><span class="idx">09</span>v2 layout</p>
-              </div>
-              <div class="media-wrap">
-                <div class="media" data-label="V3 LAYOUT" data-gallery="rain-elec" data-full="./Professional%20Portfolio/Rain%20Remindr/ECAD/Early%20Designs/V3%20PCB%20Layout.PNG" data-caption="v3 PCB Layout">
-                  <img src="./Professional%20Portfolio/Rain%20Remindr/ECAD/Early%20Designs/V3%20PCB%20Layout.PNG" alt="V3 PCB layout" onerror="this.style.display='none'">
-                </div>
-                <p class="media-caption"><span class="idx">10</span>v3 layout</p>
-              </div>
-              <div class="media-wrap">
-                <div class="media" data-label="V5 LAYOUT" data-gallery="rain-elec" data-full="./Professional%20Portfolio/Rain%20Remindr/ECAD/Early%20Designs/v5%20PCB%20LAYOUT.PNG" data-caption="v5 PCB Layout">
-                  <img src="./Professional%20Portfolio/Rain%20Remindr/ECAD/Early%20Designs/v5%20PCB%20LAYOUT.PNG" alt="V5 PCB layout" onerror="this.style.display='none'">
-                </div>
-                <p class="media-caption"><span class="idx">11</span>v5 layout</p>
-              </div>
-              <div class="media-wrap">
-                <div class="media" data-label="V6 LAYOUT" data-gallery="rain-elec" data-full="./Professional%20Portfolio/Rain%20Remindr/ECAD/Early%20Designs/v6%20PCB%20LAYOUT.PNG" data-caption="v6 PCB Layout">
-                  <img src="./Professional%20Portfolio/Rain%20Remindr/ECAD/Early%20Designs/v6%20PCB%20LAYOUT.PNG" alt="V6 PCB layout" onerror="this.style.display='none'">
-                </div>
-                <p class="media-caption"><span class="idx">12</span>v6 layout</p>
-              </div>
-              <div class="media-wrap">
-                <div class="media" data-label="V7 LAYOUT" data-gallery="rain-elec" data-full="./Professional%20Portfolio/Rain%20Remindr/ECAD/Early%20Designs/PCB%20layout%207.PNG" data-caption="v7 PCB Layout">
-                  <img src="./Professional%20Portfolio/Rain%20Remindr/ECAD/Early%20Designs/PCB%20layout%207.PNG" alt="V7 PCB layout" onerror="this.style.display='none'">
-                </div>
-                <p class="media-caption"><span class="idx">13</span>v7 layout</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="stage">
-          <div class="stage-label">
-            <span class="stage-tag">Stage 05</span>
-            <h4>Current PCB<br/><span class="shipping-badge">SHIPPING NOW</span></h4>
+            <span class="stage-tag">Current</span>
+            <h4>Shipping Design<br/><span class="shipping-badge">SHIPPING NOW</span></h4>
           </div>
           <div class="stage-body">
             <p>
@@ -781,27 +633,124 @@
             </p>
             <div class="stage-grid cols-3">
               <div class="media-wrap">
-                <div class="media" data-label="CURRENT PCB" data-gallery="rain-elec" data-full="./Professional%20Portfolio/Rain%20Remindr/ECAD/Current%20PCB/Current%20PCB%20Design.jpg" data-caption="Current PCB, shipping revision">
+                <div class="media" data-gallery="rain-elec" data-full="./Professional%20Portfolio/Rain%20Remindr/ECAD/Current%20PCB/Current%20PCB%20Design.jpg" data-caption="Current PCB, shipping revision">
                   <img src="./Professional%20Portfolio/Rain%20Remindr/ECAD/Current%20PCB/Current%20PCB%20Design.jpg" alt="Current PCB" onerror="this.style.display='none'">
                 </div>
-                <p class="media-caption"><span class="idx">14</span>Current PCB, shipping revision</p>
+                <p class="media-caption"><span class="idx">01</span>Current PCB, shipping revision</p>
               </div>
               <div class="media-wrap">
-                <div class="media" data-label="REDESIGN" data-gallery="rain-elec" data-full="./Professional%20Portfolio/Rain%20Remindr/ECAD/Current%20PCB/Circuit%20Redesign.jpg" data-caption="Circuit redesign notes">
+                <div class="media" data-gallery="rain-elec" data-full="./Professional%20Portfolio/Rain%20Remindr/ECAD/Current%20PCB/Circuit%20Redesign.jpg" data-caption="Circuit redesign notes">
                   <img src="./Professional%20Portfolio/Rain%20Remindr/ECAD/Current%20PCB/Circuit%20Redesign.jpg" alt="Circuit redesign" onerror="this.style.display='none'">
                 </div>
-                <p class="media-caption"><span class="idx">15</span>Circuit redesign notes</p>
+                <p class="media-caption"><span class="idx">02</span>Circuit redesign notes</p>
               </div>
               <div class="media-wrap">
-                <div class="media" data-label="LAYOUT" data-gallery="rain-elec" data-full="./Professional%20Portfolio/Rain%20Remindr/ECAD/Current%20PCB/currentPCBdesign.PNG" data-caption="Current layout">
+                <div class="media" data-gallery="rain-elec" data-full="./Professional%20Portfolio/Rain%20Remindr/ECAD/Current%20PCB/currentPCBdesign.PNG" data-caption="Current layout">
                   <img src="./Professional%20Portfolio/Rain%20Remindr/ECAD/Current%20PCB/currentPCBdesign.PNG" alt="Current PCB layout" onerror="this.style.display='none'">
                 </div>
-                <p class="media-caption"><span class="idx">16</span>Current layout</p>
+                <p class="media-caption"><span class="idx">03</span>Current layout</p>
+              </div>
+            </div>
+            <div class="stage-grid cols-1" style="margin-top: 20px;">
+              <div class="media-wrap">
+                <div class="media wide" data-gallery="rain-elec" data-full="./Professional%20Portfolio/Rain%20Remindr/ECAD/Early%20Designs/V7.5%20Schematic.PNG" data-caption="v7.5 Schematic, current shipping revision">
+                  <img src="./Professional%20Portfolio/Rain%20Remindr/ECAD/Early%20Designs/V7.5%20Schematic.PNG" alt="V7.5 schematic" onerror="this.style.display='none'">
+                </div>
+                <p class="media-caption"><span class="idx">04</span>v7.5 schematic, current shipping revision</p>
               </div>
             </div>
           </div>
         </div>
-      </div>
+
+        <div class="stage">
+          <div class="stage-label">
+            <span class="stage-tag">Archive</span>
+            <h4>Prototypes and Iterations</h4>
+          </div>
+          <div class="stage-body">
+            <p>
+              Everything below is obsolete. These earlier schematics, breadboard photos, and PCB layouts are here to illustrate the iteration process, not to document the current design. Seven PCB revisions, three major schematic passes, and a lot of rework between the first broken board and the one that ships.
+            </p>
+            <p>
+              The first fab run failed with two shorts: one across the USB-C pins and another on the buck converter. Most of the blame landed on the fab, but some of it was mine. Early layout choices left traces too tight and pads too generous for the process tolerances of a low-cost run.
+            </p>
+            <div class="stage-grid cols-3">
+              <div class="media-wrap">
+                <div class="media" data-gallery="rain-elec" data-full="./Professional%20Portfolio/Rain%20Remindr/ECAD/Early%20Designs/V3%20Schematic.PNG" data-caption="v3 Schematic, early pass">
+                  <img src="./Professional%20Portfolio/Rain%20Remindr/ECAD/Early%20Designs/V3%20Schematic.PNG" alt="V3 schematic" onerror="this.style.display='none'">
+                </div>
+                <p class="media-caption"><span class="idx">05</span>v3 schematic</p>
+              </div>
+              <div class="media-wrap">
+                <div class="media" data-gallery="rain-elec" data-full="./Professional%20Portfolio/Rain%20Remindr/ECAD/Early%20Designs/V7%20Schematic.PNG" data-caption="v7 Schematic">
+                  <img src="./Professional%20Portfolio/Rain%20Remindr/ECAD/Early%20Designs/V7%20Schematic.PNG" alt="V7 schematic" onerror="this.style.display='none'">
+                </div>
+                <p class="media-caption"><span class="idx">06</span>v7 schematic</p>
+              </div>
+              <div class="media-wrap">
+                <div class="media" data-gallery="rain-elec" data-full="./Professional%20Portfolio/Rain%20Remindr/ECAD/Early%20Breadboard/breadboarding.jpg" data-caption="Breadboard prototype">
+                  <img src="./Professional%20Portfolio/Rain%20Remindr/ECAD/Early%20Breadboard/breadboarding.jpg" alt="Breadboard prototype" onerror="this.style.display='none'">
+                </div>
+                <p class="media-caption"><span class="idx">07</span>Breadboard prototype</p>
+              </div>
+              <div class="media-wrap">
+                <div class="media" data-gallery="rain-elec" data-full="./Professional%20Portfolio/Rain%20Remindr/ECAD/Early%20Breadboard/Desk.jpg" data-caption="Desk setup mid-debug">
+                  <img src="./Professional%20Portfolio/Rain%20Remindr/ECAD/Early%20Breadboard/Desk.jpg" alt="Desk during prototyping" onerror="this.style.display='none'">
+                </div>
+                <p class="media-caption"><span class="idx">08</span>Desk, mid-debug</p>
+              </div>
+              <div class="media-wrap">
+                <div class="media" data-gallery="rain-elec" data-full="./Professional%20Portfolio/Rain%20Remindr/ECAD/First%20PCB/First%20PCB%20(NONFUNCTIONAL).PNG" data-caption="First PCB render, non-functional">
+                  <img src="./Professional%20Portfolio/Rain%20Remindr/ECAD/First%20PCB/First%20PCB%20(NONFUNCTIONAL).PNG" alt="First PCB render" onerror="this.style.display='none'">
+                </div>
+                <p class="media-caption"><span class="idx">09</span>First PCB (non-functional)</p>
+              </div>
+              <div class="media-wrap">
+                <div class="media" data-gallery="rain-elec" data-full="./Professional%20Portfolio/Rain%20Remindr/ECAD/First%20PCB/First%20PCB%20Design%20(NONFUNCTIONAL).PNG" data-caption="First PCB layout">
+                  <img src="./Professional%20Portfolio/Rain%20Remindr/ECAD/First%20PCB/First%20PCB%20Design%20(NONFUNCTIONAL).PNG" alt="First PCB layout" onerror="this.style.display='none'">
+                </div>
+                <p class="media-caption"><span class="idx">10</span>First PCB layout</p>
+              </div>
+              <div class="media-wrap">
+                <div class="media" data-gallery="rain-elec" data-full="./Professional%20Portfolio/Rain%20Remindr/ECAD/First%20PCB/PCB-1.jpeg" data-caption="First PCB populated">
+                  <img src="./Professional%20Portfolio/Rain%20Remindr/ECAD/First%20PCB/PCB-1.jpeg" alt="First PCB populated" onerror="this.style.display='none'">
+                </div>
+                <p class="media-caption"><span class="idx">11</span>First PCB populated</p>
+              </div>
+              <div class="media-wrap">
+                <div class="media" data-gallery="rain-elec" data-full="./Professional%20Portfolio/Rain%20Remindr/ECAD/Early%20Designs/V2%20PCB%20Layout.PNG" data-caption="v2 PCB Layout">
+                  <img src="./Professional%20Portfolio/Rain%20Remindr/ECAD/Early%20Designs/V2%20PCB%20Layout.PNG" alt="V2 PCB layout" onerror="this.style.display='none'">
+                </div>
+                <p class="media-caption"><span class="idx">12</span>v2 layout</p>
+              </div>
+              <div class="media-wrap">
+                <div class="media" data-gallery="rain-elec" data-full="./Professional%20Portfolio/Rain%20Remindr/ECAD/Early%20Designs/V3%20PCB%20Layout.PNG" data-caption="v3 PCB Layout">
+                  <img src="./Professional%20Portfolio/Rain%20Remindr/ECAD/Early%20Designs/V3%20PCB%20Layout.PNG" alt="V3 PCB layout" onerror="this.style.display='none'">
+                </div>
+                <p class="media-caption"><span class="idx">13</span>v3 layout</p>
+              </div>
+              <div class="media-wrap">
+                <div class="media" data-gallery="rain-elec" data-full="./Professional%20Portfolio/Rain%20Remindr/ECAD/Early%20Designs/v5%20PCB%20LAYOUT.PNG" data-caption="v5 PCB Layout">
+                  <img src="./Professional%20Portfolio/Rain%20Remindr/ECAD/Early%20Designs/v5%20PCB%20LAYOUT.PNG" alt="V5 PCB layout" onerror="this.style.display='none'">
+                </div>
+                <p class="media-caption"><span class="idx">14</span>v5 layout</p>
+              </div>
+              <div class="media-wrap">
+                <div class="media" data-gallery="rain-elec" data-full="./Professional%20Portfolio/Rain%20Remindr/ECAD/Early%20Designs/v6%20PCB%20LAYOUT.PNG" data-caption="v6 PCB Layout">
+                  <img src="./Professional%20Portfolio/Rain%20Remindr/ECAD/Early%20Designs/v6%20PCB%20LAYOUT.PNG" alt="V6 PCB layout" onerror="this.style.display='none'">
+                </div>
+                <p class="media-caption"><span class="idx">15</span>v6 layout</p>
+              </div>
+              <div class="media-wrap">
+                <div class="media" data-gallery="rain-elec" data-full="./Professional%20Portfolio/Rain%20Remindr/ECAD/Early%20Designs/PCB%20layout%207.PNG" data-caption="v7 PCB Layout">
+                  <img src="./Professional%20Portfolio/Rain%20Remindr/ECAD/Early%20Designs/PCB%20layout%207.PNG" alt="V7 PCB layout" onerror="this.style.display='none'">
+                </div>
+                <p class="media-caption"><span class="idx">16</span>v7 layout</p>
+              </div>
+            </div>
+          </div>
+        </div>
+       
 
       <div class="discipline">
         <div class="discipline-head">
@@ -1165,9 +1114,6 @@
                 <p class="media-caption"><span class="idx">01</span>Community centre single-line diagram</p>
               </div>
             </div>
-            <p style="margin-top: 16px; font-size: 13px; color: var(--muted);">
-              Drop the final diagram image at <code style="font-family: 'JetBrains Mono', monospace; background: var(--bg-deep); padding: 2px 6px;">/Single Line Portfolio Piece/ECAD/Single Line Diagram.png</code> and it'll appear here.
-            </p>
           </div>
         </div>
       </div>
@@ -1235,30 +1181,9 @@
           </div>
         </div>
 
-        <!-- Compact fluid section, smaller stage -->
-        <div class="stage compact">
-          <div class="stage-label">
-            <span class="stage-tag">Stage 02</span>
-            <h4>Fluid Behaviour</h4>
-          </div>
-          <div class="stage-body">
-            <p>
-              A very limited 2D fluid sim, useful for illustrating wake-shedding differences between cross-section shapes. Not a real CFD study. Treated as a visualisation aid when reasoning about the angle-of-attack decision, not as a design validation.
-            </p>
-            <div class="stage-grid cols-1">
-              <div class="media-wrap">
-                <div class="media wide" data-label="FLUID SIM" data-gallery="strut" data-full="./Professional%20Portfolio/GCMNA/MCAD/Fluid%20SIm.PNG" data-caption="2D fluid sim">
-                  <img src="./Professional%20Portfolio/GCMNA/MCAD/Fluid%20SIm.PNG" alt="Fluid simulation" onerror="this.style.display='none'">
-                </div>
-                <p class="media-caption"><span class="idx">04</span>Illustrative 2D fluid sim</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
         <div class="stage">
           <div class="stage-label">
-            <span class="stage-tag">Stage 03</span>
+            <span class="stage-tag">Stage 02</span>
             <h4>The 42 Degree Decision</h4>
           </div>
           <div class="stage-body">
